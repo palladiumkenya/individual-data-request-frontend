@@ -14,6 +14,7 @@
   import Maps from "views/admin/Maps.svelte";
   import InternalApproval from "../views/approvals/InternalApproval.svelte";
   import PdfViewer from "../components/PdfViewer/PdfViewer.svelte";
+  import Footer from "../components/Footers/Footer.svelte";
 
   export let location;
   export let admin = "";
@@ -23,15 +24,23 @@
   <Sidebar location={location}/>
   <div class="relative md:ml-64 bg-blueGray-100">
     <AdminNavbar />
-    <HeaderStats />
+    <div class="relative bg-indigo-500 md:pt-32 pb-32 pt-12">
+      <div class="px-4 md:px-10 mx-auto w-full">
+        <div>
+        </div>
+      </div>
+    </div>
     <div class="px-4 md:px-10 mx-auto w-full -m-24">
-      <Router url="admin">
+      <Router url="approval">
         <Route path="dashboard" component="{Dashboard}" />
         <Route path="settings" component="{Settings}" />
         <Route path="tables" component="{Tables}" />
         <Route path="maps" component="{Maps}" />
+        <Route path="internal-approval/:id" component="{InternalApproval}" />
+        <Route path="external-approval/:id" component="{InternalApproval}" />
+
       </Router>
-      <FooterAdmin />
+<!--      <Footer />-->
     </div>
   </div>
 </div>

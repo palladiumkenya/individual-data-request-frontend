@@ -51,10 +51,6 @@
     on:click="{toggleDropdown}"
   >
     <div >
-        <!--{#if user}-->
-        <!--    <h1 class="text-white  px-4">Welcome, {user.profile.name}!</h1>-->
-
-        <!--{/if}-->
       <span
         class="w-12 h-12 text-sm text-white bg-white inline-flex items-center justify-center rounded-full"
       >
