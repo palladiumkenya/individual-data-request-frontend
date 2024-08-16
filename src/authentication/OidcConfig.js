@@ -3,7 +3,7 @@ import {UserManager, WebStorageStateStore} from 'oidc-client-ts';
 
 
 let client_id = "dwh.sop-portal"
-let authority = 'https://localhost:5006'
+let authority = 'https://identity.kenyahmis.org'
 let BASE_URL = 'http://localhost:5000'
 
 
