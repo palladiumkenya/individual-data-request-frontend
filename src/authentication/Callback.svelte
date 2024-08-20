@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import { userManager } from './oidcConfig';
+    import { userManager } from './OidcConfig';
     import { auth } from './authStore';
     import { navigate } from 'svelte-routing';
 

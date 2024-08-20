@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { userManager } from './oidcConfig';
+import { userManager } from './OidcConfig';
 
 const createAuthStore = () => {
     const { subscribe, set } = writable(null);

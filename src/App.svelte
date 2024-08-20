@@ -11,19 +11,12 @@
   import Index from "./views/Index.svelte";
   import Landing from "./views/Landing.svelte";
   import Profile from "./views/Profile.svelte";
-  import Callback from './authentication/callback.svelte';
+  import Callback from './authentication/Callback.svelte';
   import InternalApprover from "./views/approvals/InternalApproval.svelte";
   import Approvals from "./layouts/Approvals.svelte";
 
   export let url = "";
 
-
-   // import AuthLayout from './Auth.svelte';
-  // import Callback from './Callback.svelte';
-  // import { auth } from './AuthStore';
-  //
-  // let user;
-  // auth.subscribe(value => user = value);
 </script>
 
 
