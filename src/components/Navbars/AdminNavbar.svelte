@@ -15,7 +15,7 @@
       class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
       href="#pablo" on:click={(e) => e.preventDefault()}
     >
-      Dashboard
+      Individual Data Requests Platform
     </a>
     <!-- Form -->
     <form
