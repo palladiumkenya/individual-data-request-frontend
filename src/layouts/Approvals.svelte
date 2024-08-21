@@ -13,8 +13,8 @@
   import Tables from "views/admin/Tables.svelte";
   import Maps from "views/admin/Maps.svelte";
   import InternalApproval from "../views/approvals/InternalApproval.svelte";
-  import PdfViewer from "../components/PdfViewer/PdfViewer.svelte";
-  import Footer from "../components/Footers/Footer.svelte";
+  // import PdfViewer from "../components/PdfViewer/PdfViewer.svelte";
+  // import Footer from "../components/Footers/Footer.svelte";
 
   export let location;
   export let admin = "";
