@@ -25,18 +25,21 @@
     }
   };
 
-  // =========== get user info=========
+  // // =========== get user info=========
+  // let user = null;
+  //
+  // onMount(async () => {
+  //     user = await userManager.getUser();
+  //     if (user) {
+  //         auth.setUser(user);
+  //     }
+  // });
+  //
+  // auth.subscribe(value => user = value);
+  // // =========== get user info=========
   let user = null;
-
-  onMount(async () => {
-      user = await userManager.getUser();
-      if (user) {
-          auth.setUser(user);
-      }
-  });
-
   auth.subscribe(value => user = value);
-  // =========== get user info=========
+
 </script>
 
 <div class="items-center flex">
@@ -73,7 +76,7 @@
            href="#login" on:click={(e) => e.preventDefault()}
            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
         >
-            Logout <i class="fas fa-sign-in"></i>
+            Logout <i class="fas fa-right-from-bracket"></i>
         </a>
     {:else}
       <a on:click={() => auth.login()}
