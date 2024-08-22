@@ -13,10 +13,25 @@
   import Profile from "./views/Profile.svelte";
   import Callback from './authentication/Callback.svelte';
   import InternalApprover from "./views/approvals/InternalApproval.svelte";
-  import Approvals from "./layouts/Approvals.svelte";
+  import Approvals from "./layouts/ApprovalsLayout.svelte";
+  import {onMount} from "svelte";
+  import {userManager} from "./authentication/OidcConfig";
+  import {auth} from "./authentication/AuthStore";
 
   export let url = "";
 
+  // =========== get user info=========
+  let user = null;
+
+  onMount(async () => {
+    user = await userManager.getUser();
+    if (user) {
+      auth.setUser(user);
+    }
+  });
+
+  auth.subscribe(value => user = value);
+  // =========== get user info=========
 </script>
 
 
