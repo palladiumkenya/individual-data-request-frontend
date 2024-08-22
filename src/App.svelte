@@ -1,24 +1,27 @@
 <!-- App.svelte -->
 <script>
-  import { Router, Route } from "svelte-routing";
+  import { Router, Route } from 'svelte-routing';
 
   // Admin Layout
-  import Admin from "./layouts/Admin.svelte";
+  import Admin from './layouts/Admin.svelte';
   // Auth Layout
-  import Auth from "./layouts/Auth.svelte";
+  import Auth from './layouts/Auth.svelte';
+
+  // User Layout
+  import User from './layouts/UsersLayout.svelte';
 
   // No Layout Pages
-  import Index from "./views/Index.svelte";
-  import Landing from "./views/Landing.svelte";
-  import Profile from "./views/Profile.svelte";
+  import Index from './views/Index.svelte';
+  import Landing from './views/Landing.svelte';
+  import Profile from './views/Profile.svelte';
   import Callback from './authentication/Callback.svelte';
-  import InternalApprover from "./views/approvals/InternalApproval.svelte";
-  import Approvals from "./layouts/ApprovalsLayout.svelte";
-  import {onMount} from "svelte";
-  import {userManager} from "./authentication/OidcConfig";
-  import {auth} from "./authentication/AuthStore";
+  import InternalApprover from './views/approvals/InternalApproval.svelte';
+  import Approvals from './layouts/ApprovalsLayout.svelte';
+  import { onMount } from 'svelte';
+  import { userManager } from './authentication/OidcConfig';
+  import { auth } from './authentication/AuthStore';
 
-  export let url = "";
+  export let url = '';
 
   // =========== get user info=========
   let user = null;
@@ -30,25 +33,22 @@
     }
   });
 
-  auth.subscribe(value => user = value);
+  auth.subscribe((value) => (user = value));
   // =========== get user info=========
 </script>
 
-
-
-
-<Router url="{url}">
+<Router {url}>
   <!-- admin layout -->
-  <Route path="admin/*admin" component="{Admin}" />
+  <Route path="admin/*admin" component={Admin} />
   <!-- auth layout -->
-  <Route path="auth/*auth" component="{Auth}" />
+  <Route path="auth/*auth" component={Auth} />
   <!-- no layout pages -->
-  <Route path="landing" component="{Landing}" />
-  <Route path="profile" component="{Profile}" />
-  <Route path="signin-oidc" component="{Callback}" />
+  <Route path="landing" component={Landing} />
+  <Route path="profile" component={Profile} />
+  <Route path="signin-oidc" component={Callback} />
   <!-- no stats layout -->
-  <Route path="approval/*approval" component="{Approvals}" />
+  <Route path="approval/*approval" component={Approvals} />
+  <Route path="user/*user" component={User} />
 
-
-  <Route path="/" component="{Index}" />
+  <Route path="/" component={Index} />
 </Router>
