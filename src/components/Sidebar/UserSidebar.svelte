@@ -58,7 +58,7 @@
             <a
               use:link
               class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-              href="/"
+              href="/user/dashboard"
             >
               ILD platform
             </a>
@@ -80,7 +80,7 @@
           <input
             type="text"
             placeholder="Search"
-            class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+            class="border-0 px-3 py-2 h-12 border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
           />
         </div>
       </form>
@@ -91,16 +91,12 @@
         <li class="items-center">
           <a
             use:link
-            href="/admin/dashboard"
-            class="text-xs uppercase py-3 font-bold block {location.href.indexOf(
-              '/admin/dashboard'
-            ) !== -1
-              ? 'text-red-500 hover:text-red-600'
-              : 'text-blueGray-700 hover:text-blueGray-500'}"
+            href="/user/dashboard"
+            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
               class="fas fa-tv mr-2 text-sm {location.href.indexOf(
-                '/admin/dashboard'
+                '/user/dashboard'
               ) !== -1
                 ? 'opacity-75'
                 : 'text-blueGray-300'}"
@@ -112,63 +108,51 @@
         <li class="items-center">
           <a
             use:link
-            href="/admin/settings"
-            class="text-xs uppercase py-3 font-bold block {location.href.indexOf(
-              '/admin/settings'
-            ) !== -1
-              ? 'text-red-500 hover:text-red-600'
-              : 'text-blueGray-700 hover:text-blueGray-500'}"
+            href="/user/dashboard"
+            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
-              class="fas fa-tools mr-2 text-sm {location.href.indexOf(
-                '/admin/settings'
+              class="fas fa-plus-circle mr-2 text-sm {location.href.indexOf(
+                '/user/dashboard'
               ) !== -1
                 ? 'opacity-75'
                 : 'text-blueGray-300'}"
             ></i>
-            Settings
+            Make new request
           </a>
         </li>
 
         <li class="items-center">
           <a
             use:link
-            href="/admin/tables"
-            class="text-xs uppercase py-3 font-bold block {location.href.indexOf(
-              '/admin/tables'
-            ) !== -1
-              ? 'text-red-500 hover:text-red-600'
-              : 'text-blueGray-700 hover:text-blueGray-500'}"
+            href="/user/dashboard"
+            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
               class="fas fa-table mr-2 text-sm {location.href.indexOf(
-                '/admin/tables'
+                '/user/dashboard'
               ) !== -1
                 ? 'opacity-75'
                 : 'text-blueGray-300'}"
             ></i>
-            Tables
+            List all requests
           </a>
         </li>
 
         <li class="items-center">
           <a
             use:link
-            href="/admin/maps"
-            class="text-xs uppercase py-3 font-bold block {location.href.indexOf(
-              '/admin/maps'
-            ) !== -1
-              ? 'text-red-500 hover:text-red-600'
-              : 'text-blueGray-700 hover:text-blueGray-500'}"
+            href="/user/dashboard"
+            class="text-xs uppercase py-3 font-bold blocktext-blueGray-700 hover:text-blueGray-500"
           >
             <i
-              class="fas fa-map-marked mr-2 text-sm {location.href.indexOf(
-                '/admin/maps'
+              class="fas fa-cogs mr-2 text-sm {location.href.indexOf(
+                '/user/dashboard'
               ) !== -1
                 ? 'opacity-75'
                 : 'text-blueGray-300'}"
             ></i>
-            Maps
+            Preferences
           </a>
         </li>
       </ul>
