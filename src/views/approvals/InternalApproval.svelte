@@ -1,24 +1,20 @@
 <script>
     // core components
     import CardRequestDetails from "components/Cards/CardRequestDetails.svelte";
-    import CardProfile from "components/Cards/CardRequesterDetails.svelte";
 
-    //
-    // import { useParams } from 'svelte-routing';
-    //
-    // // Access the route parameters
-    // const params = useParams();
-    // // let id = params.id;
-    // console.log("id ",params)
+
+    const url = new URL(window.location.href);
+
+    const params = new URLSearchParams(url.search);
+
+    const id = params.get('id');
+    const type = params.get('type');
 
     export let location;
 </script>
 
 <div class="flex flex-wrap">
     <div class="w-full  px-4">
-        <CardRequestDetails />
+        <CardRequestDetails request_id="{id}" approval_type="{type}"/>
     </div>
-<!--    <div class="w-full lg:w-4/12 px-4">-->
-<!--        <CardProfile />-->
-<!--    </div>-->
 </div>
