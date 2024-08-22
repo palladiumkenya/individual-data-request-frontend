@@ -8,7 +8,7 @@
     try {
       const user = await userManager.signinRedirectCallback();
       auth.setUser(user);
-      navigate('/admin/dashboard');
+      navigate('user/dashboard');
     } catch (error) {
       console.error('Error during signin callback:', error);
     }

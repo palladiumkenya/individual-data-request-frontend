@@ -1,7 +1,6 @@
 <script>
   // core components
   import UserDropdown from 'components/Dropdowns/UserDropdown.svelte';
-  import UserCardStats from '../Headers/UserHeaderStats.svelte';
 </script>
 
 <!-- Navbar -->
