@@ -108,12 +108,12 @@
         <li class="items-center">
           <a
             use:link
-            href="/user/dashboard"
+            href="/user/new-request"
             class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
               class="fas fa-plus-circle mr-2 text-sm {location.href.indexOf(
-                '/user/dashboard'
+                '/user/new-request'
               ) !== -1
                 ? 'opacity-75'
                 : 'text-blueGray-300'}"

@@ -6,9 +6,9 @@
   import UserHeaderStats from 'components/Headers/UserHeaderStats.svelte';
 
   // pages for this layout
-  import Settings from 'views/admin/Settings.svelte';
   import UserDashboard from '../views/user/UserDashboard.svelte';
   import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
+    import UserRequestForm from '../views/user/UserRequestForm.svelte';
 
   export let location;
   export let admin = '';
@@ -22,7 +22,7 @@
     <div class="mx-auto w-full -m-24">
       <Router url="user">
         <Route path="dashboard" component={UserDashboard} />
-        <Route path="settings" component={Settings} />
+        <Route path="new-request" component={UserRequestForm} />
       </Router>
       <!--      <Footer />-->
     </div>
