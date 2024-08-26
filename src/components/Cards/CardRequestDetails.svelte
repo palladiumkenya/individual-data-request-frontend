@@ -1,5 +1,4 @@
 <script>
-  // import ApproveModal from "../Modals/ApproveModal.svelte";
 
   export let color = 'light';
   import { onMount } from 'svelte';
