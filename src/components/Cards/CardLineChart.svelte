@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   // library that creates chart objects in page
   import Chart from "chart.js";
+  import {auth} from "../../authentication/AuthStore";
 
   // init chart
   onMount(async () => {
@@ -108,7 +109,11 @@
     var ctx = document.getElementById("line-chart").getContext("2d");
     window.myLine = new Chart(ctx, config);
   });
+
+  let user = null;
+  auth.subscribe(value => user = value);
 </script>
+
 
 <div
   class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700"
@@ -119,6 +124,7 @@
         <h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
           Overview
         </h6>
+
         <h2 class="text-white text-xl font-semibold">
           Sales value
         </h2>
