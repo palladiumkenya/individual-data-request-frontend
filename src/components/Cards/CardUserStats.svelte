@@ -3,17 +3,7 @@
 
   export let statSubtitle = 'Traffic';
   export let statTitle = '350,897';
-  // The value must match one of these strings
-  // "up" or "down"
-  // export let statArrow = "up";
-  // export let statPercent = "3.48";
-  // can be any of the text color utilities
-  // from tailwindcss
-  export let statPercentColor = 'text-emerald-500';
-  export let statDescripiron = 'Since last month';
   export let statIconName = 'far fa-chart-bar';
-  // can be any of the background color utilities
-  // from tailwindcss
   export let statIconColor = 'bg-red-500';
 </script>
 
@@ -37,6 +27,14 @@
           <i class={statIconName}></i>
         </div>
       </div>
+    </div>
+    <!-- View list button and text-->
+    <hr />
+    <div class="flex justify-end py-2">
+      <button class="text-amber-400 text-xs whitespace-nowrap">
+        <span class="whitespace-nowrap">View List</span>
+        <i class="fa fa-arrow-circle-right"></i>
+      </button>
     </div>
   </div>
 </div>
