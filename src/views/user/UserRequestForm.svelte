@@ -108,204 +108,7 @@
   });
 </script>
 
-<style>
-    .upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    max-width: 600px;
-    margin: auto;
-    background: linear-gradient(135deg, #f6d365 0%, #7bade6 100%);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Label styling with hover effect */
-  label {
-    cursor: pointer;
-    font-size: 18px;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #50add8;
-    color: white;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  label:hover {
-    background: linear-gradient(135deg, #678da7, #89be65);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Hide the default file input */
-  input[type="file"] {
-    display: none;
-  }
-
-  /* Uploaded files container */
-  .uploaded-files {
-    margin-top: 20px;
-    width: 100%;
-  }
-
-  /* File item styling */
-  .file-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  /* Hover effect for file items */
-  .file-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  .file-name {
-    flex: 1;
-    margin-left: 10px;
-    color: #333;
-  }
-
-  .file-size {
-    margin-right: 10px;
-    color: #666;
-  }
-
-  .delete-button {
-    cursor: pointer;
-    background: linear-gradient(135deg, #8497bf, #7588df);
-    color: white;
-    border: none;
-    padding: 7px 15px;
-    border-radius: 5px;
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
-
-
-  .delete-button:hover {
-    background: linear-gradient(135deg, #f94c57, #ff3b3f);
-    transform: scale(1.05);
-  }
-
-
-  .deadline-container {
-    margin-top: 40px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .deadline-label {
-    font-size: 15px;
-    color: white;
-    margin-bottom: 15px;
-  }
-
-  .deadline-input {
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    width: 100%;
-    max-width: 320px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  }
-
-  .deadline-input:hover {
-    background: #f9f9f9;
-    border-color: #999;
-  }
-
-  .deadline-input:focus {
-    border-color: #ff6f61;
-    box-shadow: 0 0 10px rgba(255, 111, 97, 0.3);
-    outline: none;
-  }
-  .textarea-container,
-  .text-preview-container {
-    flex: 1;
-    margin-right: 20px;
-  }
-
-  .textarea-container {
-    max-width: 60%;
-  }
-
-  .text-preview-container {
-    max-width: 35%;
-  }
-
-  textarea {
-    width: 100%;
-    max-width: 600px;
-    height: 150px;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    resize: none;
-  }
-
-  .text-preview {
-    background: linear-gradient(135deg, #f6d365 0%, #7bade6 100%);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: auto;
-    white-space: pre-wrap;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .text-preview:hover {
-    background: linear-gradient(135deg, #7bade6 0%, #f6d365 100%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  }
-
-  button {
-    background-color: #1f2937;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  button {
-    background-color: #1f2937;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #4a5568;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  }
-
-  button:focus {
-    outline: none;
-  }
-  </style> -->
-<!-- Data Request Form
+<!-- Data Request Form-->
 <div
   class="relative flex flex-col min-w-100 break-words w-full mb-9 shadow-lg rounded-lg bg-blueGray-100 border-0"
 >
@@ -469,3 +272,214 @@
     </form>
   </div>
 </div>
+
+<style>
+  .upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+    background: linear-gradient(135deg, #f6d365 0%, #7bade6 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Label styling with hover effect */
+  label {
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #50add8;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  label:hover {
+    background: linear-gradient(135deg, #678da7, #89be65);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Hide the default file input */
+  input[type='file'] {
+    display: none;
+  }
+
+  /* Uploaded files container */
+  .uploaded-files {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  /* File item styling */
+  .file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  /* Hover effect for file items */
+  .file-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .file-name {
+    flex: 1;
+    margin-left: 10px;
+    color: #333;
+  }
+
+  .file-size {
+    margin-right: 10px;
+    color: #666;
+  }
+
+  .delete-button {
+    cursor: pointer;
+    background: linear-gradient(135deg, #8497bf, #7588df);
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .delete-button:hover {
+    background: linear-gradient(135deg, #f94c57, #ff3b3f);
+    transform: scale(1.05);
+  }
+
+  .deadline-container {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .deadline-label {
+    font-size: 15px;
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  .deadline-input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 320px;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .deadline-input:hover {
+    background: #f9f9f9;
+    border-color: #999;
+  }
+
+  .deadline-input:focus {
+    border-color: #ff6f61;
+    box-shadow: 0 0 10px rgba(255, 111, 97, 0.3);
+    outline: none;
+  }
+  .textarea-container,
+  .text-preview-container {
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  .textarea-container {
+    max-width: 60%;
+  }
+
+  .text-preview-container {
+    max-width: 35%;
+  }
+
+  textarea {
+    width: 100%;
+    max-width: 600px;
+    height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    resize: none;
+  }
+
+  .text-preview {
+    background: linear-gradient(135deg, #f6d365 0%, #7bade6 100%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    white-space: pre-wrap;
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .text-preview:hover {
+    background: linear-gradient(135deg, #7bade6 0%, #f6d365 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  button {
+    background-color: #1f2937;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  button {
+    background-color: #1f2937;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #4a5568;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  button:focus {
+    outline: none;
+  }
+</style>
