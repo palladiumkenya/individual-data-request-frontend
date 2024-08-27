@@ -1,20 +1,20 @@
 <script>
-let files = [];
-let deadline = '';
-let textInput = '';
+  let files = [];
+  let deadline = '';
+  let textInput = '';
 
-const config = process.env.config
-const uploadUrl= config.UPLOAD_URL;
+  const config = process.env.config;
+  const uploadUrl = config.UPLOAD_URL.toString();
 
-function handleFileChange(event) {
-  const newFiles = Array.from(event.target.files);
-  files = [...files, ...newFiles];
-}
+  function handleFileChange(event) {
+    const newFiles = Array.from(event.target.files);
+    files = [...files, ...newFiles];
+  }
 
-function removeFile(fileToRemove) {
-  files = files.filter(file => file !== fileToRemove);
-}
-async function handleSubmit() {
+  function removeFile(fileToRemove) {
+    files = files.filter((file) => file !== fileToRemove);
+  }
+  async function handleSubmit() {
     if (files.length < 5) {
       alert('Please upload at least 5 documents before submitting.');
       return;
@@ -25,18 +25,20 @@ async function handleSubmit() {
         const formData = new FormData();
         formData.append('file', file);
 
-        console.log('Sending Request to:', uploadUrl)
+        console.log('Sending Request to:', uploadUrl);
 
-        const response = await fetch(Uploadurl, {
+        const response = await fetch(uploadUrl, {
           method: 'POST',
-          body: formData
+          body: formData,
         });
 
         if (response.ok) {
           console.log('${file.name} uploaded successfully');
         } else {
           const errorText = await response.text();
-          console.error('Failed to upload ${file.name}: ${response.status} ${response.statusText} - ${errorText}');
+          console.error(
+            'Failed to upload ${file.name}: ${response.status} ${response.statusText} - ${errorText}'
+          );
         }
       } catch (error) {
         console.error('Error uploading ${file.name}:', error);
@@ -44,62 +46,68 @@ async function handleSubmit() {
     }
 
     alert('Form submitted successfully!');
-    files = []; 
+    files = [];
   }
 
   function handleTextInput(event) {
     textInput = event.target.value;
   }
-  document.querySelectorAll('input[type="file"]').forEach(input => {
-            input.addEventListener('change', function(event) {
-                const files = event.target.files;
-                const filePreview = document.getElementById('filePreview');
-                filePreview.innerHTML = ''; // Clear previous previews
+  document.querySelectorAll('input[type="file"]').forEach((input) => {
+    input.addEventListener('change', function (event) {
+      const files = event.target.files;
+      const filePreview = document.getElementById('filePreview');
+      filePreview.innerHTML = ''; // Clear previous previews
 
-                Array.from(files).forEach(file => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const fileURL = e.target.result;
-                        const fileType = file.type.split('/')[0];
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const fileURL = e.target.result;
+          const fileType = file.type.split('/')[0];
 
-                        const fileElement = document.createElement('div');
-                        fileElement.classList.add('file-item');
-                        fileElement.dataset.fileName = file.name; // Store file name for reference
+          const fileElement = document.createElement('div');
+          fileElement.classList.add('file-item');
+          fileElement.dataset.fileName = file.name; // Store file name for reference
 
-                        if (fileType === 'image') {
-                            fileElement.innerHTML = `
+          if (fileType === 'image') {
+            fileElement.innerHTML = `
                                 <img src="${fileURL}" alt="${file.name}">
                                 <p><a href="${fileURL}" target="_blank">View Full Size</a></p>
                             `;
-                        } else if (fileType === 'text' || fileType === 'application') {
-                            fileElement.innerHTML = `
+          } else if (fileType === 'text' || fileType === 'application') {
+            fileElement.innerHTML = `
                                 <p><a href="${fileURL}" target="_blank">View ${file.name}</a></p>
                             `;
-                        } else {
-                            fileElement.innerHTML = `
+          } else {
+            fileElement.innerHTML = `
                                 <p><a href="${fileURL}" download="${file.name}">${file.name}</a></p>
                                 <p><a href="${fileURL}" target="_blank">View Document</a></p>
                             `;
-                        }
+          }
 
-                        const deleteButton = document.createElement('button');
-                        deleteButton.textContent = 'Delete';
-                        deleteButton.addEventListener('click', () => {
-                            fileElement.remove();
-                            // Also clear the file input field if it’s empty
-                            if (document.querySelectorAll('input[type="file"]')[0].files.length === 0) {
-                                document.querySelectorAll('input[type="file"]').forEach(input => input.value = '');
-                            }
-                        });
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'Delete';
+          deleteButton.addEventListener('click', () => {
+            fileElement.remove();
+            // Also clear the file input field if it’s empty
+            if (
+              document.querySelectorAll('input[type="file"]')[0].files
+                .length === 0
+            ) {
+              document
+                .querySelectorAll('input[type="file"]')
+                .forEach((input) => (input.value = ''));
+            }
+          });
 
-                        fileElement.appendChild(deleteButton);
-                        filePreview.appendChild(fileElement);
-                    };
-                    reader.readAsDataURL(file);
-                });
-            });
-        });
+          fileElement.appendChild(deleteButton);
+          filePreview.appendChild(fileElement);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  });
 </script>
+
 <style>
     .upload-container {
     display: flex;
@@ -238,7 +246,7 @@ async function handleSubmit() {
   .text-preview-container {
     max-width: 35%;
   }
-    
+
   textarea {
     width: 100%;
     max-width: 600px;
@@ -265,7 +273,7 @@ async function handleSubmit() {
   .text-preview:hover {
     background: linear-gradient(135deg, #7bade6 0%, #f6d365 100%);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  } 
+  }
 
   button {
     background-color: #1f2937;
@@ -296,8 +304,8 @@ async function handleSubmit() {
   button:focus {
     outline: none;
   }
-  </style>
-<!-- Data Request Form-->
+  </style> -->
+<!-- Data Request Form
 <div
   class="relative flex flex-col min-w-100 break-words w-full mb-9 shadow-lg rounded-lg bg-blueGray-100 border-0"
 >
@@ -324,8 +332,8 @@ async function handleSubmit() {
             on:input={handleTextInput}
           ></textarea>
         </div>
-  
-          <div class="text-preview-container">
+
+        <div class="text-preview-container">
           <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
             Preview
           </h6>
@@ -334,14 +342,13 @@ async function handleSubmit() {
           </div>
         </div>
       </div>
-      
+
       <hr class="mt-6 border-b-1 border-blueGray-300" />
 
       <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
         Documents to Upload:
       </h6>
       <div class="flex flex-wrap">
-         
         <div class="w-full lg:w-4/12 px-4">
           <div class="relative w-full mb-3">
             <label
@@ -403,7 +410,7 @@ async function handleSubmit() {
           </div>
         </div>
       </div>
-        <!-- Uploading Section -->
+      <!-- Uploading Section -->
       <hr class="mt-6 border-b-1 border-blueGray-300" />
 
       <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
@@ -411,18 +418,26 @@ async function handleSubmit() {
       </h6>
       <div class="upload-container">
         <label for="fileInput">
-          <i class="fa fa-upload"></i> Drop files here 
+          <i class="fa fa-upload"></i> Drop files here
         </label>
-        <input type="file" id="fileInput" multiple on:change={handleFileChange}>
-      
+        <input
+          type="file"
+          id="fileInput"
+          multiple
+          on:change={handleFileChange}
+        />
+
         <div class="uploaded-files">
           {#if files.length > 0}
             {#each files as file (file.name)}
               <div class="file-item">
                 <i class="far fa-file"></i>
                 <span class="file-name">{file.name}</span>
-                <span class="file-size">{(file.size / 1024).toFixed(2)} KB</span>
-                <button class="delete-button" on:click={() => removeFile(file)}>Delete</button>
+                <span class="file-size">{(file.size / 1024).toFixed(2)} KB</span
+                >
+                <button class="delete-button" on:click={() => removeFile(file)}
+                  >Delete</button
+                >
               </div>
             {/each}
           {:else}
@@ -430,28 +445,27 @@ async function handleSubmit() {
           {/if}
         </div>
       </div>
-      <br>
-      <hr>
+      <br />
+      <hr />
       <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
         Data Request Information
       </h6>
       <div class="deadline-container">
-        <label for="deadlineInput" class="deadline-label">Select the deadline for your request:</label>
-        <input type="date" id="deadlineInput" class="deadline-input" bind:value={deadline}>
+        <label for="deadlineInput" class="deadline-label"
+          >Select the deadline for your request:</label
+        >
+        <input
+          type="date"
+          id="deadlineInput"
+          class="deadline-input"
+          bind:value={deadline}
+        />
       </div>
-      <br>
-      <hr>
+      <br />
+      <hr />
       <div class="button-wrapper">
-      <button
-      type="button"
-      on:click={handleSubmit}
-    >
-      Submit
-    </button>
-  </div>
-        
+        <button type="button" on:click={handleSubmit}> Submit </button>
+      </div>
     </form>
   </div>
 </div>
-
-  
