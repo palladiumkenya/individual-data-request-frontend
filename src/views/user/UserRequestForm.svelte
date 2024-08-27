@@ -1,10 +1,12 @@
 <script>
+import { UPLOAD_URL } from '$env/static/private';
 let files = [];
 let deadline = '';
 let textInput = '';
-let uploadUrl = ''; 
-let username = ''; 
-let password = ''; 
+
+
+const uploadUrl = UPLOAD_URL;
+
 
 function handleFileChange(event) {
   const newFiles = Array.from(event.target.files);
@@ -25,12 +27,11 @@ async function handleSubmit() {
         const formData = new FormData();
         formData.append('file', file);
 
-        const response = await fetch(uploadUrl + file.name, {
+        console.log('Sending Request to:', uploadUrl)
+
+        const response = await fetch(uploadUrl, {
           method: 'POST',
-          headers: {
-            'Authorization': 'Basic ' + btoa(username + ':' + password)
-          },
-          body: file 
+          body: formData
         });
 
         if (response.ok) {
@@ -40,7 +41,7 @@ async function handleSubmit() {
           console.error('Failed to upload ${file.name}: ${response.status} ${response.statusText} - ${errorText}');
         }
       } catch (error) {
-        console.error('Error uploading ${file.name}:, error');
+        console.error('Error uploading ${file.name}:', error);
       }
     }
 
@@ -239,6 +240,7 @@ async function handleSubmit() {
   .text-preview-container {
     max-width: 35%;
   }
+    
   textarea {
     width: 100%;
     max-width: 600px;
@@ -265,7 +267,7 @@ async function handleSubmit() {
   .text-preview:hover {
     background: linear-gradient(135deg, #7bade6 0%, #f6d365 100%);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  }
+  } 
 
   button {
     background-color: #1f2937;
@@ -325,7 +327,7 @@ async function handleSubmit() {
           ></textarea>
         </div>
   
-        <!--  <div class="text-preview-container">
+          <div class="text-preview-container">
           <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
             Preview
           </h6>
@@ -334,7 +336,7 @@ async function handleSubmit() {
           </div>
         </div>
       </div>
-      -->
+      
       <hr class="mt-6 border-b-1 border-blueGray-300" />
 
       <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
