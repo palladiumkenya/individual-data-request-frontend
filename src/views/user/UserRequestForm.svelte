@@ -2,6 +2,9 @@
 let files = [];
 let deadline = '';
 let textInput = '';
+let uploadUrl = 'https://dwh.kenyahmis.org//remote.php/dav/files/username'; 
+let username = 'floridackorir@gmail.com'; 
+let password = 'Ws9d%8OsnMkganA@06L&E'; 
 
 function handleFileChange(event) {
   const newFiles = Array.from(event.target.files);
@@ -11,14 +14,40 @@ function handleFileChange(event) {
 function removeFile(fileToRemove) {
   files = files.filter(file => file !== fileToRemove);
 }
-function handleSubmit() {
+async function handleSubmit() {
     if (files.length < 5) {
-      alert('Please upload at least 5 document before submitting.');
-    } else {
-      alert('Form submitted successfully!');
-      // Here you can add code to actually submit the form data
+      alert('Please upload at least 5 documents before submitting.');
+      return;
     }
+
+    for (const file of files) {
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        const response = await fetch(uploadUrl + file.name, {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Basic ' + btoa(username + ':' + password)
+          },
+          body: file 
+        });
+
+        if (response.ok) {
+          console.log('${file.name} uploaded successfully');
+        } else {
+          const errorText = await response.text();
+          console.error('Failed to upload ${file.name}: ${response.status} ${response.statusText} - ${errorText}');
+        }
+      } catch (error) {
+        console.error('Error uploading ${file.name}:, error');
+      }
+    }
+
+    alert('Form submitted successfully!');
+    files = []; 
   }
+
   function handleTextInput(event) {
     textInput = event.target.value;
   }
@@ -146,7 +175,6 @@ function handleSubmit() {
     color: #666;
   }
 
-  /* Delete button styling with gradient */
   .delete-button {
     cursor: pointer;
     background: linear-gradient(135deg, #8497bf, #7588df);
@@ -157,13 +185,13 @@ function handleSubmit() {
     transition: background 0.3s ease, transform 0.3s ease;
   }
 
-  /* Delete button hover effect */
+
   .delete-button:hover {
     background: linear-gradient(135deg, #f94c57, #ff3b3f);
     transform: scale(1.05);
   }
 
-  /* Deadline section styling */
+
   .deadline-container {
     margin-top: 40px;
     width: 100%;
@@ -173,12 +201,11 @@ function handleSubmit() {
   }
 
   .deadline-label {
-    font-size: 20px;
+    font-size: 15px;
     color: white;
     margin-bottom: 15px;
   }
 
-  /* Date input styling with hover/focus effects */
   .deadline-input {
     padding: 12px;
     font-size: 16px;
@@ -298,7 +325,7 @@ function handleSubmit() {
           ></textarea>
         </div>
   
-        <div class="text-preview-container">
+        <!--  <div class="text-preview-container">
           <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
             Preview
           </h6>
@@ -307,6 +334,7 @@ function handleSubmit() {
           </div>
         </div>
       </div>
+      -->
       <hr class="mt-6 border-b-1 border-blueGray-300" />
 
       <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
