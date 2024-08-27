@@ -2,9 +2,9 @@
 let files = [];
 let deadline = '';
 let textInput = '';
-let uploadUrl = 'https://dwh.kenyahmis.org//remote.php/dav/files/username'; 
-let username = 'floridackorir@gmail.com'; 
-let password = 'Ws9d%8OsnMkganA@06L&E'; 
+let uploadUrl = ''; 
+let username = ''; 
+let password = ''; 
 
 function handleFileChange(event) {
   const newFiles = Array.from(event.target.files);
