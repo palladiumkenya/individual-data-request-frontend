@@ -1,12 +1,10 @@
 <script>
-import { UPLOAD_URL } from '$env/static/private';
 let files = [];
 let deadline = '';
 let textInput = '';
 
-
-const uploadUrl = UPLOAD_URL;
-
+const config = process.env.config
+const uploadUrl= config.UPLOAD_URL;
 
 function handleFileChange(event) {
   const newFiles = Array.from(event.target.files);
@@ -29,7 +27,7 @@ async function handleSubmit() {
 
         console.log('Sending Request to:', uploadUrl)
 
-        const response = await fetch(uploadUrl, {
+        const response = await fetch(Uploadurl, {
           method: 'POST',
           body: formData
         });
@@ -450,7 +448,7 @@ async function handleSubmit() {
     >
       Submit
     </button>
-    </div>
+  </div>
         
     </form>
   </div>
