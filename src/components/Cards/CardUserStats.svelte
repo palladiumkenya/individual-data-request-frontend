@@ -1,3 +1,4 @@
+<!-- CardUserStats.svelte -->
 <script>
   // core components
 
@@ -5,6 +6,38 @@
   export let statTitle = '350,897';
   export let statIconName = 'far fa-chart-bar';
   export let statIconColor = 'bg-red-500';
+  export let globalCategory = 'total';
+
+  import { selectedCategory, tableData } from '../../stores/dash_store';
+
+  function handleCategoryChange(category) {
+    selectedCategory.set(category);
+
+    switch (category) {
+      case 'total':
+        tableData.set([]);
+        globalCategory = category;
+        break;
+      case 'approved':
+        tableData.set([]);
+        globalCategory = category;
+        break;
+      case 'inProgress':
+        tableData.set([]);
+        globalCategory = category;
+        break;
+      case 'completed':
+        tableData.set([]);
+        globalCategory = category;
+        break;
+      default:
+        tableData.set([]);
+        globalCategory = category;
+    }
+  }
+  const handleViewList = () => {
+    selectedCategory.set(globalCategory);
+  };
 </script>
 
 <div
@@ -31,7 +64,10 @@
     <!-- View list button and text-->
     <hr />
     <div class="flex justify-end py-2">
-      <button class="text-amber-400 text-xs whitespace-nowrap">
+      <button
+        class="text-amber-400 text-xs whitespace-nowrap"
+        on:click={handleViewList}
+      >
         <span class="whitespace-nowrap">View List</span>
         <i class="fa fa-arrow-circle-right"></i>
       </button>
