@@ -22,7 +22,6 @@
     <div class="mx-auto w-full -m-24">
       <Router url="user">
         <Route path="dashboard" component={UserDashboard} />
-        <Route path="settings" component={Settings} />
       </Router>
       <!--      <Footer />-->
     </div>
