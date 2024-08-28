@@ -2,6 +2,10 @@
 <script>
   // core components
   import CardUserStats from 'components/Cards/CardUserStats.svelte';
+  import { requestCounts } from '../../stores/dash_store';
+
+  let counts;
+  $: counts = $requestCounts;
 </script>
 
 <!-- Header -->
@@ -13,7 +17,7 @@
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardUserStats
             statSubtitle="Total Requests Made"
-            statTitle="0"
+            statTitle={$requestCounts.total}
             statIconName="far fa-chart-bar"
             statIconColor="bg-red-500"
             globalCategory="total"
@@ -22,7 +26,7 @@
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardUserStats
             statSubtitle="Approved Requests"
-            statTitle="0"
+            statTitle={$requestCounts.approved}
             statIconName="fas fa-check-circle"
             statIconColor="bg-orange-500"
             globalCategory="approved"
@@ -31,7 +35,7 @@
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardUserStats
             statSubtitle="Requests in Progress"
-            statTitle="0"
+            statTitle={$requestCounts.inProgress}
             statIconName="fas fa-spinner"
             statIconColor="bg-pink-500"
             globalCategory="inProgress"
@@ -40,7 +44,7 @@
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardUserStats
             statSubtitle="Requests Completed"
-            statTitle="0"
+            statTitle={$requestCounts.inProgress}
             statIconName="fas fa-check"
             statIconColor="bg-emerald-500"
             globalCategory="completed"
