@@ -1,6 +1,10 @@
 <!-- CardApprovalsTable.svelte -->
 <script>
-  import { selectedCategory, tableData } from '../../stores/dash_store';
+  import {
+    selectedCategory,
+    tableData,
+    tableLength,
+  } from '../../stores/dash_store';
   import { onDestroy } from 'svelte';
 
   let category;
@@ -19,6 +23,13 @@
           dueDate: '2024-09-01',
           priority: 'High',
           requester: 'Newton Mutugi',
+        },
+        {
+          id: '5',
+          approved: true,
+          dueDate: '2024-09-01',
+          priority: 'High',
+          requester: 'Paul Nthusi',
         },
       ];
     } else if (category === 'total') {
@@ -51,6 +62,7 @@
           approved: true,
           dueDate: '2024-08-30',
           priority: 'High',
+          requester: 'Florida Korir',
         },
       ];
     } else {
