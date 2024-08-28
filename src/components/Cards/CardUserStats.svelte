@@ -8,33 +8,8 @@
   export let statIconColor = 'bg-red-500';
   export let globalCategory = 'total';
 
-  import { selectedCategory, tableData } from '../../stores/dash_store';
+  import { selectedCategory } from '../../stores/dash_store';
 
-  function handleCategoryChange(category) {
-    selectedCategory.set(category);
-
-    switch (category) {
-      case 'total':
-        tableData.set([]);
-        globalCategory = category;
-        break;
-      case 'approved':
-        tableData.set([]);
-        globalCategory = category;
-        break;
-      case 'inProgress':
-        tableData.set([]);
-        globalCategory = category;
-        break;
-      case 'completed':
-        tableData.set([]);
-        globalCategory = category;
-        break;
-      default:
-        tableData.set([]);
-        globalCategory = category;
-    }
-  }
   const handleViewList = () => {
     selectedCategory.set(globalCategory);
   };
@@ -44,7 +19,7 @@
   class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
 >
   <div class="flex-auto p-4">
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap mb-2">
       <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
         <h5 class="text-blueGray-400 uppercase font-bold text-xs">
           {statSubtitle}
