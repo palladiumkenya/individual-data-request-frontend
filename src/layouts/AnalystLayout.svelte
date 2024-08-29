@@ -9,7 +9,9 @@
   import Settings from 'views/admin/Settings.svelte';
   import UserDashboard from '../views/user/UserDashboard.svelte';
   import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
-  import RequestTable from "components/Cards/RequestTable.svelte";
+  import AnalystTabs from "components/Tabs/AnalystTabs.svelte";
+  import RequestDetails from 'views/analyst/RequestDetails.svelte';
+  import HeaderStats from "*.svelte";
 
   export let location;
   export let admin = '';
@@ -20,11 +22,12 @@
   <div class="relative md:ml-64 bg-blueGray-100">
     <UserNavbar />
     <UserHeaderStats />
-    <div class="mx-auto w-full -m-24">
-      <Router url="user">
+    <div class="px-4 md:px-10 mx-auto w-full -m-24">
+      <Router url="analyst">
         <Route path="dashboard" component={UserDashboard} />
         <Route path="settings" component={Settings} />
-        <Route path="analyst/list" component={RequestTable} />
+        <Route path="list" component={AnalystTabs} />
+        <Route path="request/:id" component={RequestDetails} />
       </Router>
       <!--      <Footer />-->
     </div>

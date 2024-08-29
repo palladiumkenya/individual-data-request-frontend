@@ -10,6 +10,9 @@
   // User Layout
   import User from './layouts/UsersLayout.svelte';
 
+  // Analyst Layout
+  import Analyst from './layouts/AnalystLayout.svelte';
+
   // No Layout Pages
   import Index from './views/Index.svelte';
   import Landing from './views/Landing.svelte';
@@ -49,6 +52,8 @@
   <!-- no stats layout -->
   <Route path="approval/*approval" component={Approvals} />
   <Route path="user/*user" component={User} />
+
+  <Route path="analyst/*analyst" component={Analyst} />
 
   <!-- analyst views -->
   <Route path="serve/request" component={Landing} />

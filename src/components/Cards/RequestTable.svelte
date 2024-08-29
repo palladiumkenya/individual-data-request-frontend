@@ -1,11 +1,12 @@
 <script>
-  // core components
-  import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
-
-
-
-  // can be one of light or dark
+  let page = 1;
+  let perPage = 10;
+  let totalPages = 1;
+  export let tasks;
   export let color = "light";
+
+  $: totalPages = Math.ceil(tasks.length / perPage);
+
 </script>
 
 <div
@@ -58,7 +59,80 @@
         </tr>
       </thead>
       <tbody>
+      {#each tasks.slice((page - 1) * perPage, page * perPage) as task(task.ID)}
+          <tr>
+            <td class="whitespace-nowrap p-4 text-left items-center">
+              {task?.Requester.Name}
+            </td>
+            <td class="px-6 border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">
+              {task?.Requester.Organization}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">
+              {task?.Priority_level}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">
+              {task?.Requester.Organization}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4">
+              <i
+                      class={`fas fa-circle mr-2 ${
+                        task?.Status === 'pending' ? 'text-yellow-500' :
+                        task?.Status === 'in progress' ? 'text-blue-500' :
+                        task?.Status === 'complete' ? 'text-emerald-500' :
+                        'text-gray-500'
+                      }`}
+              ></i>
+              {task?.Status}
+            </td>
+            <td>
+              <a
+                      href={`/analyst/request/${task.ID}`}
+                      class="text-emerald-500 bg-transparent border border-solid border-emerald-500 hover:bg-emerald-500 hover:text-white active:bg-emerald-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                <i class="fas fa-folder-open"></i> View
+              </a>
+            </td>
+          </tr>
+        {/each}
       </tbody>
     </table>
+    <hr />
+    <div class="py-2">
+      <nav class="block">
+        <ul class="flex pl-0 rounded list-none flex-wrap">
+          <li>
+            <button
+                    class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-red-500 bg-white text-red-500"
+                    type="button"
+                    disabled={page === 1}
+                    on:click={() => page--}
+            >
+              <i class="fas fa-chevron-left -ml-px"></i>
+            </button>
+          </li>
+          {#each Array.from({ length: totalPages }, (_, i) => i + 1) as pageNumber}
+            <li>
+              <button
+                      class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-red-500 bg-white text-red-500"
+                      type="button"
+                      disabled={page === pageNumber}
+                      on:click={() => page = pageNumber}
+              >
+                {pageNumber}
+              </button>
+            </li>
+          {/each}
+          <li>
+            <button
+                    class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-red-500 bg-white text-red-500"
+                    type="button"
+                    disabled={page === totalPages}
+                    on:click={() => page++}
+            >
+              <i class="fas fa-chevron-right -mr-px"></i>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </div>
