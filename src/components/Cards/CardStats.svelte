@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <p class="text-sm text-blueGray-400 mt-4">
+    <!-- <p class="text-sm text-blueGray-400 mt-4">
       <span class="mr-2 {statPercentColor}">
         <i
           class="{statArrow === 'up' ? 'fas fa-arrow-up' : 'fas fa-arrow-down'}"
@@ -46,6 +46,6 @@
         {statPercent}%
       </span>
       <span class="whitespace-nowrap">{statDescripiron}</span>
-    </p>
+    </p> -->
   </div>
 </div>
