@@ -1,19 +1,26 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import livereload from 'rollup-plugin-livereload';
-import { terser } from 'rollup-plugin-terser';
+import livereload from 'rollup-plugin-livereload'; 
+import terser from '@rollup/plugin-terser';
+
 // library that helps you import in svelte with
 // absolute paths, instead of
 // import Component  from "../../../../components/Component.svelte";
 // we will be able to say
 // import Component from "components/Component.svelte";
 import alias from '@rollup/plugin-alias';
+import dotenv from 'dotenv'
 import fs from 'fs';
 import { config } from 'dotenv';
+import postcss from 'rollup-plugin-postcss'
 import replace from '@rollup/plugin-replace';
+//import plugin from 'tailwindcss/plugin';
+//require('dotenv').config();
 
 const production = !process.env.ROLLUP_WATCH;
+
+dotenv.config()
 
 // configure aliases for absolute imports
 const aliases = alias({
@@ -157,6 +164,12 @@ export default {
   plugins: [
     replace({
       'process.env.config': JSON.stringify(config().parsed),
+      preventAssignment: true,
+      
+    }),
+     postcss({
+      modules:true,
+      plugins: []
     }),
     svelte({
       // enable run-time checks when not in production
@@ -177,6 +190,10 @@ export default {
       browser: true,
       dedupe: ['svelte'],
     }),
+    // postcss({
+    //   plugins: [autoprefixer()],
+    //   extract: true,
+    // }),
     commonjs(),
 
     // In dev mode, call `npm run start` once
@@ -202,3 +219,5 @@ export default {
     clearScreen: false,
   },
 };
+
+export const env = process.env

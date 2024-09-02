@@ -11,7 +11,7 @@
     import UserRequestForm from '../views/user/UserRequestForm.svelte';
 
   export let location;
-  export let admin = '';
+  //export let admin = '';
 </script>
 
 <div>

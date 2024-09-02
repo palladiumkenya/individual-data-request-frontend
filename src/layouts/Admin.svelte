@@ -15,8 +15,8 @@
   // import InternalApproval from "../views/approvals/InternalApproval.svelte";
   // import PdfViewer from "../components/PdfViewer/PdfViewer.svelte";
 
-  export let location;
-  export let admin = '';
+  //export let location;
+  //export const admin = '';
 </script>
 
 <div>

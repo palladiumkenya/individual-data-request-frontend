@@ -4,7 +4,7 @@
   import CardBarChart from "components/Cards/CardBarChart.svelte";
   import CardPagePendingApprovals from "components/Cards/CardPageApprovals.svelte";
   import CardCompleteApprovals from "components/Cards/CardCompleteApprovals.svelte";
-  export let location;
+  //export let location;
 
   const url = new URL(window.location.href);
 

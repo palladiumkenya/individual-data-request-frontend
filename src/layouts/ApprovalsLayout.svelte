@@ -16,8 +16,8 @@
   // import PdfViewer from "../components/PdfViewer/PdfViewer.svelte";
   // import Footer from "../components/Footers/Footer.svelte";
 
-  export let location;
-  export let admin = '';
+// export let location;
+  //export let admin = '';
 </script>
 
 <div>
