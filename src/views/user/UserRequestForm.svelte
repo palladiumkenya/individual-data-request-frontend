@@ -130,7 +130,7 @@
       <div class="flex flex-wrap mb-6">
         <div class="w-full lg:w-3/5 pr-4 mb-6 lg:mb-0">
           <h6 class="text-gray-400 text-sm mt-3 mb-6 font-bold uppercase">Data Request Information</h6>
-          <textarea placeholder="Enter Description of text required here..." on:input={handleTextInput} class="w-full h-40 p-2 border rounded-lg border-gray-300 text-gray-700 resize-none"></textarea>
+          <textarea placeholder="Enter Description of data required here..." on:input={handleTextInput} class="w-full h-40 p-2 border rounded-lg border-gray-300 text-gray-700 resize-none"></textarea>
         </div>
 
         <div class="w-full lg:w-2/5">
