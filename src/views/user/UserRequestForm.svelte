@@ -154,7 +154,7 @@
           ></textarea>
         </div>
 
-        <div class="w-full lg:w-2/5">
+        <!-- <div class="w-full lg:w-2/5">
           <h6 class="text-gray-400 text-sm mt-3 mb-6 font-bold uppercase">
             Preview
           </h6>
@@ -164,7 +164,7 @@
           >
             {textInput}
           </div>
-        </div>
+        </div> -->
       </div>
 
       <h6 class="text-gray-400 text-sm mt-3 mb-6 font-bold uppercase">
