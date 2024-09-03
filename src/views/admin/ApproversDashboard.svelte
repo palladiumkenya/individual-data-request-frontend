@@ -4,7 +4,6 @@
   import CardBarChart from "components/Cards/CardBarChart.svelte";
   import CardPagePendingApprovals from "components/Cards/CardPageApprovals.svelte";
   import CardCompleteApprovals from "components/Cards/CardCompleteApprovals.svelte";
-  //export let location;
 
   const url = new URL(window.location.href);
 
@@ -21,7 +20,7 @@
         <CardPagePendingApprovals approval_type="{type}" />
       </div>
       <div class="w-full xl:w-4/12 px-4">
-        <CardCompleteApprovals approval_type="{type}" />
+        <CardPriorityLevelStats approval_type="{type}" />
       </div>
     </div>
     <div class="flex flex-wrap mt-4">

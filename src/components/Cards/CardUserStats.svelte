@@ -1,27 +1,25 @@
+<!-- CardUserStats.svelte -->
 <script>
   // core components
 
   export let statSubtitle = 'Traffic';
   export let statTitle = '350,897';
-  // The value must match one of these strings
-  // "up" or "down"
-  // export let statArrow = "up";
-  // export let statPercent = "3.48";
-  // can be any of the text color utilities
-  // from tailwindcss
-  export let statPercentColor = 'text-emerald-500';
-  export let statDescripiron = 'Since last month';
   export let statIconName = 'far fa-chart-bar';
-  // can be any of the background color utilities
-  // from tailwindcss
   export let statIconColor = 'bg-red-500';
+  export let globalCategory = 'total';
+
+  import { selectedCategory } from '../../stores/dash_store';
+
+  const handleViewList = () => {
+    selectedCategory.set(globalCategory);
+  };
 </script>
 
 <div
   class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
 >
   <div class="flex-auto p-4">
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap mb-2">
       <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
         <h5 class="text-blueGray-400 uppercase font-bold text-xs">
           {statSubtitle}
@@ -37,6 +35,17 @@
           <i class={statIconName}></i>
         </div>
       </div>
+    </div>
+    <!-- View list button and text-->
+    <hr />
+    <div class="flex justify-end py-2">
+      <button
+        class="text-amber-400 text-xs whitespace-nowrap"
+        on:click={handleViewList}
+      >
+        <span class="whitespace-nowrap">View List</span>
+        <i class="fa fa-arrow-circle-right"></i>
+      </button>
     </div>
   </div>
 </div>
