@@ -11,7 +11,7 @@
     collapseShow = classes;
   }
 
-  export let location;
+  export let location;  // This should be passed in as a prop
 </script>
 
 <nav
@@ -86,7 +86,6 @@
       </form>
 
       <!-- Navigation -->
-
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
@@ -95,11 +94,9 @@
             class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
-              class="fas fa-tv mr-2 text-sm {location.href.indexOf(
-                '/user/dashboard'
-              ) !== -1
-                ? 'opacity-75'
-                : 'text-blueGray-300'}"
+              class="fas fa-tv mr-2 text-sm"
+              class:text-opacity-75={location?.href?.includes('/user/dashboard')}
+              class:text-blueGray-300={!location?.href?.includes('/user/dashboard')}
             ></i>
             Dashboard
           </a>
@@ -112,11 +109,17 @@
             class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
+<<<<<<< HEAD
               class="fas fa-plus-circle mr-2 text-sm {location.href.indexOf(
                 '/user/new-request'
               ) !== -1
                 ? 'opacity-75'
                 : 'text-blueGray-300'}"
+=======
+              class="fas fa-plus-circle mr-2 text-sm"
+              class:text-opacity-75={location?.href?.includes('/user/new-request')}
+              class:text-blueGray-300={!location?.href?.includes('/user/new-request')}
+>>>>>>> f14cbdc (Updated Index.svelte-homepage)
             ></i>
             Make new request
           </a>
@@ -129,11 +132,9 @@
             class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
-              class="fas fa-table mr-2 text-sm {location.href.indexOf(
-                '/user/dashboard'
-              ) !== -1
-                ? 'opacity-75'
-                : 'text-blueGray-300'}"
+              class="fas fa-table mr-2 text-sm"
+              class:text-opacity-75={location?.href?.includes('/user/dashboard')}
+              class:text-blueGray-300={!location?.href?.includes('/user/dashboard')}
             ></i>
             List all requests
           </a>
@@ -143,14 +144,12 @@
           <a
             use:link
             href="/user/dashboard"
-            class="text-xs uppercase py-3 font-bold blocktext-blueGray-700 hover:text-blueGray-500"
+            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
-              class="fas fa-cogs mr-2 text-sm {location.href.indexOf(
-                '/user/dashboard'
-              ) !== -1
-                ? 'opacity-75'
-                : 'text-blueGray-300'}"
+              class="fas fa-cogs mr-2 text-sm"
+              class:text-opacity-75={location?.href?.includes('/user/dashboard')}
+              class:text-blueGray-300={!location?.href?.includes('/user/dashboard')}
             ></i>
             Preferences
           </a>

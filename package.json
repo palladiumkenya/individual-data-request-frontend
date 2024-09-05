@@ -47,8 +47,12 @@
     "pg": "^8.12.0",
     "sirv-cli": "1.0.11",
     "svelte-navigator": "^3.2.2",
+<<<<<<< HEAD
     "svelte-pdf": "^1.0.20",
     "svelte-routing": "^1.5.0",
+=======
+    "svelte-routing": "^1.11.0",
+>>>>>>> f14cbdc (Updated Index.svelte-homepage)
     "sweetalert2": "^11.12.4",
     "tailwindcss": "^2.2.19"
   }
