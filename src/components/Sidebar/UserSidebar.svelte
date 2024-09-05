@@ -109,17 +109,9 @@
             class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
-<<<<<<< HEAD
-              class="fas fa-plus-circle mr-2 text-sm {location.href.indexOf(
-                '/user/new-request'
-              ) !== -1
-                ? 'opacity-75'
-                : 'text-blueGray-300'}"
-=======
               class="fas fa-plus-circle mr-2 text-sm"
               class:text-opacity-75={location?.href?.includes('/user/new-request')}
               class:text-blueGray-300={!location?.href?.includes('/user/new-request')}
->>>>>>> f14cbdc (Updated Index.svelte-homepage)
             ></i>
             Make new request
           </a>
