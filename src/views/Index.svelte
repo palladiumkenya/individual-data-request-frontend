@@ -25,6 +25,7 @@
   }
 </script>
 
+<!-- Created the Homepage-->
 <IndexNavbar />
 <section class="header relative pt-16 items-center flex h-screen max-h-860-px">
   <div class="container mx-auto items-center flex flex-wrap">
@@ -36,6 +37,7 @@
         <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
           For stakeholders requesting individual level data (ILD) from the NDW for scientific writing and any other purposes. These stakeholders include researchers, institutions, and organizations.
         <div class="mt-12">
+          <!-- to be href later-->
           <a
             href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus?ref=ns-index"
             target="_blank"
