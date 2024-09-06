@@ -9,6 +9,8 @@
 
   // User Layout
   import User from './layouts/UsersLayout.svelte';
+  // Assignee Dashboard
+  import Assignee from './layouts/assigneeLayout.svelte'
 
   // No Layout Pages
   import Index from './views/Index.svelte';
@@ -20,6 +22,7 @@
   import { onMount } from 'svelte';
   import { userManager } from './authentication/OidcConfig';
   import { auth } from './authentication/AuthStore';
+
 
   export let url = '';
 
@@ -49,6 +52,8 @@
   <!-- no stats layout -->
   <Route path="approval/*approval" component={Approvals} />
   <Route path="user/*user" component={User} />
+  <Route path="assignee/*assignee" component={Assignee} />
+ 
 
   <Route path="/" component={Index} />
 </Router>
