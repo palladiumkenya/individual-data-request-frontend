@@ -12,7 +12,9 @@
   // Assignee layout
   import Assignee from './layouts/assigneeLayout.svelte'
   // Internal Reviewer Layout
-  import Internalreviewer from './layouts/InternalReviewerLayout.svelte'
+  import InternalreviewerLayout from './layouts/InternalReviewerLayout.svelte'
+  // External Reviewer Layout
+  import ExternalReviewerLayout from './layouts/ExternalReviewerLayout.svelte';
 
   // No Layout Pages
   import Index from './views/Index.svelte';
@@ -24,6 +26,7 @@
   import { onMount } from 'svelte';
   import { userManager } from './authentication/OidcConfig';
   import { auth } from './authentication/AuthStore';
+
 
 
   export let url = '';
@@ -55,7 +58,8 @@
   <Route path="approval/*approval" component={Approvals} />
   <Route path="user/*user" component={User} />
   <Route path="assignee/*assignee" component={Assignee} />
-  <Route path="internalreviewer/*internalreviewer" component={Internalreviewer} />
+  <Route path="internalreviewer/*internalreviewer" component={InternalreviewerLayout} />
+  <Route path="externalreviewer/*externalreviewer" component={ExternalReviewerLayout} />
  
 
   <Route path="/" component={Index} />
