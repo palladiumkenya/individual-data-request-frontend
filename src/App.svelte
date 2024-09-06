@@ -9,8 +9,10 @@
 
   // User Layout
   import User from './layouts/UsersLayout.svelte';
-  // Assignee Dashboard
+  // Assignee layout
   import Assignee from './layouts/assigneeLayout.svelte'
+  // Internal Reviewer Layout
+  import Internalreviewer from './layouts/InternalReviewerLayout.svelte'
 
   // No Layout Pages
   import Index from './views/Index.svelte';
@@ -53,6 +55,7 @@
   <Route path="approval/*approval" component={Approvals} />
   <Route path="user/*user" component={User} />
   <Route path="assignee/*assignee" component={Assignee} />
+  <Route path="internalreviewer/*internalreviewer" component={Internalreviewer} />
  
 
   <Route path="/" component={Index} />
