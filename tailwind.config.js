@@ -1,16 +1,16 @@
 const plugin = require("tailwindcss/plugin");
 const colors = require("tailwindcss/colors");
-
+//Updated tailwind.config.js
 module.exports = {
   purge: {
     enabled: true,
     content: [
-      "./**/*.html",
-      "./*.html",
-      "./**/*.js",
-      "./*.js",
-      "./**/*.svelte",
-      "./*.svelte",
+        "./**/*.html",
+        "./*.html",
+        "./**/*.js",
+        "./*.js",
+        "./**/*.svelte",
+        "./*.svelte",
     ],
     options: {
       safelist: [],
