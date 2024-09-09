@@ -12,12 +12,9 @@
   import Settings from 'views/admin/Settings.svelte';
   import Tables from 'views/admin/Tables.svelte';
   import Maps from 'views/admin/Maps.svelte';
-  // import InternalApproval from "../views/approvals/InternalApproval.svelte";
-  // import PdfViewer from "../components/PdfViewer/PdfViewer.svelte";
-  import RequestForm from 'views/admin/RequestForm.svelte';
 
   export let location;
-  export let admin = '';
+  export let admin = "";
 </script>
 
 <div>
@@ -31,7 +28,6 @@
         <Route path="settings" component={Settings} />
         <Route path="tables" component={Tables} />
         <Route path="maps" component={Maps} />
-        <Route path="request-form" component={RequestForm} />
       </Router>
       <FooterAdmin />
     </div>
