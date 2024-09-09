@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
   import moment from 'moment';
 
-  export let request_id;
+  //export let request_id;
   export let approval_type;
 
   function handleApproveReject(type) {

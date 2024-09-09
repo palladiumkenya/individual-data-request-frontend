@@ -15,9 +15,6 @@
   import InternalApproval from "../views/approvals/InternalApproval.svelte";
   import Footer from "../components/Footers/Footer.svelte";
 
-  export let location;
-  export let admin = "";
-
 </script>
 
 <div>
