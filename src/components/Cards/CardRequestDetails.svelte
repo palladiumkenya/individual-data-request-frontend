@@ -25,15 +25,18 @@
   onMount(async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/approval/${approval_type}/${request_id}`
+              `http://localhost:8080/request/${request_id}`
       );
+      // const approvals = await fetch(
+      //   `http://localhost:8080/approval/${approval_type}/${request_id}`
+      // );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       data = await response.json();
-      requesterId = data.data.Requester.ID;
-      requesterEmail = data.data.Requester.Email;
+      requesterId = data.data.ID;
+      requesterEmail = data.data.Email;
       requestId = data.data.ID;
     } catch (err) {
       error = err.message;
@@ -113,7 +116,7 @@
   }
 
   const Post_approval_or_rejection = async (details) => {
-    await fetch(`http://localhost:8080/internal_approval/action`, {
+    await fetch(`http://localhost:8080/approval/action`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -135,7 +138,6 @@
       Body: details.Comments,
       Recipient: details.RequesterEmail,
     };
-    console.log('email -->', email);
     await fetch(`http://localhost:8080/send_mail`, {
       method: 'POST',
       headers: {
@@ -164,7 +166,7 @@
     <div class="rounded-t bg-white mb-0 px-6 py-6">
       <div class="text-center flex justify-between">
         <h6 class="text-blueGray-700 text-xl font-bold">
-          RequestID: #{data.data.Request.ReqId}
+          RequestID: #{data.data.ReqId}
           <span
             class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
           >
@@ -185,10 +187,10 @@
           Priority :
           <span
             class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded uppercase last:mr-0 mr-1" +
-             " ${data.data.Request.Priority_level == 'high' && 'text-red-600 bg-red-200'} ${data.data.Request.Priority_level == 'medium' && 'text-orange-500 bg-orange-200'}
-             ${data.data.Request.Priority_level == 'low' && 'text-yellow-500 bg-yellow-500'}`}
+             " ${data.data.Priority_level == 'high' && 'text-red-600 bg-red-200'} ${data.data.Priority_level == 'medium' && 'text-orange-500 bg-orange-200'}
+             ${data.data.Priority_level == 'low' && 'text-orange-500 bg-yellow-500'}`}
           >
-            {data.data.Request.Priority_level}
+            {data.data.Priority_level}
             <i class="fa fa-exclamation" aria-hidden="true"></i>
           </span>
           Due :
@@ -208,7 +210,7 @@
             <p
               class="mb-4 text-sm justify-items-start leading-relaxed text-blueGray-700"
             >
-              {data.data.Request.Summery}
+              {data.data.Summery}
             </p>
             <a
               href="#pablo"
@@ -270,8 +272,9 @@
               </table>
             </div>
 
-            <CardInternalApproverDetails data{data} approval_type="{approval_type}" request_id={request_id}/>
-
+            {#if approval_type=="external"}
+              <CardInternalApproverDetails data{data} approval_type="internal" request_id={request_id}/>
+            {/if}
           </div>
         </div>
 
