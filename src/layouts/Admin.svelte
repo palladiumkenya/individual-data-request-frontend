@@ -12,14 +12,12 @@
   import Settings from 'views/admin/Settings.svelte';
   import Tables from 'views/admin/Tables.svelte';
   import Maps from 'views/admin/Maps.svelte';
-  // import InternalApproval from "../views/approvals/InternalApproval.svelte";
-  // import PdfViewer from "../components/PdfViewer/PdfViewer.svelte";
 
   //
   import RequestList from "views/analyst/RequestList.svelte"
 
   export let location;
-  export let admin = '';
+  export let admin = "";
 </script>
 
 <div>

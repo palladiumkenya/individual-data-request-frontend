@@ -1,17 +1,17 @@
 <script>
-  import { link } from 'svelte-routing';
+  import { link } from "svelte-routing";
 
   // core components
-  import NotificationDropdown from 'components/Dropdowns/NotificationDropdown.svelte';
-  import UserDropdown from 'components/Dropdowns/UserDropdown.svelte';
+  import NotificationDropdown from "components/Dropdowns/NotificationDropdown.svelte";
+  import UserDropdown from "components/Dropdowns/UserDropdown.svelte";
 
-  let collapseShow = 'hidden';
+  let collapseShow = "hidden";
 
   function toggleCollapseShow(classes) {
     collapseShow = classes;
   }
 
-  export let location;  // This should be passed in as a prop
+  export let location;
 </script>
 
 <nav
@@ -32,9 +32,9 @@
     <a
       use:link
       class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-      href="/user/dashboard"
+      href="/"
     >
-      IDR platform
+      IDR latform
     </a>
     <!-- User -->
     <ul class="md:hidden items-center flex flex-wrap list-none">
@@ -58,9 +58,9 @@
             <a
               use:link
               class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-              href="/user/dashboard"
+              href="/"
             >
-              ILD platform
+              IDR Platform
             </a>
           </div>
           <div class="w-6/12 flex justify-end">
@@ -80,23 +80,30 @@
           <input
             type="text"
             placeholder="Search"
-            class="border-0 px-3 py-2 h-12 border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+            class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
           />
         </div>
       </form>
 
+      <!-- Divider -->
+      <hr class="my-4 md:min-w-full" />
+      <!-- Heading -->
+      <h6
+        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+      >
+        Approver Layout Pages
+      </h6>
       <!-- Navigation -->
+
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
             use:link
-            href="/user/dashboard"
-            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+            href="/admin/dashboard"
+            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/dashboard') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
           >
             <i
-              class="fas fa-tv mr-2 text-sm"
-              class:text-opacity-75={location?.href?.includes('/user/dashboard')}
-              class:text-blueGray-300={!location?.href?.includes('/user/dashboard')}
+              class="fas fa-tv mr-2 text-sm {location.href.indexOf('/admin/dashboard') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
             ></i>
             Dashboard
           </a>
@@ -105,48 +112,57 @@
         <li class="items-center">
           <a
             use:link
-            href="/user/new-request"
-            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+            href="/admin/settings"
+            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/settings') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
           >
             <i
-              class="fas fa-plus-circle mr-2 text-sm"
-              class:text-opacity-75={location?.href?.includes('/user/new-request')}
-              class:text-blueGray-300={!location?.href?.includes('/user/new-request')}
+              class="fas fa-tools mr-2 text-sm {location.href.indexOf('/admin/settings') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
             ></i>
-            Make new request
+            Settings
           </a>
         </li>
 
         <li class="items-center">
           <a
             use:link
-            href="/user/dashboard"
-            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+            href="/admin/tables"
+            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/tables') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
           >
             <i
-              class="fas fa-table mr-2 text-sm"
-              class:text-opacity-75={location?.href?.includes('/user/dashboard')}
-              class:text-blueGray-300={!location?.href?.includes('/user/dashboard')}
+              class="fas fa-table mr-2 text-sm {location.href.indexOf('/admin/tables') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
             ></i>
-            List all requests
+            Tables
           </a>
         </li>
 
         <li class="items-center">
           <a
             use:link
-            href="/user/dashboard"
-            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+            href="/admin/maps"
+            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/maps') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
           >
             <i
-              class="fas fa-cogs mr-2 text-sm"
-              class:text-opacity-75={location?.href?.includes('/user/dashboard')}
-              class:text-blueGray-300={!location?.href?.includes('/user/dashboard')}
+              class="fas fa-map-marked mr-2 text-sm {location.href.indexOf('/admin/maps') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
             ></i>
-            Preferences
+            Maps
+          </a>
+        </li>
+
+        <li class="items-center">
+          <a
+            use:link
+            href="/admin/request-form"
+            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/maps') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
+          >
+            <i
+              class="fas fa-map-marked mr-2 text-sm {location.href.indexOf('/admin/maps') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
+            ></i>
+            Request Form
           </a>
         </li>
       </ul>
+
+
     </div>
   </div>
 </nav>

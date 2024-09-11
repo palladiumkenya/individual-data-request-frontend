@@ -10,7 +10,7 @@
     const id = params.get('id');
     const type = params.get('type');
 
-    export let location;
+    //export let location;
 </script>
 
 <div class="flex flex-wrap">
