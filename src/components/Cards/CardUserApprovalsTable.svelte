@@ -6,9 +6,11 @@
     tableLength,
   } from '../../stores/dash_store';
   import {onDestroy, onMount} from 'svelte';
+  import moment from "moment/moment";
 
   let category;
-  // let data = [];
+  let data = [];
+  let dashboardData = [];
   let title;
 
   let loading = true;
@@ -22,10 +24,11 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log(data.data);
+      dashboardData =data;
 
       if (data.data.length>0){
         tableData.set(data.data);
+        dashboardData =data.data;
       }
     } catch (err) {
       error = err.message;
@@ -34,75 +37,26 @@
     }
   });
 
-  let data = [
-    {
-      ID: '1',
-      ReqId: '1',
-      Approved: false,
-      Date_Due: '2024-09-01',
-      Priority_level:	 'High',
-      Status: 'pending',
-    },
-    {
-      ID: '1',
-      ReqId: '1',
-      Approved: true,
-      Date_Due: '2024-09-01',
-      Priority_level:	 'High',
-      Status: 'completed',
-    },
-  ];
+
   // Function to load data based on selected category
   const loadData = async (category) => {
     // Simulate fetching data based on category
     if (category === 'approved') {
-      title = 'Completed Approvals';
-      data = [
-        {
-          ID: '1',
-          ReqId: '1',
-          Approved: false,
-          Date_Due: '2024-09-01',
-          Priority_level:	 'High',
-          Status: 'pending',
-        },
-      ];
+      title = 'Approved Requests';
+      dashboardData = data.filter(item => item.Status === "approved");
     } else if (category === 'total') {
       title = 'All Requests';
-      data = [
-        {
-          ID: '13',
-          ReqId: '13',
-          Approved: false,
-          Date_Due: '2024-09-01',
-          Priority_level:	 'High',
-          Status: 'pending',
-        },
-      ];
+      dashboardData = data;
     } else if (category === 'inProgress') {
-      title = 'Total requests';
-      data = [
-        {
-          ID: '1',
-          ReqId: '1',
-          Approved: false,
-          Date_Due: '2024-09-01',
-          Priority_level:	 'High',
-          Status: 'pending',
-        },{
-          ID: '12',
-          ReqId: '12',
-          Approved: false,
-          Date_Due: '2024-09-01',
-          Priority_level:	 'High',
-          Status: 'pending',
-        },
-      ];
+      title =  'Requests in Progress' ;
+      dashboardData = data.filter(item => item.Status === "pending");
+
     } else if (category === 'completed') {
-      title = 'Requests in Progress';
-      data = [];
+      title = 'Total Requests Completed';
+      dashboardData = data.filter(item => item.Status === "completed");
+
     } else {
-      data = []; // No records found
+      dashboardData = []; // No records found
     }
     tableData.set(data);
   };
@@ -141,7 +95,7 @@
       >
       <th
               class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-      >Approved</th
+      >Status</th
       >
       <th
               class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
@@ -158,29 +112,35 @@
     </tr>
     </thead>
     <tbody>
-    {#if data.length === 0}
+    {#if dashboardData.length === 0}
       <tr>
         <td colspan="5" class="text-center py-4">No records found</td>
       </tr>
     {:else}
-      {#each data as row}
+      {#each dashboardData as row}
         <tr>
           <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-          >{row.ReqId}</td
+                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold"
+          >#{row.ReqId}</td
           >
           <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
+                  class="border-t-0 px-6 align-middle text-indigo-600 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >{row.Status}</td
           >
+
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-          >{row.Date_Due}</td
+          >{moment(row.Date_Due).format('dddd, DD MMM YYYY')}</td
           >
           <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-          >{row.Priority_level}</td
+                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
+           <span class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded uppercase last:mr-0 mr-1" +
+             " ${row.Priority_level	 == 'high' && 'text-red-600 bg-red-200'} ${row.Priority_level	 == 'medium' && 'text-orange-500 bg-orange-200'}
+             ${row.Priority_level	 == 'low' && 'text-yellow-600 bg-yellow-200'}`}>
+               {row.Priority_level	}  <i class="fa fa-exclamation" aria-hidden="true"></i>
+            </span>
+          </td>
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
           >

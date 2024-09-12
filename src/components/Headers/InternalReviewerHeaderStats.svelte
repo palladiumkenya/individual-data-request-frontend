@@ -25,7 +25,7 @@
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardInternalReviewerStats
-              statSubtitle="Requests in Progress"
+              statSubtitle="Approved Requests"
               statTitle={$requestCounts.approved}
               statIconName="fas fa-check-circle"
               statIconColor="bg-orange-500"
@@ -34,7 +34,7 @@
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardInternalReviewerStats
-              statSubtitle="Rejected Requests"
+              statSubtitle="Requests In Progress"
               statTitle={$requestCounts.inProgress}
               statIconName="fas fa-spinner"
               statIconColor="bg-pink-500"
@@ -44,7 +44,7 @@
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardInternalReviewerStats
               statSubtitle="Completed Requests"
-              statTitle={$requestCounts.inProgress}
+              statTitle={$requestCounts.completed}
               statIconName="fas fa-check"
               statIconColor="bg-emerald-500"
               globalCategory="completed"
