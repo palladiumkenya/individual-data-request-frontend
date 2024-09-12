@@ -7,10 +7,10 @@ export const selectedCategory = writable('total');
 export const requestCounts = derived(tableData, ($tableData) => {
   return {
     total: $tableData.length,
-    approved: $tableData.filter((request) => request.approved).length,
-    inProgress: $tableData.filter((request) => request.status === 'inProgress')
+    approved: $tableData.filter((request) => request.Approved).length,
+    inProgress: $tableData.filter((request) => request.Status === 'inProgress')
       .length,
-    completed: $tableData.filter((request) => request.status === 'completed')
+    completed: $tableData.filter((request) => request.Status === 'completed')
       .length,
   };
 });
