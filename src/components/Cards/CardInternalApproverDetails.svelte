@@ -10,14 +10,6 @@
     let loading = true;
     let error = null;
 
-    // async function getApproval() {
-    //     const response = await fetch(`http://localhost:8080/approval/internal/${request_id}`);
-    //     if (!response.ok) {
-    //         throw new Error('Failed to fetch approval results');
-    //     }
-    //     return response.json();
-    // }
-
     onMount(async () => {
         try {
             const response = await fetch(`http://localhost:8080/approval/internal/${request_id}`);
@@ -26,7 +18,6 @@
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             data = await response.json();
-            console.log(data)
         } catch (err) {
             error = err.message;
         } finally {

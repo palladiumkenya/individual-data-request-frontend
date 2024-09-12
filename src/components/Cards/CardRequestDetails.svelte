@@ -3,7 +3,6 @@
 
   import CardSupportingDocs from "./CardSupportingDocs.svelte";
 
-  export let color = 'light';
   import { onMount } from 'svelte';
   import moment from 'moment';
 
