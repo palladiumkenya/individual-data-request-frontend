@@ -8,7 +8,7 @@
   // pages for this layout
   import UserDashboard from '../views/user/UserDashboard.svelte';
   import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
-  import RequestTable from "components/Cards/RequestTable.svelte";
+  import RequestTable from 'components/Cards/RequestTable.svelte';
   import UserRequestForm from '../views/user/UserRequestForm.svelte';
   import AuthGuard from '../authentication/AuthGuard.svelte';
   export let location;
