@@ -5,13 +5,11 @@
   import UserNavbar from 'components/Navbars/UserNavbar.svelte';
   import UserHeaderStats from 'components/Headers/UserHeaderStats.svelte';
 
-
-
   // pages for this layout
   import UserDashboard from '../views/user/UserDashboard.svelte';
   import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
   import UserRequestForm from '../views/user/UserRequestForm.svelte';
-
+  import AuthGuard from '../authentication/AuthGuard.svelte';
   export let location;
   //export let admin = '';
 </script>
@@ -23,8 +21,16 @@
     <UserHeaderStats />
     <div class="mx-auto w-full -m-24">
       <Router url="user">
-        <Route path="dashboard" component={UserDashboard} />
-        <Route path="new-request" component={UserRequestForm} />
+        <Route
+          path="dashboard"
+          component={AuthGuard}
+          componentProps={{ component: UserDashboard }}
+        />
+        <Route
+          path="new-request"
+          component={AuthGuard}
+          componentProps={{ component: UserRequestForm }}
+        />
       </Router>
       <!--      <Footer />-->
     </div>
