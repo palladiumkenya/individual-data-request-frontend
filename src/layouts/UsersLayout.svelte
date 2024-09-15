@@ -21,16 +21,12 @@
     <UserHeaderStats />
     <div class="mx-auto w-full -m-24">
       <Router url="user">
-        <Route
-          path="dashboard"
-          component={AuthGuard}
-          componentProps={{ component: UserDashboard }}
-        />
-        <Route
-          path="new-request"
-          component={AuthGuard}
-          componentProps={{ component: UserRequestForm }}
-        />
+        <Route path="dashboard">
+          <AuthGuard component={UserDashboard} />
+        </Route>
+        <Route path="new-request">
+          <AuthGuard component={UserRequestForm} />
+        </Route>
       </Router>
       <!--      <Footer />-->
     </div>
