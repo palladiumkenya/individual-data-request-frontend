@@ -34,11 +34,11 @@
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardInternalReviewerStats
-              statSubtitle="Requests In Progress"
-              statTitle={$requestCounts.inProgress}
+              statSubtitle="Pending Requests"
+              statTitle={$requestCounts.pending}
               statIconName="fas fa-spinner"
               statIconColor="bg-pink-500"
-              globalCategory="inProgress"
+              globalCategory="pending"
             />
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
@@ -47,7 +47,7 @@
               statTitle={$requestCounts.completed}
               statIconName="fas fa-check"
               statIconColor="bg-emerald-500"
-              globalCategory="completed"
+              globalCategory="complete"
             />
           </div>
         </div>

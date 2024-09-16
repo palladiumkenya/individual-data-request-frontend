@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { userManager } from './OidcConfig';
-    import { auth } from './authStore';
+    import { auth } from './AuthStore';
     import { navigate } from 'svelte-routing';
 
   onMount(async () => {

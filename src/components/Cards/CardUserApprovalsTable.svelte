@@ -7,6 +7,24 @@
   } from '../../stores/dash_store';
   import {onDestroy, onMount} from 'svelte';
   import moment from "moment/moment";
+  // import {
+  //   envVariables
+  // } from '../../+page.server';
+
+  // import { envVariables } from '../../lib/envVar';
+  // import { PUBLIC_API_URL } from '$env/static/public';
+  // let PUBLIC_API_URL='http://localhost:8080';
+  // console.log(PUBLIC_API_URL); // SvelteKit
+  // console.log("PUBLIC_API_URL",envVariables.PUBLIC_API_URL, envVariables.API_URL)
+  const url = window.location.href; // Get the current URL
+  let approval_type; // Replace with the word you're checking
+
+  if (url.includes("external")) {
+    approval_type= "external";
+  } else {
+    approval_type= "internal"
+  }
+
 
   let category;
   let data = [];
@@ -47,13 +65,16 @@
     } else if (category === 'total') {
       title = 'All Requests';
       dashboardData = data;
-    } else if (category === 'inProgress') {
+    } else if (category === 'pending') {
+      title =  'Pending Requests' ;
+      dashboardData = data.filter(item => item.Status === "pending"  );
+    } else if (category === 'in progress') {
       title =  'Requests in Progress' ;
-      dashboardData = data.filter(item => item.Status === "pending");
+      dashboardData = data.filter(item => item.Status === "in progress"  );
 
-    } else if (category === 'completed') {
+    } else if (category === 'complete') {
       title = 'Total Requests Completed';
-      dashboardData = data.filter(item => item.Status === "completed");
+      dashboardData = data.filter(item => item.Status === "complete");
 
     } else {
       dashboardData = []; // No records found
@@ -105,10 +126,14 @@
               class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
       >Priority</th
       >
+
       <th
               class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
       >Requester</th
       >
+      <th
+              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+      >Date of request</th>
     </tr>
     </thead>
     <tbody>
@@ -121,11 +146,20 @@
         <tr>
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold"
-          >#{row.ReqId}</td
+          ><a href="http://localhost:5000/approval/action/{row.ReqId}?type={approval_type}&id={row.ID}" class="requestIdStyling">
+            #{row.ReqId}</a>
+          </td
           >
           <td
-                  class="border-t-0 px-6 align-middle text-indigo-600 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-          >{row.Status}</td
+                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4
+                    {row.Status	 == 'complete' || row.Status	 == 'approved'  && 'text-emerald-500 '}
+                   {row.Status	 == 'pending'  && 'text-blueGray-600 '}
+                   {row.Status	 == 'in progress'  && 'text-indigo-600 '}"
+          >
+            <span class="dot {row.Status	 == 'complete' || row.Status	 == 'approved' && 'bg-emerald-500 '}
+             {row.Status	 == 'pending'  && 'bg-blueGray-600 '}
+             {row.Status	 == 'in progress'  && 'bg-indigo-500 '}"></span>
+            {row.Status}</td
           >
 
           <td
@@ -135,18 +169,21 @@
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
           >
-           <span class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded uppercase last:mr-0 mr-1" +
-             " ${row.Priority_level	 == 'high' && 'text-red-600 bg-red-200'} ${row.Priority_level	 == 'medium' && 'text-orange-500 bg-orange-200'}
-             ${row.Priority_level	 == 'low' && 'text-yellow-600 bg-yellow-200'}`}>
+           <span class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full uppercase last:mr-0 mr-1" +
+             " ${row.Priority_level	 == 'high' && 'text-red-600 bg-red-200 '}
+             ${row.Priority_level	 == 'medium' && 'text-orange-500 bg-orange-200'}
+             ${row.Priority_level	 == 'low' && 'text-yellow-600 bg-yellow-200 '}`}>
                {row.Priority_level	}  <i class="fa fa-exclamation" aria-hidden="true"></i>
             </span>
           </td>
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
           >
-            <!--{row.Approver.Email}-->
+            {row.Requester.Name}
           </td>
-
+          <td
+                  class="border-t-0 px-6 align-middle text-indigo-600 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+          >{moment(row.Created_Date).format('dddd, DD MMM YYYY')}</td>
         </tr>
       {/each}
     {/if}
