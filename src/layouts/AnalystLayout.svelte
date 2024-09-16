@@ -6,13 +6,12 @@
   import AnalystHeaderStats from 'components/Headers/AnalystHeaderStats.svelte';
 
   // pages for this layout
-  import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
+  import UserSidebar from 'components/Sidebar/UserSidebar.svelte';
   import AnalystTabs from "components/Tabs/AnalystTabs.svelte";
   import RequestDetails from 'views/analyst/RequestDetails.svelte';
 
 
   export let location;
-  export let admin = '';
 </script>
 
 <div>
@@ -23,7 +22,7 @@
     <div class="px-4 md:px-10 mx-auto w-full -m-24">
       <Router url="analyst">
         <Route path="list" component={AnalystTabs} />
-        <Route path="request/:id" component={RequestDetails} />
+        <Route path="request" component={RequestDetails} />
       </Router>
       <!--      <Footer />-->
     </div>
