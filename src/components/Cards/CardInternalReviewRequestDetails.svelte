@@ -33,8 +33,8 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       data = await response.json();
-      requesterId = data.data.ID;
-      requesterEmail = data.data.Email;
+      requesterId = data.data.Requester.ID;
+      requesterEmail = data.data.Requester.Email;
       requestId = data.data.ID;
     } catch (err) {
       error = err.message;
