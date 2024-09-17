@@ -3253,6 +3253,8 @@ select {
     width: 100%;
   }
 }
-
+.setWidth{
+  width: 70px;
+}
 @media (min-width: 1536px) {
 }

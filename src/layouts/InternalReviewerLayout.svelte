@@ -23,7 +23,9 @@
       <div class="mx-auto w-full -m-24">
         <Router url="internalreviewer">
           <Route path="dashboard" component={InternalReviewerDashboard} />
+<!--          <Route path="approval/action/62373474" component={InternalReviewerDashboard} />-->
         </Router>
+
         <!--      <Footer />-->
       </div>
     </div>

@@ -14,8 +14,10 @@
   // import { envVariables } from '../../lib/envVar';
   // import { PUBLIC_API_URL } from '$env/static/public';
   // let PUBLIC_API_URL='http://localhost:8080';
-  // console.log(PUBLIC_API_URL); // SvelteKit
+  // console.log("PUBLIC_API_URL",envVariables.PUBLIC_API_URL); // SvelteKit
   // console.log("PUBLIC_API_URL",envVariables.PUBLIC_API_URL, envVariables.API_URL)
+
+
   const url = window.location.href; // Get the current URL
   let approval_type; // Replace with the word you're checking
 
@@ -146,7 +148,7 @@
         <tr>
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold"
-          ><a href="http://localhost:5000/approval/action/{row.ReqId}?type={approval_type}&id={row.ID}" class="requestIdStyling">
+          ><a href="http://localhost:5000/approval/{approval_type}_action/{row.ReqId}?type={approval_type}&id={row.ID}" class="requestIdStyling">
             #{row.ReqId}</a>
           </td
           >

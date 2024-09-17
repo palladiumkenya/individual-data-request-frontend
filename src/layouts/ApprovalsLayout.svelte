@@ -3,14 +3,13 @@
 
   // components for this layout
   import ApprovalNavbar from "components/Navbars/ApprovalNavbar.svelte";
-  import Sidebar from "components/Sidebar/ApproverSidebar.svelte";
 
-  // pages for this layout
-  import Dashboard from "views/admin/ApproversDashboard.svelte";
 
   import InternalApproval from "../views/approvals/InternalApproval.svelte";
   import {auth} from "../authentication/AuthStore";
   import { get } from 'svelte/store';
+  import InternalReviewerSidebar from "../components/Sidebar/InternalReviewerSidebar.svelte";
+  import ExternalApproval from "../views/approvals/ExternalApproval.svelte";
 
 
 
@@ -44,7 +43,7 @@
 </script>
 
 <div>
-  <Sidebar location={location}/>
+  <InternalReviewerSidebar {location} />
   <div class="relative md:ml-64 bg-blueGray-100">
     <ApprovalNavbar />
     <div class="relative bg-indigo-500 md:pt-10 pb-32 pt-12">
@@ -56,13 +55,8 @@
     <div class="mx-auto w-full -m-24">
 
       <Router url="approval">
-
-        <Route path="action/:id" component="{InternalApproval}" />
-
-<!--          <Route path="dashboard" component={user ? <Dashboard /> : auth.login()} />-->
-
-        <Route path="dashboard" component={Dashboard} />
-
+        <Route path="internal_action/:id" component="{InternalApproval}" />
+        <Route path="external_action/:id" component="{ExternalApproval}" />
 
       </Router>
 

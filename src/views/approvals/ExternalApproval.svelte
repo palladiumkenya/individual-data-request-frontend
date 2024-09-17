@@ -1,6 +1,6 @@
 <script>
     // core components
-    import CardRequestDetails from "components/Cards/CardInternalReviewRequestDetails.svelte";
+    import CardRequestDetails from "components/Cards/CardExternalReviewRequestDetails.svelte";
 
 
     const url = new URL(window.location.href);

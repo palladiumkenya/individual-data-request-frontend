@@ -5,6 +5,7 @@
 
     // export let data;
     export let request_id;
+    export let approval_type;
 
     let data = [];
     let loading = true;
@@ -12,7 +13,7 @@
 
     onMount(async () => {
         try {
-            const response = await fetch(`http://localhost:8080/approval/internal/${request_id}`);
+            const response = await fetch(`http://localhost:8080/approval/${approval_type}/${request_id}`);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -33,17 +34,17 @@
     <p>Error: {error}</p>
 {:else}
     <!--{#if data.Approved !=null}-->
-        <div class="mt-5">
-            <p class="text-blueGray-700 text-sm font-bold">
-                Internal Approver Details
+        <div class="mt-5 ">
+            <p class="text-blueGray-700 text-sm font-bold uppercase">
+                {approval_type} Approver Review
             </p>
             <table
                     class="items-center w-full bg-transparent border-collapse"
             >
                 <tbody>
                 <tr>
-                    <td
-                    ><p class="text-blueGray-700 text-sm">Approver :</p></td
+                    <td class="setWidth"
+                    ><p class="text-blueGray-700 text-sm">Approver:</p></td
                     >
                     <td
                     ><span
@@ -54,8 +55,8 @@
                     >
                 </tr>
                 <tr>
-                    <td
-                    ><p class="text-blueGray-700 text-sm">Approved :</p></td
+                    <td class="setWidth"
+                    ><p class="text-blueGray-700 text-sm">Reviewed On:</p></td
                     >
                     <td
                     ><span
@@ -68,26 +69,30 @@
                     >
                 </tr>
                 <tr>
-                    <td
-                    ><p class="text-blueGray-700 text-sm">Approved :</p></td
+                    <td class="setWidth"
+                    ><p class="text-blueGray-700 text-sm">Approved:</p></td
                     >
                     <td
                     ><span
-                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-emerald-600 bg-emerald-200 uppercase last:mr-0 mr-1"
-                    >
+                            class="text-md font-bold inline-block py-1 px-2 uppercase rounded-full
+                            {data.data.Approved && 'text-emerald-600 bg-emerald-200'}
+                             {!data.data.Approved && 'text-red-600 bg-red-200'}
+                             uppercase last:mr-0 mr-1" >
                               {data.data.Approved}
-                        <i class="fa fa-exclamation" aria-hidden="true"></i>
+                        <i class="fa {data.data.Approved && 'fa-check-circle fa-lg'}
+                                    {!data.data.Approved && 'fa-times'}"
+                         aria-hidden="true"></i>
                     </span
                     ></td
                     >
                 </tr>
                 <tr>
-                    <td
-                    ><p class="text-blueGray-700 text-sm">Comments :</p></td
+                    <td class="setWidth"
+                    ><p class="text-blueGray-700 text-sm">Comments:</p></td
                     >
                     <td
                     ><span
-                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 text-indigo-600 uppercase last:mr-0 mr-1"
+                            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-100 text-indigo-600 uppercase last:mr-0 mr-1"
                     >
                               {data.data.Comments}
                         <i class="fa fa-exclamation" aria-hidden="true"></i>
