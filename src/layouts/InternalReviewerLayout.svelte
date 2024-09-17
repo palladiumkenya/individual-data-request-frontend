@@ -10,6 +10,7 @@
     // pages for this layout
     import InternalReviewerSidebar from '../components/Sidebar/InternalReviewerSidebar.svelte';
     import InternalReviewerDashboard from '../views/internalreviewer/internalReviewerDashboard.svelte';
+    import Assigneeform from '../views/internalreviewer/assigneeform.svelte';
 
     export let location;
     //export let admin = '';
@@ -23,6 +24,8 @@
       <div class="mx-auto w-full -m-24">
         <Router url="internalreviewer">
           <Route path="dashboard" component={InternalReviewerDashboard} />
+          <Route path="assigned-request" component={Assigneeform} />
+
         </Router>
         <!--      <Footer />-->
       </div>

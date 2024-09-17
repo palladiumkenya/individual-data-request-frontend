@@ -135,15 +135,15 @@
           <li class="items-center">
             <a
               use:link
-              href="/internalreviewer/internalreviewerdashboard"
+              href="/internalreviewer/assigned-request"
               class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
             >
               <i
                 class="fas fa-cogs mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
+                class:text-opacity-75={location?.href?.includes('/internalreviewer/assigned-request')}
+                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/assigned-request')}
               ></i>
-              Completed Requests
+              Assign Requests to Data Analysts
             </a>
           </li>
         </ul>
