@@ -1,11 +1,13 @@
 <script>
+    const env = process.env.config;
+
     import {onMount} from "svelte";
     export let color = 'light';
 
     export let request_id;
 
     async function getDocs() {
-        const response = await fetch(`http://localhost:8080/fetch_request_files/${request_id}`);
+        const response = await fetch(`${env.API_ENDPOINT}/fetch_request_files/${request_id}`);
         if (!response.ok) {
             throw new Error('Failed to fetch docs');
         }

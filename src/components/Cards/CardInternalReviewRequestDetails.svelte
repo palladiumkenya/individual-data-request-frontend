@@ -34,8 +34,8 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       data = await response.json();
-      requesterId = data.data.ID;
-      requesterEmail = data.data.Email;
+      requesterId = data.data.Requester.ID;
+      requesterEmail = data.data.Requester.Email;
       requestId = data.data.ID;
     } catch (err) {
       error = err.message;
@@ -188,7 +188,7 @@
         <h6 class="text-blueGray-700 text-xl font-bold">
           RequestID: #{data.data.ReqId}
           <span
-            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
+            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-BlueGray-700 bg-BlueGray-200 uppercase last:mr-0 mr-1"
           >
             {approval_type} Approval
           </span>
@@ -307,7 +307,7 @@
               <i class="fas fa-bell"></i>
             </span>
                         <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Reviewed!</b> You already reviewed this request. Check your comments below
+              <b class="capitalize">Reviewed!</b> You already reviewed this request. Check your review and comments on the request below
             </span>
               <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
                 <span>×</span>
