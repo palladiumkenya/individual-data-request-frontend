@@ -16,6 +16,9 @@
   // External Reviewer Layout
   import ExternalReviewerLayout from './layouts/ExternalReviewerLayout.svelte';
 
+  // Analyst Layout
+  import Analyst from './layouts/AnalystLayout.svelte';
+
   // No Layout Pages
   import Index from './views/Index.svelte';
   import Landing from './views/Landing.svelte';
@@ -61,6 +64,11 @@
   <Route path="internalreviewer/*internalreviewer" component={InternalreviewerLayout} />
   <Route path="externalreviewer/*externalreviewer" component={ExternalReviewerLayout} />
  
+
+  <Route path="analyst/*analyst" component={Analyst} />
+
+  <!-- analyst views -->
+  <Route path="serve/request" component={Landing} />
 
   <Route path="/" component={Index} />
 </Router>
