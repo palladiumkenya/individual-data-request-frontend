@@ -1,5 +1,6 @@
 <script>
     import { Router, Route } from 'svelte-routing';
+    import AuthGuard from '../authentication/AuthGuard.svelte';
 
     // components for this layout
     import InternalReviewerNavbar from '../components/Navbars/InternalReviewerNavbar.svelte';
@@ -10,6 +11,7 @@
     // pages for this layout
     import InternalReviewerSidebar from '../components/Sidebar/InternalReviewerSidebar.svelte';
     import InternalReviewerDashboard from '../views/internalreviewer/internalReviewerDashboard.svelte';
+    import UserRequestForm from "../views/user/UserRequestForm.svelte";
 
     export let location;
     //export let admin = '';
@@ -22,8 +24,9 @@
       <InternalReviewerHeaderStats />
       <div class="mx-auto w-full -m-24">
         <Router url="internalreviewer">
-          <Route path="dashboard" component={InternalReviewerDashboard} />
-<!--          <Route path="approval/action/62373474" component={InternalReviewerDashboard} />-->
+          <Route path="dashboard">
+            <AuthGuard component={InternalReviewerDashboard} />
+          </Route>
         </Router>
 
         <!--      <Footer />-->

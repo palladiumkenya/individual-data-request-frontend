@@ -8,7 +8,7 @@
     try {
       const user = await userManager.signinRedirectCallback();
       auth.setUser(user);
-      if (user.profile.UserTypeRole == "Approver"){
+      if (user.profile.UserTypeRole == "InternalApprover"){
           navigate('internalreviewer/dashboard');
       }else if (user.profile.UserTypeRole == "ExternalApprover"){
           navigate('externalreviewer/dashboard');
