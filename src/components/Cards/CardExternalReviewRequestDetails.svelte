@@ -1,5 +1,6 @@
 <script>
 
+  const env = process.env.config;
 
   import CardSupportingDocs from "./CardSupportingDocs.svelte";
 
@@ -26,7 +27,7 @@
   onMount(async () => {
     try {
       const response = await fetch(
-              `http://localhost:8080/request/${request_id}`
+              `${env.API_ENDPOINT}/request/${request_id}`
       );
 
       if (!response.ok) {
@@ -115,7 +116,7 @@
   }
 
   const Post_approval_or_rejection = async (details) => {
-    await fetch(`http://localhost:8080/approval/action`, {
+    await fetch(`${env.API_ENDPOINT}/approval/action`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -137,7 +138,7 @@
       Body: details.Comments,
       Recipient: details.RequesterEmail,
     };
-    await fetch(`http://localhost:8080/send_mail`, {
+    await fetch(`${env.API_ENDPOINT}/send_mail`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -160,7 +161,7 @@
   onMount(async () => {
     try {
       const response = await fetch(
-              `http://localhost:8080/approval/${approval_type}/${request_id}`
+              `${env.API_ENDPOINT}/approval/${approval_type}/${request_id}`
       );
 
       if (!response.ok) {

@@ -1,5 +1,8 @@
 <!-- CardApprovalsTable.svelte -->
 <script>
+  const env = process.env.config;
+
+
   import {
     selectedCategory,
     tableData,
@@ -38,7 +41,7 @@
 
   onMount(async () => {
     try {
-      const response = await fetch(`http://localhost:8080/requests`);
+      const response = await fetch(`${env.API_ENDPOINT}/requests`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
