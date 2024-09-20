@@ -1,5 +1,7 @@
 <script>
   // core components
+  const env = process.env.config;
+
 
   export let statSubtitle = "Priority Level Distribution";
   export let statTitle = "350,897";
@@ -34,7 +36,7 @@
 
   onMount(async () => {
     try {
-      const response = await fetch(`http://localhost:8080/approvals/count/${approval_type}`);
+      const response = await fetch(`${env.API_ENDPOINT}/approvals/count/${approval_type}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

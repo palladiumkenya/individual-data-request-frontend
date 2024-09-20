@@ -32,7 +32,7 @@
       <a
         use:link
         class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-        href="/internalreviewer/internalreviewerdashboard"
+        href="/internalreviewer/dashboard"
       >
         IDR 
       </a>
@@ -58,7 +58,7 @@
               <a
                 use:link
                 class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                href="/internalreviewer/internalreviewerdashboard"
+                href="/internalreviewer/dashboard"
               >
                 ILD platform
               </a>
@@ -90,13 +90,13 @@
           <li class="items-center">
             <a
               use:link
-              href="/internalreviewer/internalreviewerdashboard"
+              href="/internalreviewer/dashboard"
               class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
             >
               <i
                 class="fas fa-tv mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
+                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}
+                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}
               ></i>
               Total Requests Assigned
             </a>
@@ -105,13 +105,13 @@
           <li class="items-center">
             <a
               use:link
-              href="/internalreviewer/internalreviewerdashboard"
+              href="/internalreviewer/dashboard"
               class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
             >
               <i
                 class="fas fa-plus-circle mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
+                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}
+                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}
               ></i>
               Requests In progress
             </a>
@@ -120,13 +120,13 @@
           <li class="items-center">
             <a
               use:link
-              href="/internalreviewer/internalreviewerdashboard"
+              href="/internalreviewer/dashboard"
               class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
             >
               <i
                 class="fas fa-table mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
+                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}
+                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}
               ></i>
               Rejected Requests
             </a>
@@ -135,13 +135,13 @@
           <li class="items-center">
             <a
               use:link
-              href="/internalreviewer/internalreviewerdashboard"
+              href="/internalreviewer/dashboard"
               class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
             >
               <i
                 class="fas fa-cogs mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/internalreviewerdashboard')}
+                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}
+                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}
               ></i>
               Completed Requests
             </a>
@@ -150,4 +150,3 @@
       </div>
     </div>
   </nav>
-  

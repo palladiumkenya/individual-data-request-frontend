@@ -1,4 +1,7 @@
+
 <script>
+  const env = process.env.config;
+
   export let color = "light";
   import { onMount } from 'svelte';
   import moment from 'moment';
@@ -21,7 +24,7 @@
 
   onMount(async () => {
     try {
-      const response = await fetch(`http://localhost:8080/approvals/${approval_type}`);
+      const response = await fetch(`${env.API_ENDPOINT}/approvals/${approval_type}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

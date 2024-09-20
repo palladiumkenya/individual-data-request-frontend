@@ -2049,6 +2049,11 @@ select {
   background-color: rgba(234, 179, 8, var(--tw-bg-opacity));
 }
 
+.bg-yellow-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 112, var(--tw-bg-opacity));
+}
+
 .bg-orange-200 {
   --tw-bg-opacity: 1;
   background-color: rgba(254, 215, 170, var(--tw-bg-opacity));
@@ -2127,6 +2132,23 @@ select {
 .bg-blueGray-800 {
   --tw-bg-opacity: 1;
   background-color: rgba(30, 41, 59, var(--tw-bg-opacity));
+}
+
+.border-yellow {
+  border: 2px solid orange;
+}
+.border-orange {
+  border: 2px solid orangered;
+}
+.border-red {
+  border: 2px solid red;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .hover\:bg-blue-600:hover {
@@ -2486,7 +2508,10 @@ select {
 .font-bold {
   font-weight: 700;
 }
-
+.requestIdStyling:hover {
+  color: blue;
+  text-decoration: underline;
+}
 .uppercase {
   text-transform: uppercase;
 }
@@ -2574,6 +2599,11 @@ select {
 .text-yellow-500 {
   --tw-text-opacity: 1;
   color: rgba(234, 179, 8, var(--tw-text-opacity));
+}
+
+.text-yellow-600 {
+  --tw-text-opacity: 1;
+  color: rgba(203, 152, 0, var(--tw-text-opacity));
 }
 
 .text-orange-500 {
@@ -3223,6 +3253,8 @@ select {
     width: 100%;
   }
 }
-
+.setWidth{
+  width: 70px;
+}
 @media (min-width: 1536px) {
 }
