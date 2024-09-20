@@ -10,15 +10,6 @@
 
     let issue;
 
-    onMount(() => {
-        console.log("test")
-        let assigneeUuid = '';
-        fetch(`http://localhost:8080/analysts/job?assignee=${assigneeUuid}&id=${id}`)
-            .then(response => response.json())
-            .then(data => issue = data)
-            .catch(err => console.error(err));
-
-    });
 
 </script>
 

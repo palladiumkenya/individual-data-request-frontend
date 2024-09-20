@@ -3,6 +3,7 @@
   import moment from 'moment';
   import FormAnalystComplete from "../Forms/FormAnalystComplete.svelte";
 
+  const env = process.env.config;
   export let request_id;
 
   let data = [];
@@ -13,7 +14,7 @@
   onMount(async () => {
     try {
       const response = await fetch(
-              `http://localhost:8080/analysts/job?id=${request_id}`
+              `${env.API_ENDPOINT}/analysts/job?id=${request_id}`
       );
 
 
@@ -148,7 +149,7 @@
         </div>
         {#if data.Status.toLowerCase() !== 'complete'}
           <div class="bg-blueGray-100">
-            <FormAnalystComplete status={data.Status} request_id={request_id}/>
+            <FormAnalystComplete status={data.Status} request_id={data.ReqId} request_uuid={request_id}/>
           </div>
         {/if}
 
