@@ -1,6 +1,7 @@
 <script>
     import RequestTable from "components/Cards/RequestTable.svelte";
     import {onMount} from "svelte";
+    const env = process.env.config;
     let openTab = 1;
     let tasks = [];
     let error = null;
@@ -12,7 +13,7 @@
     onMount(async () => {
         const assigneeUuid = '60fbaa0b-850a-47a0-8a46-2d95899bd6b0';
         try {
-            const response = await fetch(`http://localhost:8080/analysts/jobs?assignee=${assigneeUuid}`);
+            const response = await fetch(`${env.API_ENDPOINT}/analysts/jobs?assignee=${assigneeUuid}`);
             const data = await response.json();
             tasks = data.data;
             // totalPages = Math.ceil(tasks.length / perPage);
