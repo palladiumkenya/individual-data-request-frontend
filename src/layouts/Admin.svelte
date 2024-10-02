@@ -13,8 +13,6 @@
   import Tables from 'views/admin/Tables.svelte';
   import Maps from 'views/admin/Maps.svelte';
 
-  //
-  import RequestList from "views/analyst/RequestList.svelte"
 
   export let location;
   export let admin = "";
@@ -31,7 +29,6 @@
         <Route path="settings" component={Settings} />
         <Route path="tables" component={Tables} />
         <Route path="maps" component={Maps} />
-        <Route path="serve/request" component={RequestList} />
       </Router>
       <FooterAdmin />
     </div>
