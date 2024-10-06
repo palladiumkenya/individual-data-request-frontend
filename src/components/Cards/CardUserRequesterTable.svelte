@@ -16,7 +16,7 @@
       // Simulate fetching data based on category
       if (category === 'approved') {
         title = 'Completed Approvals';
-        data = [
+        fetch('api here').then((resp)=>{data=resp.data})
           {
             id: '1',
             approved: true,
