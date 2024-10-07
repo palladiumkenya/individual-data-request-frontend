@@ -8,11 +8,9 @@
   let selectedPriority;
   let priorityOptions = ['High', 'Medium', 'Low'];
 
-  // Configuration values
   const config = process.env.config;
   const uploadUrl = config.UPLOAD_URL;
-  const apiEndpoint = env.API_ENDPOINT;
-  const requestorId = config.REQUESTOR_ID; // Assuming REQUESTOR_ID is set in your environment variables
+  const requestorId = config.REQUESTOR_ID;
 
   const ERROR_MESSAGES = {
     noFiles: 'Please upload at least 1 document before submitting.',
@@ -47,7 +45,7 @@
 
     try {
       // Create the request
-      let response = await fetch(`${apiEndpoint}/request/create`, {
+      let response = await fetch(`${uploadUrl}/upload`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
