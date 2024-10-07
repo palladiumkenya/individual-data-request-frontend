@@ -105,7 +105,7 @@
         <li class="items-center">
           <a
             use:link
-            href="/user/new-request"
+            href="/requester/new-request"
             class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i

@@ -9,6 +9,8 @@
 
   // User Layout
   import User from './layouts/UsersLayout.svelte';
+  // User Layout
+  import Requester from './layouts/RequesterLayout.svelte';
   // Assignee layout
   import Assignee from './layouts/assigneeLayout.svelte'
   // Internal Reviewer Layout
@@ -18,6 +20,8 @@
 
   // Analyst Layout
   import Analyst from './layouts/AnalystLayout.svelte';
+
+  import AuthGuard from './authentication/AuthGuard.svelte';
 
   // No Layout Pages
   import Index from './views/Index.svelte';
@@ -60,10 +64,13 @@
   <!-- no stats layout -->
   <Route path="approval/*approval" component={Approvals} />
   <Route path="user/*user" component={User} />
+  <Route path="requester/*requester">
+    <AuthGuard component={Requester} />
+  </Route>
   <Route path="assignee/*assignee" component={Assignee} />
   <Route path="internalreviewer/*internalreviewer" component={InternalreviewerLayout} />
   <Route path="externalreviewer/*externalreviewer" component={ExternalReviewerLayout} />
- 
+
 
   <Route path="analyst/*analyst" component={Analyst} />
 
