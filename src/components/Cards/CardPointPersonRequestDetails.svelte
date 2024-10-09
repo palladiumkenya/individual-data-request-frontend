@@ -12,9 +12,7 @@
   export let request_id;
   export let approval_type;
 
-  function handleApproveReject(type) {
-    showAlert(type);
-  }
+
 
   let data = [];
   let loading = true;
@@ -48,83 +46,19 @@
   import CardInternalApproverDetails from "./CardInternalApproverDetails.svelte";
   let showModal = false;
 
-  export function showAlert(type) {
-    if (type == 'approve') {
-      return Swal.fire({
-        title: 'Approve Request?',
-        text: 'Approve data request. By approving this request, ' +
-                'you are allowing it to move to the next stage of review or assignment.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#1ab394',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Approve!',
-        preConfirm: (reasons) => {
-          const data = {
-            Comments: '-',
-            Approver_type: 'internal',
-            Approved: true,
-            Requestor_id: requesterId,
-            Request_id: requestId,
-          };
-          Post_approval_or_rejection(data);
-        },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Approved!',
-            'Request has been approved and will be move on to the next phase which will be the external approver.',
-            'success'
-          );
-        }
-      });
-    } else {
-      return Swal.fire({
-        title: 'Reject Changes?',
-        text: 'Reasons for Rejection? This will be sent to the requester for their knowledge',
-        input: 'textarea',
-        inputAttributes: {
-          autocapitalize: 'off',
-        },
-        showCancelButton: true,
-        confirmButtonText: 'Reject',
-        confirmButtonColor: '#dc3545',
-        showLoaderOnConfirm: true,
-        preConfirm: (reasons) => {
-          const data = {
-            Comments: reasons,
-            Approver_type: 'internal',
-            Approved: false,
-            Requestor_id: requesterId,
-            Request_id: requestId,
-            RequesterEmail: requesterEmail,
-          };
-          Post_approval_or_rejection(data);
-        },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Success!',
-            'Success! Request has been rejected. Requester wil be notified of reasons why!',
-            'success'
-          );
-        } else {
-          Swal.fire('Operation canceled!');
-        }
-      });
-    }
-  }
 
-  const Post_approval_or_rejection = async (details) => {
-    await fetch(`${env.API_ENDPOINT}/approval/action`, {
+  const Post_Analyst_Assignment = async () => {
+    const analystid = document.getElementById('analyst').value;
+    console.log("analysts", analystid)
+    await fetch(`${env.API_ENDPOINT}/assign/action/${request_id}/${analystid}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(details),
+      body: JSON.stringify({"analystsId":analystid}),
     })
       .then(function (response) {
-        SendeMAIL(details);
+        SendeMAIL({"analystsId":analystid});
       })
       .catch(function (error) {
         console.log('failed ---/>', error);
@@ -135,7 +69,7 @@
     let email = {
       Sender: 'info.his@mg.kenyahmis.org',
       Subject: 'Internal Approval Stage',
-      Body: details.Comments,
+      Body:"Send to analysts email",
       Recipient: details.RequesterEmail,
     };
     await fetch(`${env.API_ENDPOINT}/send_mail`, {
@@ -190,11 +124,13 @@
       <div class="text-center flex justify-between">
         <h6 class="text-blueGray-700 text-xl font-bold">
           RequestID: #{data.data.ReqId}
-          <span
-            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-BlueGray-700 bg-BlueGray-200 uppercase last:mr-0 mr-1"
-          >
-            {approval_type} Approval
-          </span>
+<!--          <span-->
+<!--            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-BlueGray-700 bg-BlueGray-200 uppercase last:mr-0 mr-1"-->
+<!--          >-->
+<!--            ASSIGN TO ANALYST-->
+<!--          </span>-->
+
+
           {#if data.data.Approved != null}
             <span
               class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded uppercase last:mr-0 mr-1" +
@@ -224,6 +160,59 @@
           </span>
         </h6>
       </div>
+
+      {#if data.data.Status == "review stage"}
+        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+            <span class="text-xl inline-block mr-5 align-middle">
+              <i class="fas fa-bell"></i>
+            </span>
+          <span class="inline-block align-middle mr-8">
+              <b class="capitalize">Review stage!</b> This request iis still ongoing the review stage.
+            Once approved by  the reviewers, you can assign an analyst.
+            </span>
+          <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+            <span>×</span>
+          </button>
+        </div>
+      {:else if data.data.Status == "assigned"}
+        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500">
+            <span class="text-xl inline-block mr-5 align-middle">
+              <i class="fas fa-bell"></i>
+            </span>
+                    <span class="inline-block align-middle mr-8">
+              <b class="capitalize">Assigned!</b> This request has already been assigned!
+            </span>
+          <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+            <span>×</span>
+          </button>
+        </div>
+      {:else if data.data.Status == "approved"}
+      <form>
+          <div class="flex flex-wrap bg-blueGray">
+          <div class="w-full lg:w-4/12">
+              <label for="analyst">Assign to Analysts</label>
+            </div>
+            <div  class="w-full lg:w-4/12">
+              <select id="analyst" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
+                <option value="38f75fd1-67b7-411c-8c9e-311afd5cf1eb">Anne</option>
+                <option value="76f75fd1-67b7-411c-8c9e-311afd5cf1eb">Glen</option>
+                <option value="44f75fd1-67b7-411c-8c9e-311afd5cf1eb">Nobert</option>
+              </select>
+            </div>
+            <div  class="w-full lg:w-4/12">
+              <button
+                      class="bg-red-500 w-full text-white active:bg-orange-600 font-bold uppercase text-xs px-4 py-2 rounded
+         shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      on:click={() => { Post_Analyst_Assignment(); }}
+                      type="button"
+              >
+                ASSIGN TO ANALYST
+              </button>
+            </div>
+          </div>
+        </form>
+      {/if}
+
 
       <div class="px-6 py-6 border-t border-blueGray-200">
         <div class="flex flex-wrap bg-blueGray">
@@ -295,60 +284,19 @@
               </table>
             </div>
 
-            {#if approval_type=="external"}
-              <CardInternalApproverDetails data{data} approval_type="internal" request_id={request_id}/>
+            {#if approvalloading}
+              <p>Loading...</p>
+            {:else}
+              {#if existingApprovalData.data}
+                <CardInternalApproverDetails data={existingApprovalData.data} approval_type="internal" request_id={request_id}/>
+                <CardInternalApproverDetails data={existingApprovalData.data} approval_type="external" request_id={request_id}/>
+              {/if}
             {/if}
           </div>
         </div>
 
-        {#if approvalloading}
-          <p>Loading...</p>
-        {:else}
-          {#if existingApprovalData.data}
-            <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500">
-            <span class="text-xl inline-block mr-5 align-middle">
-              <i class="fas fa-bell"></i>
-            </span>
-                        <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Reviewed!</b> You already reviewed this request. Check your review and comments on the request below
-            </span>
-              <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
-                <span>×</span>
-              </button>
-            </div>
-            <CardInternalApproverDetails data={existingApprovalData.data} {approval_type} request_id={request_id}/>
-
-          {:else}
-          <div class="flex flex-wrap">
-            <div class="w-full px-4 flex-1">
-              <button
-                class="bg-indigo-700 w-full text-white active:bg-orange-600 font-bold uppercase text-xs px-4 py-2
-        rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                on:click={() => {
-                  handleApproveReject('approve');
-                }}
-                type="button"
-              >
-                Approve
-              </button>
-            </div>
-            <div class="w-full px-4 flex-1">
-              <button
-                class="bg-red-500 w-full text-white active:bg-orange-600 font-bold uppercase text-xs px-4 py-2 rounded
-         shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                on:click={() => {
-                  handleApproveReject('reject');
-
-                }}
-                type="button"
-              >
-                Reject
-              </button>
-            </div>
-          </div>
-          {/if}
-        {/if}
       </div>
-    </div>
+      </div>
   {/if}
 </div>
+

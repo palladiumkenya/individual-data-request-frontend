@@ -16,7 +16,7 @@
       <div class="flex flex-wrap">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardInternalReviewerStats
-                  statSubtitle="All Requests Assigned"
+                  statSubtitle="All Requests"
                   statTitle={$requestCounts.total}
                   statIconName="far fa-chart-bar"
                   statIconColor="bg-red-500"

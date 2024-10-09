@@ -10,6 +10,8 @@
   import { get } from 'svelte/store';
   import InternalReviewerSidebar from "../components/Sidebar/InternalReviewerSidebar.svelte";
   import ExternalApproval from "../views/requestActions/ExternalApproval.svelte";
+  import PointPersonAssignAnalyst from "../views/requestActions/PointPersonAssignAnalyst.svelte";
+  import PointPersonSidebar from "../components/Sidebar/PointPersonSidebar.svelte";
 
 
 
@@ -43,7 +45,7 @@
 </script>
 
 <div>
-  <InternalReviewerSidebar {location} />
+  <PointPersonSidebar {location} />
   <div class="relative md:ml-64 bg-blueGray-100">
     <ApprovalNavbar />
     <div class="relative bg-indigo-500 md:pt-10 pb-32 pt-12">
@@ -54,10 +56,8 @@
     </div>
     <div class="mx-auto w-full -m-24">
 
-      <Router url="approval">
-        <Route path="internal_action/:id" component="{InternalApproval}" />
-        <Route path="external_action/:id" component="{ExternalApproval}" />
-
+      <Router url="assign">
+        <Route path="action/:id" component="{PointPersonAssignAnalyst}" />
       </Router>
 
 <!--      <Footer />-->

@@ -17,6 +17,7 @@
   import InternalreviewerLayout from './layouts/InternalReviewerLayout.svelte'
   // External Reviewer Layout
   import ExternalReviewerLayout from './layouts/ExternalReviewerLayout.svelte';
+  import PointPersonLayout from './layouts/PointPersonLayout.svelte';
 
   // Analyst Layout
   import Analyst from './layouts/AnalystLayout.svelte';
@@ -28,11 +29,12 @@
   import Landing from './views/Landing.svelte';
   import Profile from './views/Profile.svelte';
   import Callback from './authentication/Callback.svelte';
-  import InternalApprover from './views/approvals/InternalApproval.svelte';
+  import InternalApprover from './views/requestActions/InternalApproval.svelte';
   import Approvals from './layouts/ApprovalsLayout.svelte';
   import { onMount } from 'svelte';
   import { userManager } from './authentication/OidcConfig';
   import { auth } from './authentication/AuthStore';
+  import AssigningLayout from "./layouts/AssigningLayout.svelte";
 
 
 
@@ -71,6 +73,8 @@
   <Route path="internalreviewer/*internalreviewer" component={InternalreviewerLayout} />
   <Route path="externalreviewer/*externalreviewer" component={ExternalReviewerLayout} />
 
+  <Route path="pointperson/*pointperson" component={PointPersonLayout} />
+  <Route path="assign/*assign" component={AssigningLayout} />
 
   <Route path="analyst/*analyst" component={Analyst} />
 

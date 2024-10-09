@@ -249,13 +249,13 @@
             >
               {data.data.Summery}
             </p>
-            <a
-              href="#pablo"
-              on:click={(e) => e.preventDefault()}
-              class="font-normal text-red-500"
-            >
-              Show more
-            </a>
+<!--            <a-->
+<!--              href="#pablo"-->
+<!--              on:click={(e) => e.preventDefault()}-->
+<!--              class="font-normal text-red-500"-->
+<!--            >-->
+<!--              Show more-->
+<!--            </a>-->
 
             <CardSupportingDocs request_id={request_id}/>
           </div>
