@@ -148,9 +148,12 @@
       .then(function (response) {
         // window.location.href = BASE_URL + `/facilities/view_facility/${fac_id}`;
         console.log('response', response);
+        window.location.reload(true)
       })
       .catch(function (error) {
         console.log('failed ---/>', error);
+        window.location.reload(true)
+
       });
   };
 
