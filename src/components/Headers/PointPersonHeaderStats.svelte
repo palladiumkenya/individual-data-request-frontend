@@ -3,6 +3,7 @@
     // core components
     import { requestCounts } from '../../stores/dash_store';
   import CardInternalReviewerStats from '../Cards/CardInternalReviewerStats.svelte';
+    import CardPointPersonStats from "../Cards/CardPointPersonStats.svelte";
   
     let counts;
     $: counts = $requestCounts;
@@ -15,7 +16,7 @@
         <!-- Card stats -->
         <div class="flex flex-wrap">
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <CardInternalReviewerStats
+            <CardPointPersonStats
               statSubtitle="All Requests"
               statTitle={$requestCounts.total}
               statIconName="far fa-chart-bar"
@@ -24,7 +25,7 @@
             />
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <CardInternalReviewerStats
+            <CardPointPersonStats
               statSubtitle="Approved Requests"
               statTitle={$requestCounts.approved}
               statIconName="fas fa-check-circle"
@@ -33,16 +34,16 @@
             />
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <CardInternalReviewerStats
-              statSubtitle="Pending Requests"
-              statTitle={$requestCounts.pending}
+            <CardPointPersonStats
+              statSubtitle="Assigned Requests"
+              statTitle={$requestCounts.assigned}
               statIconName="fas fa-spinner"
               statIconColor="bg-pink-500"
-              globalCategory="pending"
+              globalCategory="assigned"
             />
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <CardInternalReviewerStats
+            <CardPointPersonStats
               statSubtitle="Completed Requests"
               statTitle={$requestCounts.completed}
               statIconName="fas fa-check"

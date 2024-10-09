@@ -12,10 +12,6 @@
   export let request_id;
   export let approval_type;
 
-  function handleApproveReject(type) {
-    showAlert(type);
-  }
-
   let data = [];
   let loading = true;
   let error = null;
@@ -23,7 +19,7 @@
   let requesterId = '';
   let requestId = '';
   let requesterEmail = '';
-
+  let completed_action;
   onMount(async () => {
     try {
       const response = await fetch(
@@ -47,7 +43,9 @@
   import Swal from 'sweetalert2';
   import CardInternalApproverDetails from "./CardInternalApproverDetails.svelte";
   let showModal = false;
-
+  function handleApproveReject(type) {
+      showAlert(type);
+  }
   export function showAlert(type) {
     if (type == 'approve') {
       return Swal.fire({
@@ -125,6 +123,9 @@
     })
       .then(function (response) {
         SendeMAIL(details);
+          completed_action=true;
+        // window.location.href = `${env.FRONTEND_URL}/${approval_type}reviewer/dashboard`
+        // window.location.replace(`${env.FRONTEND_URL}/${approval_type}reviewer/dashboard`);
       })
       .catch(function (error) {
         console.log('failed ---/>', error);
@@ -146,11 +147,13 @@
       body: JSON.stringify(email),
     })
       .then(function (response) {
-        // window.location.href = BASE_URL + `/facilities/view_facility/${fac_id}`;
+        window.location.href = `${env.FRONTEND_URL}/${approval_type}reviewer/dashboard`
         console.log('response', response);
       })
       .catch(function (error) {
         console.log('failed ---/>', error);
+        window.location.reload(true);
+
       });
   };
 
@@ -185,7 +188,21 @@
   {:else}
     <div class="rounded-t bg-white mb-0 px-6 py-6 ">
       <div class="text-center flex justify-between">
-        <h6 class="text-blueGray-700 text-xl font-bold">
+          {#if completed_action}
+          <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-emerald-500">
+              <span class="text-xl inline-block mr-5 align-middle">
+                <i class="fas fa-bell"></i>
+              </span>
+                          <span class="inline-block align-middle mr-8">
+                <b class="capitalize">emerald!</b> This is a emerald alert - check it out!
+              </span>
+              <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                  <span>×</span>
+              </button>
+          </div>
+          {:else}
+
+          <h6 class="text-blueGray-700 text-xl font-bold">
           RequestID: #{data.data.ReqId}
           <span
             class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
@@ -232,13 +249,13 @@
             >
               {data.data.Summery}
             </p>
-            <a
-              href="#pablo"
-              on:click={(e) => e.preventDefault()}
-              class="font-normal text-red-500"
-            >
-              Show more
-            </a>
+<!--            <a-->
+<!--              href="#pablo"-->
+<!--              on:click={(e) => e.preventDefault()}-->
+<!--              class="font-normal text-red-500"-->
+<!--            >-->
+<!--              Show more-->
+<!--            </a>-->
 
             <CardSupportingDocs request_id={request_id}/>
           </div>

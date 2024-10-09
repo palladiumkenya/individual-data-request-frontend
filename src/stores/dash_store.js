@@ -14,5 +14,9 @@ export const requestCounts = derived(tableData, ($tableData) => {
         .length,
     completed: $tableData.filter((request) => request.Status === 'complete')
       .length,
+    assigned: $tableData.filter((request) => request.Status === 'assigned')
+        .length,
+    reviewStage: $tableData.filter((request) => request.Status === 'review stage')
+        .length,
   };
 });

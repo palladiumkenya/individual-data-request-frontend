@@ -1,6 +1,6 @@
 <script>
-
   const env = process.env.config;
+
 
   import CardSupportingDocs from "./CardSupportingDocs.svelte";
 
@@ -34,8 +34,8 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       data = await response.json();
-      requesterId = data.data.ID;
-      requesterEmail = data.data.Email;
+      requesterId = data.data.Requester.ID;
+      requesterEmail = data.data.Requester.Email;
       requestId = data.data.ID;
     } catch (err) {
       error = err.message;
@@ -62,7 +62,7 @@
         preConfirm: (reasons) => {
           const data = {
             Comments: '-',
-            Approver_type: 'internal',
+            Approver_type: 'external',
             Approved: true,
             Requestor_id: requesterId,
             Request_id: requestId,
@@ -72,9 +72,9 @@
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            'Approved!',
-            'Request has been approved and will be move on to the next phase which will be the external approver.',
-            'success'
+                  'Approved!',
+                  'Request has been approved and will be move on to the next phase which will be the external approver.',
+                  'success'
           );
         }
       });
@@ -93,7 +93,7 @@
         preConfirm: (reasons) => {
           const data = {
             Comments: reasons,
-            Approver_type: 'internal',
+            Approver_type: 'external',
             Approved: false,
             Requestor_id: requesterId,
             Request_id: requestId,
@@ -104,9 +104,9 @@
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            'Success!',
-            'Success! Request has been rejected. Requester wil be notified of reasons why!',
-            'success'
+                  'Success!',
+                  'Success! Request has been rejected. Requester wil be notified of reasons why!',
+                  'success'
           );
         } else {
           Swal.fire('Operation canceled!');
@@ -123,18 +123,18 @@
       },
       body: JSON.stringify(details),
     })
-      .then(function (response) {
-        SendeMAIL(details);
-      })
-      .catch(function (error) {
-        console.log('failed ---/>', error);
-      });
+            .then(function (response) {
+              SendeMAIL(details);
+            })
+            .catch(function (error) {
+              console.log('failed ---/>', error);
+            });
   };
 
   const SendeMAIL = async (details) => {
     let email = {
       Sender: 'info.his@mg.kenyahmis.org',
-      Subject: 'Internal Approval Stage',
+      Subject: 'External Approval Stage',
       Body: details.Comments,
       Recipient: details.RequesterEmail,
     };
@@ -145,13 +145,16 @@
       },
       body: JSON.stringify(email),
     })
-      .then(function (response) {
-        // window.location.href = BASE_URL + `/facilities/view_facility/${fac_id}`;
-        console.log('response', response);
-      })
-      .catch(function (error) {
-        console.log('failed ---/>', error);
-      });
+            .then(function (response) {
+              // window.location.href = BASE_URL + `/facilities/view_facility/${fac_id}`;
+              console.log('response', response);
+              window.location.reload(true)
+            })
+            .catch(function (error) {
+              console.log('failed ---/>', error);
+              window.location.reload(true)
+
+            });
   };
 
 
@@ -165,18 +168,18 @@
       );
 
       if (!response.ok) {
-          existingApprovalData=[];
+        existingApprovalData = [];
       }
       existingApprovalData = await response.json();
       console.log("existingApprovalData -->", existingApprovalData)
-    }  finally {
+    } finally {
       approvalloading = false;
     }
   });
 </script>
 
 <div
-  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 h-350-px"
+        class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 h-350-px"
 >
   {#if loading}
     <p>Loading...</p>
@@ -188,13 +191,13 @@
         <h6 class="text-blueGray-700 text-xl font-bold">
           RequestID: #{data.data.ReqId}
           <span
-            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-indigo-600 bg-indigo-200 uppercase last:mr-0 mr-1"
+                  class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-BlueGray-700 bg-BlueGray-200 uppercase last:mr-0 mr-1"
           >
             {approval_type} Approval
           </span>
           {#if data.data.Approved != null}
             <span
-              class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded uppercase last:mr-0 mr-1" +
+                    class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded uppercase last:mr-0 mr-1" +
                " ${data.data.Approved ? 'text-green-500 bg-emerald-200' : 'text-red-900 bg-red-200'}`}
             >
               {data.data.Approved ? 'Approved' : 'Rejected'}
@@ -206,7 +209,7 @@
         <h6>
           Priority :
           <span
-            class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded uppercase last:mr-0 mr-1" +
+                  class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded uppercase last:mr-0 mr-1" +
              " ${data.data.Priority_level == 'high' && 'text-red-600 bg-red-200'} ${data.data.Priority_level == 'medium' && 'text-orange-500 bg-orange-200'}
              ${data.data.Priority_level == 'low' && 'text-yellow-600 bg-yellow-200 border-yellow'}`}
           >
@@ -215,7 +218,7 @@
           </span>
           Due :
           <span
-            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 bg-orange-200 uppercase last:mr-0 mr-1"
+                  class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 bg-orange-200 uppercase last:mr-0 mr-1"
           >
             {moment(data.data.Due_Date).format('dddd, DD MMM YYYY')}
           </span>
@@ -228,14 +231,14 @@
             <p class="text-blueGray-700 text-sm font-bold">Summery</p>
 
             <p
-              class="mb-4 text-sm justify-items-start leading-relaxed text-blueGray-700"
+                    class="mb-4 text-sm justify-items-start leading-relaxed text-blueGray-700"
             >
               {data.data.Summery}
             </p>
             <a
-              href="#pablo"
-              on:click={(e) => e.preventDefault()}
-              class="font-normal text-red-500"
+                    href="#pablo"
+                    on:click={(e) => e.preventDefault()}
+                    class="font-normal text-red-500"
             >
               Show more
             </a>
@@ -250,50 +253,50 @@
 
               <table class="items-center w-full bg-transparent border-collapse">
                 <tbody>
-                  <tr>
-                    <td><p class="text-blueGray-700 text-sm">Requester :</p></td
-                    >
-                    <td
-                      ><span
-                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 text-indigo-600 uppercase last:mr-0 mr-1"
-                      >
+                <tr>
+                  <td><p class="text-blueGray-700 text-sm">Requester :</p></td
+                  >
+                  <td
+                  ><span
+                          class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 text-indigo-600 uppercase last:mr-0 mr-1"
+                  >
                         {data.data.Requester.Name}</span
-                      ></td
-                    >
-                  </tr>
-                  <tr>
-                    <td
-                      ><p class="text-blueGray-700 text-sm">
-                        Organization :
-                      </p></td
-                    >
-                    <td
-                      ><span
-                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 text-indigo-600 uppercase last:mr-0 mr-1"
-                      >
+                  ></td
+                  >
+                </tr>
+                <tr>
+                  <td
+                  ><p class="text-blueGray-700 text-sm">
+                    Organization :
+                  </p></td
+                  >
+                  <td
+                  ><span
+                          class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 text-indigo-600 uppercase last:mr-0 mr-1"
+                  >
                         {data.data.Requester.Organization}</span
-                      ></td
-                    >
-                  </tr>
-                  <tr>
-                    <td><p class="text-blueGray-700 text-sm">Requested :</p></td
-                    >
-                    <td
-                      ><span
-                        class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 text-indigo-600 uppercase last:mr-0 mr-1"
-                      >
+                  ></td
+                  >
+                </tr>
+                <tr>
+                  <td><p class="text-blueGray-700 text-sm">Requested :</p></td
+                  >
+                  <td
+                  ><span
+                          class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-200 text-indigo-600 uppercase last:mr-0 mr-1"
+                  >
                         {moment(data.data.Created_date).format(
-                          'dddd, DD MMM YYYY'
+                                'dddd, DD MMM YYYY'
                         )}</span
-                      ></td
-                    >
-                  </tr>
+                  ></td
+                  >
+                </tr>
                 </tbody>
               </table>
             </div>
 
-            {#if approval_type=="external"}
-              <CardInternalApproverDetails data{data} approval_type="internal" request_id={request_id}/>
+            {#if approval_type == "external"}
+              <CardInternalApproverDetails data{data} approval_type="external" request_id={request_id}/>
             {/if}
           </div>
         </div>
@@ -306,8 +309,8 @@
             <span class="text-xl inline-block mr-5 align-middle">
               <i class="fas fa-bell"></i>
             </span>
-                        <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Reviewed!</b> You already reviewed this request. Check your  review and comments on the request comments below
+              <span class="inline-block align-middle mr-8">
+              <b class="capitalize">Reviewed!</b> You already reviewed this request. Check your review and comments on the request below
             </span>
               <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
                 <span>×</span>
@@ -316,33 +319,33 @@
             <CardInternalApproverDetails data={existingApprovalData.data} {approval_type} request_id={request_id}/>
 
           {:else}
-          <div class="flex flex-wrap">
-            <div class="w-full px-4 flex-1">
-              <button
-                class="bg-indigo-700 w-full text-white active:bg-orange-600 font-bold uppercase text-xs px-4 py-2
+            <div class="flex flex-wrap">
+              <div class="w-full px-4 flex-1">
+                <button
+                        class="bg-indigo-700 w-full text-white active:bg-orange-600 font-bold uppercase text-xs px-4 py-2
         rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                on:click={() => {
+                        on:click={() => {
                   handleApproveReject('approve');
                 }}
-                type="button"
-              >
-                Approve
-              </button>
-            </div>
-            <div class="w-full px-4 flex-1">
-              <button
-                class="bg-red-500 w-full text-white active:bg-orange-600 font-bold uppercase text-xs px-4 py-2 rounded
+                        type="button"
+                >
+                  Approve
+                </button>
+              </div>
+              <div class="w-full px-4 flex-1">
+                <button
+                        class="bg-red-500 w-full text-white active:bg-orange-600 font-bold uppercase text-xs px-4 py-2 rounded
          shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                on:click={() => {
+                        on:click={() => {
                   handleApproveReject('reject');
 
                 }}
-                type="button"
-              >
-                Reject
-              </button>
+                        type="button"
+                >
+                  Reject
+                </button>
+              </div>
             </div>
-          </div>
           {/if}
         {/if}
       </div>
