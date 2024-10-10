@@ -65,17 +65,13 @@
                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                 >
                     <a href={ doc.FileURL} target="_blank">
-                        View <i class="fa fa-eye" aria-hidden="true"></i>
+                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </a>
 
-                </td>
-                <td
-                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                >
                           <span
                                   class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-orange-600 bg-orange-200 uppercase last:mr-0 mr-1"
                           >
-                            Seen
+                            VIEW
                           </span>
                 </td>
             </tr>
