@@ -3,15 +3,12 @@
 
   // components for this layout
   import UserNavbar from 'components/Navbars/UserNavbar.svelte';
-  import UserHeaderStats from 'components/Headers/UserHeaderStats.svelte';
 
   // pages for this layout
-  import UserDashboard from '../views/user/UserDashboard.svelte';
   import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
   import UserRequestForm from '../views/user/UserRequestForm.svelte';
-  import AuthGuard from '../authentication/AuthGuard.svelte';
-  import InternalReviewerSidebar from "../components/Sidebar/InternalReviewerSidebar.svelte";
-  import ApprovalNavbar from "*.svelte";
+  import UserDashboard from "../views/user/UserDashboard.svelte";
+
   export let location;
   //export let admin = '';
 </script>
@@ -26,6 +23,7 @@
     </div>
     <div class="px-4 md:px-10 mx-auto w-full -m-24">
       <Router url="requester">
+        <Route path="dashboard" component={UserDashboard} />
         <Route path="new-request" component={UserRequestForm} />
       </Router>
     </div>

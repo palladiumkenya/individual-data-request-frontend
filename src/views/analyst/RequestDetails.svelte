@@ -1,16 +1,11 @@
 <script>
     import CardAnalystRequestDetails from '../../components/Cards/CardAnalystRequestDetails.svelte';
-    import { onMount } from 'svelte';
 
     const url = new URL(window.location.href);
 
     const params = new URLSearchParams(url.search);
 
     const id = params.get('id');
-
-    let issue;
-
-
 </script>
 
 <div>
