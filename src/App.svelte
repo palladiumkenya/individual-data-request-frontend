@@ -72,7 +72,9 @@
   <Route path="externalreviewer/*externalreviewer" component={ExternalReviewerLayout} />
 
 
-  <Route path="analyst/*analyst" component={Analyst} />
+  <Route path="analyst/*analyst">
+    <AuthGuard component={Analyst} />
+  </Route>
 
   <!-- analyst views -->
   <Route path="serve/request" component={Landing} />
