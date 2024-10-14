@@ -71,7 +71,7 @@
               {task?.Priority_level}
             </td>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">
-              {task?.Requester.Organization}
+              {new Date(task?.Date_Due).toLocaleDateString()}
             </td>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4">
               <i
