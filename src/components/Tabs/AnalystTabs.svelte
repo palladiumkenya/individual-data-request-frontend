@@ -1,6 +1,7 @@
 <script>
     import RequestTable from "components/Cards/RequestTable.svelte";
     import {onMount} from "svelte";
+    import {auth} from '../../authentication/AuthStore';
 
     const env = process.env.config;
     let openTab = 1;
@@ -12,7 +13,8 @@
     }
 
     onMount(async () => {
-        const assigneeUuid = '60fbaa0b-850a-47a0-8a46-2d95899bd6b0';
+        let assigneeUuid = null;
+        auth.id.subscribe((value) => (assigneeUuid = value) )
         try {
             const response = await fetch(`${env.API_ENDPOINT}/analysts/jobs?assignee=${assigneeUuid}`);
             const data = await response.json();
