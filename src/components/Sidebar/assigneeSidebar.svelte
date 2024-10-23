@@ -98,7 +98,7 @@
                 class:text-opacity-75={location?.href?.includes('/assignee/dashboard')}
                 class:text-blueGray-300={!location?.href?.includes('/assigne/dashboard')}
               ></i>
-              Total Requests Assigned
+              Total Requests
             </a>
           </li>
   
@@ -150,4 +150,3 @@
       </div>
     </div>
   </nav>
-  

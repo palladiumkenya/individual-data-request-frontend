@@ -29,6 +29,10 @@
         <i class="fas fa-bars"></i>
       </button>
       <!-- Brand -->
+      <span class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full uppercase last:mr-0 mr-1
+        text-indigo-600 bg-indigo-200 '}`}>
+              INTERNAL REVEIWER
+            </span>
       <a
         use:link
         class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
@@ -98,54 +102,54 @@
                 class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}
                 class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}
               ></i>
-              Total Requests Assigned
+              Total Requests
             </a>
           </li>
   
-          <li class="items-center">
-            <a
-              use:link
-              href="/internalreviewer/dashboard"
-              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
-            >
-              <i
-                class="fas fa-plus-circle mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}
-              ></i>
-              Requests In progress
-            </a>
-          </li>
-  
-          <li class="items-center">
-            <a
-              use:link
-              href="/internalreviewer/dashboard"
-              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
-            >
-              <i
-                class="fas fa-table mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}
-              ></i>
-              Rejected Requests
-            </a>
-          </li>
-  
-          <li class="items-center">
-            <a
-              use:link
-              href="/internalreviewer/dashboard"
-              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
-            >
-              <i
-                class="fas fa-cogs mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}
-              ></i>
-              Completed Requests
-            </a>
-          </li>
+<!--          <li class="items-center">-->
+<!--            <a-->
+<!--              use:link-->
+<!--              href="/internalreviewer/dashboard"-->
+<!--              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"-->
+<!--            >-->
+<!--              <i-->
+<!--                class="fas fa-plus-circle mr-2 text-sm"-->
+<!--                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}-->
+<!--                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}-->
+<!--              ></i>-->
+<!--              Requests In progress-->
+<!--            </a>-->
+<!--          </li>-->
+<!--  -->
+<!--          <li class="items-center">-->
+<!--            <a-->
+<!--              use:link-->
+<!--              href="/internalreviewer/dashboard"-->
+<!--              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"-->
+<!--            >-->
+<!--              <i-->
+<!--                class="fas fa-table mr-2 text-sm"-->
+<!--                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}-->
+<!--                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}-->
+<!--              ></i>-->
+<!--              Rejected Requests-->
+<!--            </a>-->
+<!--          </li>-->
+<!--  -->
+<!--          <li class="items-center">-->
+<!--            <a-->
+<!--              use:link-->
+<!--              href="/internalreviewer/dashboard"-->
+<!--              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"-->
+<!--            >-->
+<!--              <i-->
+<!--                class="fas fa-cogs mr-2 text-sm"-->
+<!--                class:text-opacity-75={location?.href?.includes('/internalreviewer/dashboard')}-->
+<!--                class:text-blueGray-300={!location?.href?.includes('/internalreviewer/dashboard')}-->
+<!--              ></i>-->
+<!--              Completed Requests-->
+<!--            </a>-->
+<!--          </li>-->
         </ul>
       </div>
     </div>

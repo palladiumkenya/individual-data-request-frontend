@@ -224,10 +224,20 @@
           </span>
         </h6>
       </div>
-
+      {#if data.data.Status=='pending' }
+        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+                  <span class="text-xl inline-block mr-5 align-middle">
+                    <i class="fas fa-bell"></i>
+                  </span>
+          <span class="inline-block align-middle mr-8">
+                    <b class="capitalize">Pending!</b> This is request has not yet been reveiwed by the internal reveiwer. Once they do, you'll be able to review it
+                  </span>
+        </div>
+      {/if}
       <div class="px-6 py-6 border-t border-blueGray-200">
         <div class="flex flex-wrap bg-blueGray">
           <div class="w-full lg:w-8/12 px-4">
+
             <p class="text-blueGray-700 text-sm font-bold">Summery</p>
 
             <p
@@ -296,7 +306,7 @@
             </div>
 
             {#if approval_type == "external"}
-              <CardInternalApproverDetails data{data} approval_type="external" request_id={request_id}/>
+              <CardInternalApproverDetails data{data} approval_type="internal" request_id={request_id}/>
             {/if}
           </div>
         </div>
@@ -319,6 +329,8 @@
             <CardInternalApproverDetails data={existingApprovalData.data} {approval_type} request_id={request_id}/>
 
           {:else}
+            {#if data.data.Status=='review stage' }
+
             <div class="flex flex-wrap">
               <div class="w-full px-4 flex-1">
                 <button
@@ -346,6 +358,7 @@
                 </button>
               </div>
             </div>
+            {/if}
           {/if}
         {/if}
       </div>

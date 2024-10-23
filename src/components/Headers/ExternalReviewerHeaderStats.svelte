@@ -2,7 +2,7 @@
 <script>
   // core components
   import { requestCounts } from '../../stores/dash_store';
-  import CardInternalReviewerStats from '../Cards/CardInternalReviewerStats.svelte';
+  import CardExternalReviewerStats from '../Cards/CardExternalReviewerStats.svelte';
 
   let counts;
   $: counts = $requestCounts;
@@ -15,7 +15,7 @@
       <!-- Card stats -->
       <div class="flex flex-wrap">
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <CardInternalReviewerStats
+          <CardExternalReviewerStats
                   statSubtitle="All Requests"
                   statTitle={$requestCounts.total}
                   statIconName="far fa-chart-bar"
@@ -24,7 +24,7 @@
           />
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <CardInternalReviewerStats
+          <CardExternalReviewerStats
                   statSubtitle="Approved Requests"
                   statTitle={$requestCounts.approved}
                   statIconName="fas fa-check-circle"
@@ -33,7 +33,7 @@
           />
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <CardInternalReviewerStats
+          <CardExternalReviewerStats
                   statSubtitle="Requests In Progress"
                   statTitle={$requestCounts.inProgress}
                   statIconName="fas fa-spinner"
@@ -42,7 +42,7 @@
           />
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <CardInternalReviewerStats
+          <CardExternalReviewerStats
                   statSubtitle="Completed Requests"
                   statTitle={$requestCounts.completed}
                   statIconName="fas fa-check"

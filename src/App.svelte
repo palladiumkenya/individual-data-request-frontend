@@ -30,7 +30,10 @@
   import Profile from './views/Profile.svelte';
   import Callback from './authentication/Callback.svelte';
   import InternalApprover from './views/requestActions/InternalApproval.svelte';
-  import Approvals from './layouts/ApprovalsLayout.svelte';
+  // import Approvals from './layouts/ApprovalsLayout.svelte';
+  import InternalDashboard from './layouts/InternalReviewerDashboardLayout.svelte';
+  import ExternalDashboard from './layouts/ExternalReviewerDashboardLayout.svelte';
+
   import { onMount } from 'svelte';
   import { userManager } from './authentication/OidcConfig';
   import { auth } from './authentication/AuthStore';
@@ -64,7 +67,10 @@
   <Route path="profile" component={Profile} />
   <Route path="signin-oidc" component={Callback} />
   <!-- no stats layout -->
-  <Route path="approval/*approval" component={Approvals} />
+<!--  <Route path="approval/*approval" component={Approvals} />-->
+  <Route path="internal/*internal" component={InternalDashboard} />
+  <Route path="external/*external" component={ExternalDashboard} />
+
   <Route path="user/*user" component={User} />
   <Route path="requester/*requester">
     <AuthGuard component={Requester} />
