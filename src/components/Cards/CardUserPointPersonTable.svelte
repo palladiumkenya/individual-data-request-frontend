@@ -159,10 +159,12 @@
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4
                     {row.Status	 == 'complete' || row.Status	 == 'approved' || row.Status	 == 'assigned'  && 'text-emerald-500 '}
                    {row.Status	 == 'pending'  && 'text-blueGray-600 '}
+                   {row.Status	 == 'rejected'  && 'text-red-600 '}
                    {row.Status	 == 'in progress' || row.Status	 == 'review stage' && 'text-indigo-600 '}"
           >
             <span class="dot {row.Status	 == 'complete' || row.Status	 == 'approved' || row.Status	 == 'assigned' && 'bg-emerald-500 '}
              {row.Status	 == 'pending'  && 'bg-blueGray-600 '}
+             {row.Status	 == 'rejected'  && 'bg-red-500 '}
              {row.Status	 == 'in progress' || row.Status	 == 'review stage'   && 'bg-indigo-500 '}"></span>
             {row.Status}</td
           >

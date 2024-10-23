@@ -49,7 +49,6 @@
 
   const Post_Analyst_Assignment = async () => {
     const analystid = document.getElementById('analyst').value;
-    console.log("analysts", analystid)
     await fetch(`${env.API_ENDPOINT}/assign/action/${request_id}/${analystid}`, {
       method: 'POST',
       headers: {
@@ -81,7 +80,6 @@
     })
       .then(function (response) {
         // window.location.href = BASE_URL + `/facilities/view_facility/${fac_id}`;
-        console.log('response', response);
         window.location.reload(true)
       })
       .catch(function (error) {
@@ -105,8 +103,24 @@
           existingApprovalData=[];
       }
       existingApprovalData = await response.json();
-      console.log("existingApprovalData -->", existingApprovalData)
     }  finally {
+      approvalloading = false;
+    }
+  });
+
+
+  let analystsList=[]
+  onMount(async () => {
+    try {
+      const response = await fetch(
+              `${env.API_ENDPOINT}/analysts`
+      );
+
+      if (!response.ok) {
+        analystsList = [];
+      }
+      analystsList = await response.json();
+    } finally {
       approvalloading = false;
     }
   });
@@ -180,7 +194,7 @@
               <i class="fas fa-bell"></i>
             </span>
                     <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Assigned!</b> This request has already been assigned!
+              <b class="capitalize">Assigned!</b> This request has been assigned!
             </span>
           <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
             <span>×</span>
@@ -188,16 +202,18 @@
         </div>
       {:else if data.data.Status == "approved"}
       <form>
-          <div class="flex flex-wrap bg-blueGray">
+          <div class="flex flex-wrap bg-blueGray mt-3">
           <div class="w-full lg:w-4/12">
-              <label for="analyst">Assign to Analysts</label>
+              <label for="analyst">Assign to Analyst</label>
             </div>
             <div  class="w-full lg:w-4/12">
               <select id="analyst" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
-                <option value="38f75fd1-67b7-411c-8c9e-311afd5cf1eb">Anne</option>
-                <option value="76f75fd1-67b7-411c-8c9e-311afd5cf1eb">Glen</option>
-                <option value="44f75fd1-67b7-411c-8c9e-311afd5cf1eb">Nobert</option>
-              </select>
+
+                {#each analystsList.data as row}
+                  <option value={row.ID}>{row.Email}</option>
+
+                {/each}
+                </select>
             </div>
             <div  class="w-full lg:w-4/12">
               <button
