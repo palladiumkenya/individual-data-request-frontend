@@ -8,6 +8,7 @@
   import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
   import UserRequestForm from '../views/user/UserRequestForm.svelte';
   import UserDashboard from "../views/user/UserDashboard.svelte";
+  import RequestDetails from "../views/user/RequestDetails.svelte";
 
   export let location;
   //export let admin = '';
@@ -25,6 +26,7 @@
       <Router url="requester">
         <Route path="dashboard" component={UserDashboard} />
         <Route path="new-request" component={UserRequestForm} />
+        <Route path="request-details" component={RequestDetails} />
       </Router>
     </div>
   </div>

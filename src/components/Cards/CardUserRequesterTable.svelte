@@ -1,157 +1,81 @@
 <!-- CardApprovalsTable.svelte -->
 <script>
-  import {
-    selectedCategory,
-    tableData,
-    tableLength,
-  } from '../../stores/dash_store';
-  import { onDestroy } from 'svelte';
+  import {onMount} from "svelte";
+  import UserRequestTable from "./UserRequestTable.svelte";
+  import {auth} from "../../authentication/AuthStore";
 
-  let category;
-  let data = [];
-  let title;
+  const env = process.env.config;
+  let openTab = 1;
+  let tasks = [];
+  let error = null;
 
-  // Function to load data based on selected category
-  const loadData = async (category) => {
-    // Simulate fetching data based on category
-    if (category === 'approved') {
-      title = 'Completed Approvals';
-      data = [
-        {
-          id: '1',
-          approved: true,
-          dueDate: '2024-09-01',
-          priority: 'High',
-          requester: 'Newton Mutugi',
-        },
-        {
-          id: '5',
-          approved: true,
-          dueDate: '2024-09-01',
-          priority: 'High',
-          requester: 'Paul Nthusi',
-        },
-      ];
-    } else if (category === 'total') {
-      title = 'All Requests';
-      data = [
-        {
-          id: '2',
-          approved: false,
-          dueDate: '2024-09-10',
-          priority: 'Low',
-          requester: 'Charles Bett',
-        },
-      ];
-    } else if (category === 'inProgress') {
-      title = 'Total requests';
-      data = [
-        {
-          id: '3',
-          approved: false,
-          dueDate: '2024-09-05',
-          priority: 'Medium',
-          requester: 'Mary Kilewe',
-        },
-      ];
-    } else if (category === 'completed') {
-      title = 'Requests in Progress';
-      data = [
-        {
-          id: '4',
-          approved: true,
-          dueDate: '2024-08-30',
-          priority: 'High',
-          requester: 'Florida Korir',
-        },
-      ];
-    } else {
-      data = []; // No records found
+  function toggleTabs(tabNumber){
+    openTab = tabNumber
+  }
+
+  onMount(async () => {
+    let requesterUuid = null;
+    auth.id.subscribe((value) => requesterUuid = value)
+    try {
+      const response = await fetch(`${env.API_ENDPOINT}/request/requester/get?requester=${requesterUuid}`);
+      const data = await response.json();
+      tasks = data.data;
+
+    } catch (err){
+      error = err.error
     }
-    tableData.set(data);
-  };
-
-  selectedCategory.subscribe((value) => {
-    category = value;
-    loadData(category);
-  });
-
-  const unsubscribeCategory = selectedCategory.subscribe((value) => {
-    category = value;
-  });
-
-  const unsubscribeData = tableData.subscribe((value) => {
-    data = value;
-  });
-
-  onDestroy(() => {
-    unsubscribeCategory();
-    unsubscribeData();
   });
 </script>
 
-<div
-        class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
->
-  <div class="rounded-t mb-0 px-4 py-3 border-0">
-    <h3 class="text-xl font-semibold">{title}</h3>
+<div class="flex flex-wrap">
+  <div class="w-full">
+    <ul class=" relative flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal {openTab === 1 ? 'text-white bg-red-600':'text-red-600 bg-white'}" on:click={() => toggleTabs(1)}>
+          All
+        </a>
+      </li>
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal {openTab === 2 ? 'text-white bg-red-600':'text-red-600 bg-white'}" on:click={() => toggleTabs(2)}>
+          Pending Review
+        </a>
+      </li>
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal {openTab === 3 ? 'text-white bg-red-600':'text-red-600 bg-white'}" on:click={() => toggleTabs(3)}>
+          Request In Progress
+        </a>
+      </li>
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a href="#" class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal {openTab === 4 ? 'text-white bg-red-600':'text-red-600 bg-white'}" on:click={() => toggleTabs(4)}>
+          Rejected Requests
+        </a>
+      </li>
+      <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal {openTab === 5 ? 'text-white bg-red-600':'text-red-600 bg-white'}" on:click={() => toggleTabs(5)}>
+          Completed Requests
+        </a>
+      </li>
+    </ul>
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6">
+      <div class="py-5 flex-auto">
+        <div class="tab-content tab-space">
+          <div class="{openTab === 1 ? 'block':'hidden'}">
+            <UserRequestTable {tasks}/>
+          </div>
+          <div class="{openTab === 2 ? 'block':'hidden'}">
+            <UserRequestTable tasks={tasks.filter(task => task?.Status === "pending")}/>
+          </div>
+          <div class="{openTab === 3 ? 'block':'hidden'}">
+            <UserRequestTable tasks={tasks.filter(task => task?.Status === "in progress")}/>
+          </div>
+          <div class="{openTab === 4 ? 'block':'hidden'}">
+            <UserRequestTable tasks={tasks.filter(task => task?.Status === "rejected")}/>
+          </div>
+          <div class="{openTab === 5 ? 'block':'hidden'}">
+            <UserRequestTable tasks={tasks.filter(task => task?.Status === "complete")}/>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <table class="min-w-full bg-white">
-    <thead>
-    <tr>
-      <th
-              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-      >Request ID</th
-      >
-      <th
-              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-      >Approved</th
-      >
-      <th
-              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-      >Due Date</th
-      >
-      <th
-              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-      >Priority</th
-      >
-      <th
-              class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-      >Requester</th
-      >
-    </tr>
-    </thead>
-    <tbody>
-    {#if data.length === 0}
-      <tr>
-        <td colspan="5" class="text-center py-4">No records found</td>
-      </tr>
-    {:else}
-      {#each data as row}
-        <tr>
-          <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-          >{row.id}</td
-          >
-          <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-          >{row.approved}</td
-          >
-          <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-          >{row.dueDate}</td
-          >
-          <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-          >{row.priority}</td
-          >
-          <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-          >{row.requester}</td
-          >
-        </tr>
-      {/each}
-    {/if}
-    </tbody>
-  </table>
 </div>
