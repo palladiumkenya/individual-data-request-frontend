@@ -180,7 +180,7 @@
               <i class="fas fa-bell"></i>
             </span>
                     <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Assigned!</b> This request has already been assigned!
+              <b class="capitalize">Assigned!</b> This request has been assigned!
             </span>
           <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
             <span>×</span>
@@ -188,15 +188,15 @@
         </div>
       {:else if data.data.Status == "approved"}
       <form>
-          <div class="flex flex-wrap bg-blueGray">
+          <div class="flex flex-wrap bg-blueGray mt-3">
           <div class="w-full lg:w-4/12">
-              <label for="analyst">Assign to Analysts</label>
+              <label for="analyst">Assign to Analyst</label>
             </div>
             <div  class="w-full lg:w-4/12">
               <select id="analyst" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
-                <option value="38f75fd1-67b7-411c-8c9e-311afd5cf1eb">Anne</option>
-                <option value="76f75fd1-67b7-411c-8c9e-311afd5cf1eb">Glen</option>
-                <option value="44f75fd1-67b7-411c-8c9e-311afd5cf1eb">Nobert</option>
+                <option value="38f75fd1-67b7-411c-8c9e-311afd5cf1eb">Anne Kiwara</option>
+                <option value="76f75fd1-67b7-411c-8c9e-311afd5cf1eb">Glen Onzere</option>
+                <option value="44f75fd1-67b7-411c-8c9e-311afd5cf1eb">Nobert Mumo</option>
               </select>
             </div>
             <div  class="w-full lg:w-4/12">

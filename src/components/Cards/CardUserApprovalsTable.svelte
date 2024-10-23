@@ -151,19 +151,21 @@
         <tr>
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold"
-          ><a href="http://localhost:5000/approval/{approval_type}_action/{row.ReqId}?type={approval_type}&id={row.ID}" class="requestIdStyling">
+          ><a href="http://localhost:5000/{approval_type}/action/{row.ReqId}?type={approval_type}&id={row.ID}" class="requestIdStyling">
             #{row.ReqId}</a>
           </td
           >
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4
-                    {row.Status	 == 'complete' || row.Status	 == 'approved'  && 'text-emerald-500 '}
+                    {row.Status	 == 'complete' || row.Status	 == 'approved' || row.Status	 == 'assigned' && 'text-emerald-500 '}
                    {row.Status	 == 'pending'  && 'text-blueGray-600 '}
-                   {row.Status	 == 'in progress'  && 'text-indigo-600 '}"
+                    {row.Status	 == 'rejected'  && 'text-red-600 '}
+                   {row.Status	 == 'in progress' || row.Status	 == 'review stage' && 'text-indigo-600 '}"
           >
-            <span class="dot {row.Status	 == 'complete' || row.Status	 == 'approved' && 'bg-emerald-500 '}
+            <span class="dot {row.Status	 == 'complete' || row.Status	 == 'approved' || row.Status	 == 'assigned'&& 'bg-emerald-500 '}
              {row.Status	 == 'pending'  && 'bg-blueGray-600 '}
-             {row.Status	 == 'in progress'  && 'bg-indigo-500 '}"></span>
+              {row.Status	 == 'rejected'  && 'bg-red-500 '}
+             {row.Status	 == 'in progress' || row.Status	 == 'review stage' && 'bg-indigo-500 '}"></span>
             {row.Status}</td
           >
 

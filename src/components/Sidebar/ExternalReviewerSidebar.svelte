@@ -29,10 +29,14 @@
         <i class="fas fa-bars"></i>
       </button>
       <!-- Brand -->
+      <span class={`text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full uppercase last:mr-0 mr-1
+        text-indigo-600 bg-indigo-200 '}`}>
+               EXTERNAL REVEIWER
+            </span>
       <a
         use:link
         class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-        href="/internalreviewer/dashboard"
+        href="/externalreviewer/dashboard"
       >
         IDR 
       </a>
@@ -58,7 +62,7 @@
               <a
                 use:link
                 class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                href="/internalreviewer/dashboard"
+                href="/externalreviewer/dashboard"
               >
                 ILD platform
               </a>
@@ -90,62 +94,62 @@
           <li class="items-center">
             <a
               use:link
-              href="/externalreviewer/externalreviewerdashboard"
+              href="/externalreviewer/dashboard"
               class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
             >
               <i
                 class="fas fa-tv mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/externalreviewer/externalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/externalreviewer/externalreviewerdashboard')}
+                class:text-opacity-75={location?.href?.includes('/externalreviewer/dashboard')}
+                class:text-blueGray-300={!location?.href?.includes('/externalreviewer/dashboard')}
               ></i>
-              Total Requests Assigned
+              Total Requests
             </a>
           </li>
   
-          <li class="items-center">
-            <a
-              use:link
-              href="/externalreviewer/externalreviewerdashboard"
-              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
-            >
-              <i
-                class="fas fa-plus-circle mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/externalreviewer/externalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/externalreviewer/externalreviewerdashboard')}
-              ></i>
-              Requests In progress
-            </a>
-          </li>
-  
-          <li class="items-center">
-            <a
-              use:link
-              href="/externalreviewer/externalreviewerdashboard"
-              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
-            >
-              <i
-                class="fas fa-table mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/externalreviewer/externalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/externalreviewer/externalreviewerdashboard')}
-              ></i>
-              Rejected Requests
-            </a>
-          </li>
-  
-          <li class="items-center">
-            <a
-              use:link
-              href="/externalreviewer/externalreviewerdashboard"
-              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
-            >
-              <i
-                class="fas fa-cogs mr-2 text-sm"
-                class:text-opacity-75={location?.href?.includes('/externalreviewer/externalreviewerdashboard')}
-                class:text-blueGray-300={!location?.href?.includes('/externalreviewer/externalreviewerdashboard')}
-              ></i>
-              Completed Requests
-            </a>
-          </li>
+<!--          <li class="items-center">-->
+<!--            <a-->
+<!--              use:link-->
+<!--              href="/externalreviewer/externalreviewerdashboard"-->
+<!--              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"-->
+<!--            >-->
+<!--              <i-->
+<!--                class="fas fa-plus-circle mr-2 text-sm"-->
+<!--                class:text-opacity-75={location?.href?.includes('/externalreviewer/externalreviewerdashboard')}-->
+<!--                class:text-blueGray-300={!location?.href?.includes('/externalreviewer/externalreviewerdashboard')}-->
+<!--              ></i>-->
+<!--              Requests In progress-->
+<!--            </a>-->
+<!--          </li>-->
+<!--  -->
+<!--          <li class="items-center">-->
+<!--            <a-->
+<!--              use:link-->
+<!--              href="/externalreviewer/externalreviewerdashboard"-->
+<!--              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"-->
+<!--            >-->
+<!--              <i-->
+<!--                class="fas fa-table mr-2 text-sm"-->
+<!--                class:text-opacity-75={location?.href?.includes('/externalreviewer/externalreviewerdashboard')}-->
+<!--                class:text-blueGray-300={!location?.href?.includes('/externalreviewer/externalreviewerdashboard')}-->
+<!--              ></i>-->
+<!--              Rejected Requests-->
+<!--            </a>-->
+<!--          </li>-->
+<!--  -->
+<!--          <li class="items-center">-->
+<!--            <a-->
+<!--              use:link-->
+<!--              href="/externalreviewer/externalreviewerdashboard"-->
+<!--              class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"-->
+<!--            >-->
+<!--              <i-->
+<!--                class="fas fa-cogs mr-2 text-sm"-->
+<!--                class:text-opacity-75={location?.href?.includes('/externalreviewer/externalreviewerdashboard')}-->
+<!--                class:text-blueGray-300={!location?.href?.includes('/externalreviewer/externalreviewerdashboard')}-->
+<!--              ></i>-->
+<!--              Completed Requests-->
+<!--            </a>-->
+<!--          </li>-->
         </ul>
       </div>
     </div>

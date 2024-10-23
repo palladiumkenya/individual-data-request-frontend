@@ -96,8 +96,11 @@
                     ><span
                             class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded bg-blueGray-100 text-indigo-600 uppercase last:mr-0 mr-1"
                     >
-                              {data.data.Comments}
-                        <i class="fa fa-exclamation" aria-hidden="true"></i>
+                        {#if data.data.Comments =='-'}
+                              None
+                        {:else}
+                            {data.data.Comments}
+                        {/if}
                     </span
                     ></td
                     >
