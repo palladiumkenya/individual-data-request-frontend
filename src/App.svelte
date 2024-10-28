@@ -82,7 +82,9 @@
   <Route path="pointperson/*pointperson" component={PointPersonLayout} />
   <Route path="assign/*assign" component={AssigningLayout} />
 
-  <Route path="analyst/*analyst" component={Analyst} />
+  <Route path="analyst/*analyst">
+    <AuthGuard component={Analyst} />
+  </Route>
 
   <!-- analyst views -->
   <Route path="serve/request" component={Landing} />

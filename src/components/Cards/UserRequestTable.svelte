@@ -31,22 +31,17 @@
           <th
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
-            Requester
-          </th>
-          <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
-          >
-            Organization
-          </th>
-          <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
-          >
             Priority
           </th>
           <th
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Due date
+          </th>
+          <th
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
+          >
+            Date Created
           </th>
           <th
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
@@ -59,24 +54,28 @@
         </tr>
       </thead>
       <tbody>
+      {#if tasks.length === 0}
+        <tr>
+          <td colspan="5" class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">No records to display</td>
+        </tr>
+      {/if}
       {#each tasks.slice((page - 1) * perPage, page * perPage) as task(task.ID)}
           <tr>
-            <td class="whitespace-nowrap p-4 text-left items-center">
-              {task?.Requester.Name}
-            </td>
-            <td class="px-6 border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">
-              {task?.Requester.Organization}
-            </td>
+
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">
               {task?.Priority_level}
             </td>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">
               {new Date(task?.Date_Due).toLocaleDateString()}
             </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 text-left items-center">
+              {new Date(task?.Created_Date).toLocaleDateString()}
+            </td>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-nowrap p-4">
               <i
                       class={`fas fa-circle mr-2 ${
                         task?.Status === 'pending' ? 'text-yellow-500' :
+                        task?.Status === 'rejected' ? 'text-red-500' :
                         task?.Status === 'in progress' ? 'text-blue-500' :
                         task?.Status === 'complete' ? 'text-emerald-500' :
                         'text-gray-500'
@@ -86,7 +85,7 @@
             </td>
             <td>
               <a
-                      href={`/analyst/request?id=${task.ID}`}
+                      href={`/requester/request-details?id=${task.ID}`}
                       class="text-emerald-500 bg-transparent border border-solid border-emerald-500 hover:bg-emerald-500 hover:text-white active:bg-emerald-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
                 <i class="fas fa-folder-open"></i> View
               </a>

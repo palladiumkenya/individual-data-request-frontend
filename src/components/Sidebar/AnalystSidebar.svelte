@@ -32,7 +32,7 @@
     <a
       use:link
       class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-      href="/user/dashboard"
+      href="/analyst/list"
     >
       IDR platform
     </a>
@@ -58,7 +58,7 @@
             <a
               use:link
               class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-              href="/user/dashboard"
+              href="/analyst/list"
             >
               ILD platform
             </a>
@@ -90,33 +90,17 @@
         <li class="items-center">
           <a
             use:link
-            href="/requester/dashboard"
+            href="/analyst/list"
             class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
           >
             <i
               class="fas fa-tv mr-2 text-sm"
-              class:text-opacity-75={location?.href?.includes('/user/dashboard')}
-              class:text-blueGray-300={!location?.href?.includes('/user/dashboard')}
+              class:text-opacity-75={location?.href?.includes('/analyst/list')}
+              class:text-blueGray-300={!location?.href?.includes('/analyst/list')}
             ></i>
-            Dashboard
+            Requests List
           </a>
         </li>
-
-        <li class="items-center">
-          <a
-            use:link
-            href="/requester/new-request"
-            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
-          >
-            <i
-              class="fas fa-plus-circle mr-2 text-sm"
-              class:text-opacity-75={location?.href?.includes('/user/new-request')}
-              class:text-blueGray-300={!location?.href?.includes('/user/new-request')}
-            ></i>
-            Make new request
-          </a>
-        </li>
-
       </ul>
     </div>
   </div>
