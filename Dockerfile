@@ -1,39 +1,3 @@
-## Use Ubuntu as the base image
-#FROM ubuntu:latest
-#
-## Set environment variables
-#ENV NODE_VERSION=18
-#ENV APP_DIR=/app
-#ENV PORT 5000
-#
-## Update package list and install Node.js and npm
-#RUN apt-get update && \
-#    apt-get install -y curl && \
-#    curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - && \
-#    apt-get install -y nodejs && \
-#    apt-get clean && rm -rf /var/lib/apt/lists/*
-#
-## Set the working directory
-#WORKDIR ${APP_DIR}
-#
-## Copy package.json and package-lock.json for dependencies installation
-#COPY package*.json ./
-#
-## Install dependencies
-#RUN npm install
-#
-## Copy the rest of the application code
-#COPY . .
-#
-## Build the Svelte application
-#RUN npm run build
-#
-## Expose the port
-#EXPOSE 5000
-#
-## Start the application
-#CMD ["npm", "run", "dev"]
-#
 
 # Use Ubuntu as the base image
 FROM ubuntu:latest
