@@ -19,10 +19,15 @@ WORKDIR /usr/src/app
 COPY rollup.config.js ./
 COPY package*.json ./
 
+#RUN rm -rf package-lock.json
 RUN npm install
 
 COPY ./src ./src
 COPY ./public ./public
+COPY ./.env ./.env
+
+RUN npm run build:tailwind
+RUN npm run build:fontawesome
 
 RUN npm run build
 
