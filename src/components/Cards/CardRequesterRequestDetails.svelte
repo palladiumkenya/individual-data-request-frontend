@@ -102,14 +102,14 @@
               <p class="text-blueGray-700 text-sm font-bold">
                 Supporting Documents
               </p>
-              <CardRequestDocuments requestDocs={files.filter((file)=> file.FileURL.includes('/supporting-documents/'))}/>
+              <CardRequestDocuments requestDocs={files.filter((file)=> file.Folder ==='supporting-documents')}/>
             </div>
             {#if data.Status.toLowerCase() === 'complete'}
             <div class="px-6 py-6 border-t border-blueGray-200">
               <p class="text-blueGray-700 text-sm font-bold">
                 Request Outputs
               </p>
-              <CardRequestDocuments requestDocs={files.filter((file)=> !file.FileURL.includes('/supporting-documents/'))}/>
+              <CardRequestDocuments requestDocs={files.filter((file)=> !file.Folder !=='supporting-documents')}/>
             </div>
               {/if}
 
