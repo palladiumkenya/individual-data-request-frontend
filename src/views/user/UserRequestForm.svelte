@@ -1,5 +1,6 @@
 <script>
   import Swal from 'sweetalert2';
+  import {auth} from "../../authentication/AuthStore";
   const env = process.env.config;
 
   let files = [];
@@ -34,8 +35,9 @@
       }
 
       let datedue = new Date(deadline).toISOString()
-      // TODO: Use id of user
-      let requestor_id = '79191307-1516-4b32-84bb-d0ebf8967d2d'
+      
+      let requestor_id = null;
+      auth.id.subscribe((value) => requestor_id = value)
       try {
         let response = await fetch(`${env.API_ENDPOINT}/request/create`, {
           method: 'POST',
