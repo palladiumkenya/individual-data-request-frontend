@@ -16,6 +16,6 @@ docker stop $CONTAINER_NAME
 docker rm $CONTAINER_NAME
 
 # Start the new container
-docker compose up -d app
+docker compose up -d idr-frontend
 
 echo "Container updated successfully!"

@@ -31,6 +31,8 @@ RUN npm run build:fontawesome
 
 RUN npm run build
 
+COPY ./public ./public
+
 EXPOSE 5000
 
 ENV HOST=0.0.0.0
