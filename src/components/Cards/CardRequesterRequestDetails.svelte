@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte';
   import moment from 'moment';
-  import FormAnalystComplete from "../Forms/FormAnalystComplete.svelte";
   import CardRequestDocuments from "./CardRequestDocuments.svelte";
 
   const env = process.env.config;
