@@ -16,23 +16,27 @@
 
             if (role.data?.role === 'approver'){
                 auth.setUserId(role.data.id)
-                if (role.data.type === "InternalApprover")
+                auth.setUserType(role.data.type)
+                if (role.data.type === "internalapprover")
                     navigate('internalreviewer/dashboard');
-                else if (role.data.type === "ExternalApprover")
+                else if (role.data.type === "externalapprover")
                     navigate('externalreviewer/dashboard');
                 else
                     navigate('internalreviewer/dashboard');
             }
             else if (role.data?.role === 'analyst'){
                 auth.setUserId(role.data.id)
+                auth.setUserType(role.data.role)
                 navigate('analyst/list');
             }
             else if (role.data?.role === 'requester') {
                 auth.setUserId(role.data.id)
+                auth.setUserType(role.data.role)
                 navigate('requester/dashboard');
             }
             else if (role.data?.role === "pointperson") {
                 auth.setUserId(role.data.id)
+                auth.setUserType(role.data.role)
                 navigate('pointperson/dashboard');
             }
             else if (role.data?.role === null) {
@@ -50,7 +54,8 @@
                 let response = await requester.json()
                 if (requester.ok){
                     auth.setUserId(response.data.id)
-                    navigate('user/dashboard');
+                    auth.setUserType(role.data.role)
+                    navigate('requester/dashboard');
                 }
             }
         } catch (error) {

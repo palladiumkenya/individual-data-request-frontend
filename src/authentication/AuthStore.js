@@ -21,6 +21,7 @@ const createAuthStore = () => {
     const user = writable(null);
     const isAuthenticated = writable(false);
     const id = persist('userId',null)
+    const userType = persist('userType',null)
 
     return {
         subscribe: user.subscribe,
@@ -45,8 +46,12 @@ const createAuthStore = () => {
         setUserId: (userId) =>{
             id.set(userId)
         },
+        setUserType: (type) =>{
+            userType.set(type)
+        },
         user, // Expose the isAuthenticated store
         id,
+        userType,
     };
 };
 

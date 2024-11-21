@@ -71,7 +71,9 @@
   <Route path="internal/*internal" component={InternalDashboard} />
   <Route path="external/*external" component={ExternalDashboard} />
 
-  <Route path="user/*user" component={User} />
+  <Route path="user/*user">
+    <AuthGuard component={User} adminRestrict={true}/>
+  </Route>
   <Route path="requester/*requester">
     <AuthGuard component={Requester} />
   </Route>
