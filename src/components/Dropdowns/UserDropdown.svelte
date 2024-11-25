@@ -60,8 +60,18 @@
         href="#login"
         class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
       >
-        Logout <i class="fas fa-right-from-bracket"></i>
+        <i class="fas fa-sign-out"></i>
+        Logout
       </a>
+      {#if user.profile.UserType === "1"}
+        <a
+                href="/user/management/approver"
+                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+        >
+          <i class="fas fa-user-astronaut"></i>
+          Manage Users
+        </a>
+      {/if}
     {:else}
       <a
         on:click={() => auth.login()}

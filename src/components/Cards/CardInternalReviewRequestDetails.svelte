@@ -124,38 +124,14 @@
       body: JSON.stringify(details),
     })
       .then(function (response) {
-        SendeMAIL(details);
+        // SendeMAIL(details);
       })
       .catch(function (error) {
         console.log('failed ---/>', error);
       });
   };
 
-  const SendeMAIL = async (details) => {
-    let email = {
-      Sender: 'info.his@mg.kenyahmis.org',
-      Subject: 'Internal Approval Stage',
-      Body: details.Comments,
-      Recipient: details.RequesterEmail,
-    };
-    await fetch(`${env.API_ENDPOINT}/send_mail`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(email),
-    })
-      .then(function (response) {
-        // window.location.href = BASE_URL + `/facilities/view_facility/${fac_id}`;
-        console.log('response', response);
-        window.location.reload(true)
-      })
-      .catch(function (error) {
-        console.log('failed ---/>', error);
-        window.location.reload(true)
 
-      });
-  };
 
 
   let existingApprovalData;

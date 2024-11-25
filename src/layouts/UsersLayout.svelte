@@ -3,12 +3,10 @@
 
   // components for this layout
   import UserNavbar from 'components/Navbars/UserNavbar.svelte';
-  import UserHeaderStats from 'components/Headers/UserHeaderStats.svelte';
 
   // pages for this layout
-  import UserDashboard from '../views/user/UserDashboard.svelte';
-  import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
-  import UserRequestForm from '../views/user/UserRequestForm.svelte';
+  import AddApproverForm from '../views/user/AddApproverForm.svelte';
+  import UserSidebar from '../components/Sidebar/UserManagementSidebar.svelte';
   import AuthGuard from '../authentication/AuthGuard.svelte';
   export let location;
   //export let admin = '';
@@ -18,12 +16,13 @@
   <UserSidebar {location} />
   <div class="relative md:ml-64 bg-blueGray-100">
     <UserNavbar />
-    <UserHeaderStats />
+    <div class="relative bg-indigo-500 md:pt-10 pb-32 pt-12">
+      <div class=" md:px-10  w-full">
+      </div>
+    </div>
     <div class="mx-auto w-full -m-24">
       <Router url="user">
-        <Route path="dashboard">
-          <AuthGuard component={UserDashboard} />
-        </Route>
+        <Route path="management/approver" component={AddApproverForm} />
       </Router>
       <!--      <Footer />-->
     </div>

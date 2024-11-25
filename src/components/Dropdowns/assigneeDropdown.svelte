@@ -3,14 +3,14 @@
     import { createPopper } from '@popperjs/core';
     import { auth } from '../../authentication/AuthStore';
     // core components
-  
+
     const image = '../assets/img/team-1-800x800.jpg';
-  
+
     let dropdownPopoverShow = false;
-  
+
     let btnDropdownRef;
     let popoverDropdownRef;
-  
+
     const toggleDropdown = (event) => {
       event.preventDefault();
       if (dropdownPopoverShow) {
@@ -22,7 +22,7 @@
         });
       }
     };
-  
+
     // // =========== get user info=========
     // let user = null;
     //
@@ -38,7 +38,7 @@
     let user = null;
     auth.subscribe((value) => (user = value));
   </script>
-  
+
   <div class="items-center flex">
     {#if user}
       <h1 class="text-white px-4">Welcome, {user.profile.name}!</h1>
@@ -74,9 +74,18 @@
           href="#login"
           on:click={(e) => e.preventDefault()}
           class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          Logout <i class="fas fa-right-from-bracket"></i>
+        ><i class="fas fa-sign-out"></i>
+          Logout
         </a>
+        {#if user.profile.UserType === "1"}
+          <a
+                  href="/user/management/approver"
+                  class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+          >
+            <i class="fas fa-user-astronaut"></i>
+            Manage Users
+          </a>
+        {/if}
       {:else}
         <a
           on:click={() => auth.login()}
@@ -89,4 +98,3 @@
       {/if}
     </div>
   </div>
-  
