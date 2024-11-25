@@ -7,7 +7,7 @@ CONTAINER_NAME="idr-frontend"
 git pull origin master
 
 # Build the new Docker image
-docker compose build idr-frontend
+docker-compose build idr-frontend
 
 # Stop the running container
 docker stop $CONTAINER_NAME
@@ -16,6 +16,6 @@ docker stop $CONTAINER_NAME
 docker rm $CONTAINER_NAME
 
 # Start the new container
-docker compose up -d idr-frontend
+docker-compose up -d idr-frontend
 
 echo "Container updated successfully!"
