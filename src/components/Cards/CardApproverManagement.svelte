@@ -3,7 +3,7 @@
     import CardApproverDetails from "./CardApproverDetails.svelte";
 
     const env = process.env.config;
-    let statusOptions = ['InternalApprover', 'ExternalApprover'];
+    let approverOptions = ['Internal Approver', 'External Approver'];
 
     let data = null;
     let loading = true;
@@ -107,8 +107,8 @@
                                                     bind:value={selectedStatus} on:change={handleStatusChange}
                                             >
                                                 <option value="" disabled selected>Select Approver Type...</option>
-                                                {#each statusOptions as status}
-                                                    <option value={status.toLowerCase()}>{status}</option>
+                                                {#each approverOptions as option}
+                                                    <option value={option.replace(' ', '')}>{option}</option>
                                                 {/each}
                                             </select>
                                         </div>
