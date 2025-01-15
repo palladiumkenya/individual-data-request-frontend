@@ -151,7 +151,7 @@
         <tr>
           <td
                   class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold"
-          ><a href="http://localhost:5000/{approval_type}/action/{row.ReqId}?type={approval_type}&id={row.ID}" class="requestIdStyling">
+          ><a href="{env.FRONTEND_URL}/{approval_type}/action/{row.ReqId}?type={approval_type}&id={row.ID}" class="requestIdStyling">
             #{row.ReqId}</a>
           </td
           >
