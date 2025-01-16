@@ -105,6 +105,25 @@
     }
   });
 
+
+  let assignedAnalyst;
+  let assignedAnalystloading = true;
+  onMount(async () => {
+    try {
+      const response = await fetch(
+              `${env.API_ENDPOINT}/analyst/${request_id}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      assignedAnalyst = await response.json();
+      console.log(assignedAnalyst)
+    } finally {
+      assignedAnalystloading = false;
+    }
+  });
+
 </script>
 
 <div
@@ -174,8 +193,15 @@
             <span class="text-xl inline-block mr-5 align-middle">
               <i class="fas fa-bell"></i>
             </span>
-                    <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Assigned!</b> This request has been assigned!
+            <span class="inline-block align-middle mr-8">
+                <b class="capitalize">Assigned!</b> This request has been assigned to
+                      {#if assignedAnalystloading}
+                        ...
+                      {:else if error}
+                        ... Error loading assignee:{error}
+                      {:else}
+                              <b class="capitalize">{ assignedAnalyst.data[0].Email }</b>
+                      {/if  }
             </span>
           <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
             <span>×</span>
