@@ -130,7 +130,7 @@
       body: JSON.stringify(details),
     })
       .then(function (response) {
-        navigate('externalreviewer/dashboard');
+        window.location.reload()
       })
       .catch(function (error) {
         console.log('failed ---/>', error);

@@ -60,7 +60,7 @@
       body: JSON.stringify({"analystsId":analystid}),
     })
       .then(function (response) {
-        // SendeMAIL({"analystsId":analystid});
+        window.location.reload()
       })
       .catch(function (error) {
         console.log('failed ---/>', error);
