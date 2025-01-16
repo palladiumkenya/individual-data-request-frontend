@@ -89,6 +89,7 @@
 
 
   let analystsList=[]
+  let analystsloading = true;
   onMount(async () => {
     try {
       const response = await fetch(
@@ -96,11 +97,11 @@
       );
 
       if (!response.ok) {
-        analystsList = [];
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       analystsList = await response.json();
     } finally {
-      approvalloading = false;
+      analystsloading = false;
     }
   });
 
@@ -188,11 +189,15 @@
             </div>
             <div  class="w-full lg:w-4/12">
               <select id="analyst" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
-
-                {#each analystsList.data as row}
-                  <option value={row.ID}>{row.Email}</option>
-
-                {/each}
+                {#if analystsloading}
+                  <option value="">--</option>
+                {:else if error}
+                  <option value="">error</option>
+                {:else}
+                  {#each analystsList.data as row}
+                    <option value={row.ID}>{row.Email}</option>
+                  {/each}
+                {/if }
                 </select>
             </div>
             <div  class="w-full lg:w-4/12">
