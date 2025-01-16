@@ -2,6 +2,8 @@
     // library for creating dropdown menu appear on click
     import { createPopper } from '@popperjs/core';
     import { auth } from '../../authentication/AuthStore';
+    import CardSupportingDocs from "../Cards/CardSupportingDocs.svelte";
+    import DropdownListOptions from "./DropdownListOptions.svelte";
     // core components
 
     const image = '../assets/img/team-1-800x800.jpg';
@@ -23,18 +25,6 @@
       }
     };
 
-    // // =========== get user info=========
-    // let user = null;
-    //
-    // onMount(async () => {
-    //     user = await userManager.getUser();
-    //     if (user) {
-    //         auth.setUser(user);
-    //     }
-    // });
-    //
-    // auth.subscribe(value => user = value);
-    // // =========== get user info=========
     let user = null;
     auth.subscribe((value) => (user = value));
   </script>
@@ -53,11 +43,6 @@
         <span
           class="w-12 h-12 text-sm text-white bg-white inline-flex items-center justify-center rounded-full"
         >
-          <!--        <img-->
-          <!--          alt="..."-->
-          <!--          class="w-full rounded-full align-middle border-none shadow-lg"-->
-          <!--          src="{image}"-->
-          <!--        />-->
           <i class="fas fa-user text-lg text-black"></i>
         </span>
       </div>
@@ -77,15 +62,9 @@
         ><i class="fas fa-sign-out"></i>
           Logout
         </a>
-        {#if user.profile.UserType === "1"}
-          <a
-                  href="/user/management/approver"
-                  class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          >
-            <i class="fas fa-user-astronaut"></i>
-            Manage Users
-          </a>
-        {/if}
+
+        <DropdownListOptions loggedin_user_profile={user.profile}/>
+
       {:else}
         <a
           on:click={() => auth.login()}
