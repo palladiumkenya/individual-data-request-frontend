@@ -35,8 +35,11 @@
       requesterId = data.data.Requester.ID;
       requesterEmail = data.data.Requester.Email;
       requestId = data.data.ID;
+
     } catch (err) {
       error = err.message;
+      console.log("error ",error)
+
     } finally {
       loading = false;
     }
@@ -100,6 +103,7 @@
       approvalloading = false;
     }
   });
+
 </script>
 
 <div

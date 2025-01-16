@@ -10,6 +10,7 @@
 
     let isInternalApprover = '';
     let isExternalApprover = '';
+    let isPointPerson = '';
 
     onMount(async () => {
         try {
@@ -24,7 +25,6 @@
 
             isInternalApprover = data.data.some(item => item.Approver_Type === 'internal');
             isExternalApprover = data.data.some(item => item.Approver_Type === 'external');
-            console.log("isInternalApprover",isInternalApprover,isExternalApprover)
         } catch (err) {
             error = err.message;
             console.log("error --->", error)
@@ -65,7 +65,7 @@
             External Reviewer Dashboard
         </a>
     {/if}
-    {#if loggedin_user_profile.UserType === "1"}
+    {#if isPointPerson}
         <a
                 href="/pointperson/dashboard"
                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"

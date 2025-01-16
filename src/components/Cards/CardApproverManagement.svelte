@@ -3,7 +3,7 @@
     import CardApproverDetails from "./CardApproverDetails.svelte";
 
     const env = process.env.config;
-    let approverOptions = ['Internal Approver', 'External Approver'];
+    let approverOptions = ['internal', 'external'];
 
     let data = null;
     let loading = true;

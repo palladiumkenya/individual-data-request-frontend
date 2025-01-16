@@ -1,13 +1,17 @@
 <script>
+  import CardSupportingDocs from "./CardSupportingDocs.svelte";
+  import {navigate} from 'svelte-routing';
+
+  import {auth} from "../../authentication/AuthStore";
+
   const env = process.env.config;
 
-
-  import CardSupportingDocs from "./CardSupportingDocs.svelte";
+  let user = null;
+  auth.subscribe((value) => (user = value));
 
   import { onMount } from 'svelte';
   import moment from 'moment';
   // import {PUBLIC_API_URL} from '$env/static/public';
-
 
   export let request_id;
   export let approval_type;
@@ -64,6 +68,7 @@
             Comments: '-',
             Approver_type: 'internal',
             Approved: true,
+            Approver_email: user.profile.email,
             Requestor_id: requesterId,
             Request_id: requestId,
           };
@@ -95,6 +100,7 @@
             Comments: reasons,
             Approver_type: 'internal',
             Approved: false,
+            Approver_email: user.profile.email,
             Requestor_id: requesterId,
             Request_id: requestId,
             RequesterEmail: requesterEmail,
@@ -124,7 +130,7 @@
       body: JSON.stringify(details),
     })
       .then(function (response) {
-        // SendeMAIL(details);
+        navigate('internalreviewer/dashboard');
       })
       .catch(function (error) {
         console.log('failed ---/>', error);
