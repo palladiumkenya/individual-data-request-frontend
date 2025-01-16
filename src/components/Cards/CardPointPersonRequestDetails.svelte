@@ -35,8 +35,11 @@
       requesterId = data.data.Requester.ID;
       requesterEmail = data.data.Requester.Email;
       requestId = data.data.ID;
+
     } catch (err) {
       error = err.message;
+      console.log("error ",error)
+
     } finally {
       loading = false;
     }
@@ -57,7 +60,7 @@
       body: JSON.stringify({"analystsId":analystid}),
     })
       .then(function (response) {
-        // SendeMAIL({"analystsId":analystid});
+        window.location.reload()
       })
       .catch(function (error) {
         console.log('failed ---/>', error);
@@ -86,6 +89,7 @@
 
 
   let analystsList=[]
+  let analystsloading = true;
   onMount(async () => {
     try {
       const response = await fetch(
@@ -93,13 +97,33 @@
       );
 
       if (!response.ok) {
-        analystsList = [];
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       analystsList = await response.json();
     } finally {
-      approvalloading = false;
+      analystsloading = false;
     }
   });
+
+
+  let assignedAnalyst;
+  let assignedAnalystloading = true;
+  onMount(async () => {
+    try {
+      const response = await fetch(
+              `${env.API_ENDPOINT}/analyst/${request_id}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      assignedAnalyst = await response.json();
+      console.log(assignedAnalyst)
+    } finally {
+      assignedAnalystloading = false;
+    }
+  });
+
 </script>
 
 <div
@@ -169,8 +193,15 @@
             <span class="text-xl inline-block mr-5 align-middle">
               <i class="fas fa-bell"></i>
             </span>
-                    <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Assigned!</b> This request has been assigned!
+            <span class="inline-block align-middle mr-8">
+                <b class="capitalize">Assigned!</b> This request has been assigned to
+                      {#if assignedAnalystloading}
+                        ...
+                      {:else if error}
+                        ... Error loading assignee:{error}
+                      {:else}
+                              <b class="capitalize">{ assignedAnalyst.data[0].Email }</b>
+                      {/if  }
             </span>
           <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
             <span>×</span>
@@ -184,11 +215,15 @@
             </div>
             <div  class="w-full lg:w-4/12">
               <select id="analyst" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
-
-                {#each analystsList.data as row}
-                  <option value={row.ID}>{row.Email}</option>
-
-                {/each}
+                {#if analystsloading}
+                  <option value="">--</option>
+                {:else if error}
+                  <option value="">error</option>
+                {:else}
+                  {#each analystsList.data as row}
+                    <option value={row.ID}>{row.Email}</option>
+                  {/each}
+                {/if }
                 </select>
             </div>
             <div  class="w-full lg:w-4/12">

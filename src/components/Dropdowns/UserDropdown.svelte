@@ -2,6 +2,7 @@
   // library for creating dropdown menu appear on click
   import { createPopper } from '@popperjs/core';
   import { auth } from '../../authentication/AuthStore';
+  import DropdownListOptions from "./DropdownListOptions.svelte";
   // core components
 
   const image = '../assets/img/team-1-800x800.jpg';
@@ -63,15 +64,9 @@
         <i class="fas fa-sign-out"></i>
         Logout
       </a>
-      {#if user.profile.UserType === "1"}
-        <a
-                href="/user/management/approver"
-                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-        >
-          <i class="fas fa-user-astronaut"></i>
-          Manage Users
-        </a>
-      {/if}
+
+      <DropdownListOptions loggedin_user_profile={user.profile}/>
+
     {:else}
       <a
         on:click={() => auth.login()}

@@ -1,12 +1,16 @@
 <script>
-  const env = process.env.config;
-
-
   import CardSupportingDocs from "./CardSupportingDocs.svelte";
 
   import { onMount } from 'svelte';
   import moment from 'moment';
   // import {PUBLIC_API_URL} from '$env/static/public';
+  import {navigate} from 'svelte-routing';
+  import {auth} from "../../authentication/AuthStore";
+
+  const env = process.env.config;
+
+  let user = null;
+  auth.subscribe((value) => (user = value));
 
 
   export let request_id;
@@ -64,6 +68,7 @@
             Comments: '-',
             Approver_type: 'external',
             Approved: true,
+            Approver_email: user.profile.email,
             Requestor_id: requesterId,
             Request_id: requestId,
           };
@@ -95,6 +100,7 @@
             Comments: reasons,
             Approver_type: 'external',
             Approved: false,
+            Approver_email: user.profile.email,
             Requestor_id: requesterId,
             Request_id: requestId,
             RequesterEmail: requesterEmail,
@@ -123,12 +129,12 @@
       },
       body: JSON.stringify(details),
     })
-            .then(function (response) {
-              // SendeMAIL(details);
-            })
-            .catch(function (error) {
-              console.log('failed ---/>', error);
-            });
+      .then(function (response) {
+        window.location.reload()
+      })
+      .catch(function (error) {
+        console.log('failed ---/>', error);
+      });
   };
 
 

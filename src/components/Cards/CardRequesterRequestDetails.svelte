@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import moment from 'moment';
   import CardRequestDocuments from "./CardRequestDocuments.svelte";
+  import CardInternalApproverDetails from "./CardInternalApproverDetails.svelte";
 
   const env = process.env.config;
   export let request_id;
@@ -35,6 +36,26 @@
     }
   });
 
+
+  let existingApprovalData;
+  let approvalloading = true;
+  let approval_type;
+  let approvalerror = null;
+  onMount(async () => {
+    try {
+      const response = await fetch(
+              `${env.API_ENDPOINT}/rejected/approval/${request_id}`
+      );
+
+      if (!response.ok) {
+        existingApprovalData=[];
+      }
+      existingApprovalData = await response.json();
+      approval_type = existingApprovalData.data[0].Approver_type;
+    }  finally {
+      approvalloading = false;
+    }
+  });
 </script>
 
 <div
@@ -164,7 +185,28 @@
             </div>
 
           </div>
+
         </div>
+        {#if approvalloading}
+          <p>Loading...</p>
+        {:else}
+          {#if existingApprovalData.data.length >0}
+            <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+            <span class="text-xl inline-block mr-5 align-middle">
+              <i class="fas fa-bell"></i>
+            </span>
+              <span class="inline-block align-middle mr-8">
+              <b class="capitalize">Reviewed!</b> This request has been rejected. Please see below to view reviewer's comments.
+            </span>
+              <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                <span>×</span>
+              </button>
+            </div>
+            <CardInternalApproverDetails approval_type={approval_type} request_id={request_id}/>
+
+          {/if}
+        {/if}
+
 
       </div>
     </div>
