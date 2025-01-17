@@ -1,9 +1,6 @@
 <script>
     import CardApproverManagement from '../../components/Cards/CardApproverManagement.svelte';
 
-    const url = new URL(window.location.href);
-    const params = new URLSearchParams(url.search);
-    const id = params.get('id');
 </script>
 
 <div>
