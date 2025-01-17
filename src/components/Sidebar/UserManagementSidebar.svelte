@@ -101,6 +101,20 @@
             Approver Management
           </a>
         </li>
+        <li class="items-center">
+          <a
+            use:link
+            href="/user/management/approver"
+            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+          >
+            <i
+              class="fas fa-user-secret mr-2 text-sm"
+              class:text-opacity-75={location?.href?.includes('/user/dashboard')}
+              class:text-blueGray-300={!location?.href?.includes('/user/dashboard')}
+            ></i>
+            Analyst Management
+          </a>
+        </li>
 
 
       </ul>
