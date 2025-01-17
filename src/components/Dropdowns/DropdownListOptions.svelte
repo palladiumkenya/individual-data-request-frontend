@@ -10,7 +10,6 @@
 
     let isInternalApprover = '';
     let isExternalApprover = '';
-    let isPointPerson = '';
 
     onMount(async () => {
         try {
@@ -31,6 +30,34 @@
 
         } finally {
             loading = false;
+        }
+    });
+
+
+    let pointpersondata = [];
+    let pointpersonloading = true;
+    let pointpersonerror = null;
+
+    let isPointPerson = '';
+
+    onMount(async () => {
+        try {
+            const response = await fetch(
+                `${env.API_ENDPOINT}/pointpersons/${loggedin_user_profile.email}`
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            pointpersondata = await response.json();
+
+            isPointPerson = pointpersondata.data.length > 0;
+        } catch (err) {
+            pointpersonerror = err.message;
+            console.log("error --->", error)
+
+        } finally {
+            pointpersonloading = false;
         }
     });
 
