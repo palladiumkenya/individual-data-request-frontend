@@ -73,6 +73,10 @@
     } else if (category === 'pending') {
       title =  'Pending Requests' ;
       dashboardData = data.filter(item => item.Status === "pending"  );
+    }else if (category === 'review stage') {
+      title =  'Review Stage' ;
+      dashboardData = data.filter(item => item.Status === "review stage"  );
+
     } else if (category === 'in progress') {
       title =  'Requests in Progress' ;
       dashboardData = data.filter(item => item.Status === "in progress"  );

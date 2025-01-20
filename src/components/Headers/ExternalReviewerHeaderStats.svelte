@@ -35,10 +35,10 @@
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardExternalReviewerStats
                   statSubtitle="Requests In Progress"
-                  statTitle={$requestCounts.inProgress}
+                  statTitle={$requestCounts.reviewStage}
                   statIconName="fas fa-spinner"
                   statIconColor="bg-pink-500"
-                  globalCategory="in progress"
+                  globalCategory="review stage"
           />
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
