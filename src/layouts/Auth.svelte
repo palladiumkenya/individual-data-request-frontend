@@ -7,7 +7,6 @@
 
   // pages for this layout
   import Login from "views/auth/Login.svelte";
-  import Register from "views/auth/Register.svelte";
 
   const registerBg2 = "../assets/img/register_bg_2.png";
   //export let location;
@@ -24,7 +23,6 @@
       ></div>
       <Router url="auth">
         <Route path="login" component="{Login}" />
-        <Route path="register" component="{Register}" />
       </Router>
       <FooterSmall absolute="true" />
     </section>
