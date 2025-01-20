@@ -6,7 +6,6 @@
   import {
     selectedCategory,
     tableData,
-    tableLength,
   } from '../../stores/dash_store';
   import {onDestroy, onMount} from 'svelte';
   import moment from "moment/moment";
