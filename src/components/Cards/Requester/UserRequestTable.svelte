@@ -1,7 +1,8 @@
 <script>
-  import {DataHandler, Th, ThFilter} from '@vincjo/datatables'
+  import {DataHandler, Th} from '@vincjo/datatables'
   import Pagination from "./Pagination.svelte";
   import Search from "./Search.svelte";
+  import ThFilter from "./ThFilter.svelte"
 
   export let tasks;
   export let color = "light";

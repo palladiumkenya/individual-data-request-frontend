@@ -1,5 +1,4 @@
 <script>
-    import { DataHandler } from '@vincjo/datatables'
     export let handler
     $: pageNumber = handler.getPageNumber()
     $: pageCount = handler.getPageCount()
