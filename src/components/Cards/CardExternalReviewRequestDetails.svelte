@@ -219,7 +219,7 @@
         <div class="flex flex-wrap bg-blueGray">
           <div class="w-full lg:w-8/12 px-4">
 
-            <p class="text-blueGray-700 text-sm font-bold">Summery</p>
+            <p class="text-blueGray-700 text-sm font-bold">Summary</p>
 
             <p
                     class="mb-4 text-sm justify-items-start leading-relaxed text-blueGray-700"

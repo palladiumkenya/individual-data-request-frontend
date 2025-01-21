@@ -181,7 +181,7 @@
               <i class="fas fa-bell"></i>
             </span>
           <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Review stage!</b> This request iis still ongoing the review stage.
+              <b class="capitalize">Review stage!</b> This request is still ongoing the review stage.
             Once approved by  the reviewers, you can assign an analyst.
             </span>
           <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
@@ -244,7 +244,7 @@
       <div class="px-6 py-6 border-t border-blueGray-200">
         <div class="flex flex-wrap bg-blueGray">
           <div class="w-full lg:w-8/12 px-4">
-            <p class="text-blueGray-700 text-sm font-bold">Summery</p>
+            <p class="text-blueGray-700 text-sm font-bold">Summary</p>
 
             <p
               class="mb-4 text-sm justify-items-start leading-relaxed text-blueGray-700"
