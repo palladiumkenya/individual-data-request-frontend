@@ -214,7 +214,7 @@
               <label for="analyst">Assign to Analyst</label>
             </div>
             <div  class="w-full lg:w-4/12">
-              <select id="analyst" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
+              <select id="analyst" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full">
                 {#if analystsloading}
                   <option value="">--</option>
                 {:else if error}
