@@ -24,7 +24,7 @@
                     <button
                             class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-red-500 bg-white text-red-500"
                             type="button"
-                            class:active={true}
+                            class:active={$pageNumber === page}
                             class:ellipse={page === null}
                             on:click={() => handler.setPage(page)}
                     >
