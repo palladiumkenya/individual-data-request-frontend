@@ -1,7 +1,7 @@
 <!-- CardApprovalsTable.svelte -->
 <script>
   import {onMount} from "svelte";
-  import UserRequestTable from "./UserRequestTable.svelte";
+  import UserRequestTable from "./Requester/UserRequestTable.svelte";
   import {auth} from "../../authentication/AuthStore";
 
   const env = process.env.config;

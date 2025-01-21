@@ -6,8 +6,8 @@
 
   // pages for this layout
   import AddApproverForm from '../views/user/AddApproverForm.svelte';
+  import AddAnalystForm from '../views/user/AddAnalystForm.svelte';
   import UserSidebar from '../components/Sidebar/UserManagementSidebar.svelte';
-  import AuthGuard from '../authentication/AuthGuard.svelte';
   export let location;
   //export let admin = '';
 </script>
@@ -23,6 +23,7 @@
     <div class="mx-auto w-full -m-24">
       <Router url="user">
         <Route path="management/approver" component={AddApproverForm} />
+        <Route path="management/analyst" component={AddAnalystForm} />
       </Router>
       <!--      <Footer />-->
     </div>

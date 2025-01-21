@@ -21,6 +21,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "11.2.0",
     "@rollup/plugin-url": "^8.0.2",
+    "@vincjo/datatables": "1.14.10",
     "autoprefixer": "10.2.5",
     "postcss": "^8.2.8",
     "rollup": "2.41.5",

@@ -1,7 +1,7 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import livereload from 'rollup-plugin-livereload'; 
+import livereload from 'rollup-plugin-livereload';
 import terser from '@rollup/plugin-terser';
 
 // library that helps you import in svelte with
@@ -160,12 +160,15 @@ export default {
     format: 'iife',
     name: 'app',
     file: 'public/build/bundle.js',
+    globals: {
+      '@vincjo/datatables': 'datatables'
+    }
   },
   plugins: [
     replace({
       'process.env.config': JSON.stringify(config().parsed),
       preventAssignment: true,
-      
+
     }),
      postcss({
       modules:true,
