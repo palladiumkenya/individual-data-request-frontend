@@ -11,12 +11,12 @@ export let dashboardData;
 export let approval_type;
 
 
-const tabledata = [];
-dashboardData.map(item => tabledata.push({"ID":item.ID, "ReqId":item.ReqId, "Status":item.Status, "Date_Due":item.Date_Due,
-    "Priority_level":item.Priority_level, "Requester":item.Requester.Name, "Created_Date":item.Created_Date }))
+// const tabledata = [];
+// dashboardData.map(item => tabledata.push({"ID":item.ID, "ReqId":item.ReqId, "Status":item.Status, "Date_Due":item.Date_Due,
+//     "Priority_level":item.Priority_level, "Requester":item.Requester.Name, "Created_Date":item.Created_Date }))
 
 // Initialize DataHandler with dashboardData data
-$: handler = new DataHandler(tabledata || [], { rowsPerPage: 5 });
+$: handler = new DataHandler(dashboardData || [], { rowsPerPage: 5 });
 $: rows = handler.getRows();
 
 </script>

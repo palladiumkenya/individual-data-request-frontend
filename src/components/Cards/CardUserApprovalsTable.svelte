@@ -49,8 +49,14 @@
       dashboardData =data;
 
       if (data.data.length>0){
-        tableData.set(data.data);
+        let filteredData=[];
         dashboardData =data.data;
+
+        dashboardData.map(item => filteredData.push({"ID":item.ID, "ReqId":item.ReqId, "Status":item.Status, "Date_Due":item.Date_Due,
+          "Priority_level":item.Priority_level, "Requester":item.Requester.Name, "Created_Date":item.Created_Date }))
+
+        tableData.set(filteredData);
+
 
       }
     } catch (err) {
