@@ -8,7 +8,6 @@
   import FooterAdmin from 'components/Footers/FooterAdmin.svelte';
 
   // pages for this layout
-  import Settings from 'views/admin/Settings.svelte';
   import Tables from 'views/admin/Tables.svelte';
 
 
@@ -23,7 +22,6 @@
     <HeaderStats />
     <div class="px-4 md:px-10 mx-auto w-full -m-24">
       <Router url="admin">
-        <Route path="settings" component={Settings} />
         <Route path="tables" component={Tables} />
       </Router>
       <FooterAdmin />
