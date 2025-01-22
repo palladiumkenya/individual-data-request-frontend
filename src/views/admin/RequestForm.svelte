@@ -1,7 +1,6 @@
 <script>
   // core components
   import CardRequestForm from 'components/Cards/CardRequestForm.svelte';
-  import CardProfile from 'components/Cards/CardProfile.svelte';
   export let location;
 </script>
 

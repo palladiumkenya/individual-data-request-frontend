@@ -11,7 +11,7 @@
     // pages for this layout
     import InternalReviewerSidebar from '../components/Sidebar/InternalReviewerSidebar.svelte';
     import InternalReviewerDashboard from '../views/internalreviewer/internalReviewerDashboard.svelte';
-    import UserRequestForm from "../views/user/UserRequestForm.svelte";
+    import UserRequestForm from "../components/Forms/UserRequestForm.svelte";
 
     export let location;
     //export let admin = '';

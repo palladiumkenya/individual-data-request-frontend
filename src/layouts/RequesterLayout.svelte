@@ -6,7 +6,7 @@
 
   // pages for this layout
   import UserSidebar from '../components/Sidebar/UserSidebar.svelte';
-  import UserRequestForm from '../views/user/UserRequestForm.svelte';
+  import UserRequestForm from '../components/Forms/UserRequestForm.svelte';
   import UserDashboard from "../views/user/UserDashboard.svelte";
   import RequestDetails from "../views/user/RequestDetails.svelte";
 
