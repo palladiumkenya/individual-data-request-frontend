@@ -25,20 +25,20 @@
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
             <CardInternalReviewerStats
+                    statSubtitle="Pending Requests"
+                    statTitle={$requestCounts.pending}
+                    statIconName="fas fa-spinner"
+                    statIconColor="bg-pink-500"
+                    globalCategory="pending"
+            />
+          </div>
+          <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+            <CardInternalReviewerStats
               statSubtitle="Approved Requests"
               statTitle={$requestCounts.approved}
               statIconName="fas fa-check-circle"
               statIconColor="bg-orange-500"
               globalCategory="approved"
-            />
-          </div>
-          <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-            <CardInternalReviewerStats
-              statSubtitle="Pending Requests"
-              statTitle={$requestCounts.pending}
-              statIconName="fas fa-spinner"
-              statIconColor="bg-pink-500"
-              globalCategory="pending"
             />
           </div>
           <div class="w-full lg:w-6/12 xl:w-3/12 px-4">

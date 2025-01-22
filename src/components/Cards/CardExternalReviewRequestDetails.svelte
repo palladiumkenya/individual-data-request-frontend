@@ -301,7 +301,7 @@
               <i class="fas fa-bell"></i>
             </span>
               <span class="inline-block align-middle mr-8">
-              <b class="capitalize">Reviewed!</b> You already reviewed this request. Check your review and comments on the request below
+              <b class="capitalize">Reviewed!</b> This request already has a review. Check the review and comments on the request below
             </span>
               <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
                 <span>×</span>
