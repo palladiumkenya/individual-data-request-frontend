@@ -2034,6 +2034,11 @@ select {
   background-color: rgba(167, 243, 208, var(--tw-bg-opacity));
 }
 
+.bg-emerald-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(5, 222, 105, var(--tw-bg-opacity));
+}
+
 .bg-emerald-400 {
   --tw-bg-opacity: 1;
   background-color: rgba(52, 211, 153, var(--tw-bg-opacity));
@@ -2591,10 +2596,15 @@ select {
   color: rgba(5, 150, 105, var(--tw-text-opacity));
 }
 
+.text-emerald-300 {
+  --tw-text-opacity: 1;
+  color: rgba(5, 222, 105, var(--tw-text-opacity));
+}
 .text-green-500 {
   --tw-text-opacity: 1;
   color: rgba(34, 197, 94, var(--tw-text-opacity));
 }
+
 
 .text-yellow-500 {
   --tw-text-opacity: 1;

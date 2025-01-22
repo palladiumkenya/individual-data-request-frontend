@@ -9,7 +9,7 @@
   } from '../../stores/dash_store';
   import {onDestroy, onMount} from 'svelte';
   import moment from "moment/moment";
-  import ApproverPointPersonTable from "./ApproverAndPointperson/ApproverPointPersonTable.svelte";
+  import PointPersonTable from "./ApproverAndPointperson/PointPersonTable.svelte";
 
 
 
@@ -117,7 +117,7 @@
   {:else if error}
     <p>Error: {error}</p>
   {:else}
-    <ApproverPointPersonTable dashboardData={dashboardData} approval_type={approval_type}/>
+    <PointPersonTable dashboardData={dashboardData} approval_type={approval_type}/>
   {/if }
 
 </div>
