@@ -11,10 +11,7 @@ export let dashboardData;
 export let approval_type;
 
 
-// const tabledata = [];
-// dashboardData.map(item => tabledata.push({"ID":item.ID, "ReqId":item.ReqId, "Status":item.Status, "Date_Due":item.Date_Due,
-//     "Priority_level":item.Priority_level, "Requester":item.Requester.Name, "Created_Date":item.Created_Date }))
-
+console.log(dashboardData)
 // Initialize DataHandler with dashboardData data
 $: handler = new DataHandler(dashboardData || [], { rowsPerPage: 5 });
 $: rows = handler.getRows();
@@ -103,7 +100,7 @@ $: rows = handler.getRows();
 
                 <td
                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left"
-                >{moment(row.Date_Due).format('dddd, DD MMM YYYY')}</td
+                >{row.Date_Due}</td
                 >
                 <td
                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
@@ -122,7 +119,7 @@ $: rows = handler.getRows();
                 </td>
                 <td
                         class="border-t-0 px-6 align-middle text-indigo-600 border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                >{moment(row.Created_Date).format('dddd, DD MMM YYYY')}</td>
+                >{row.Created_Date}</td>
             </tr>
         {/each}
     {/if}
