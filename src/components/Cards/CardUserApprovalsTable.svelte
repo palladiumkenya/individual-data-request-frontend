@@ -2,7 +2,7 @@
 <script>
   // import Search from "./Requester/Search.svelte";
 
-  import ApproverPointPersonTable from "./ApproverAndPointperson/ApproverPointPersonTable.svelte";
+  import ApproverTable from "./ApproverAndPointperson/ApproverTable.svelte";
 
   const env = process.env.config;
 
@@ -127,6 +127,6 @@
   {:else if error}
     <p>Error: {error}</p>
   {:else}
-    <ApproverPointPersonTable dashboardData={dashboardData} approval_type={approval_type}/>
+    <ApproverTable dashboardData={dashboardData} approval_type={approval_type}/>
   {/if }
 </div>
