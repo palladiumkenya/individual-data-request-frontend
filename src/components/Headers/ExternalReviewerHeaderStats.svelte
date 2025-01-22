@@ -25,20 +25,20 @@
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
           <CardExternalReviewerStats
+                  statSubtitle="Requests In Progress"
+                  statTitle={$requestCounts.reviewStage}
+                  statIconName="fas fa-spinner"
+                  statIconColor="bg-pink-500"
+                  globalCategory="review stage"
+          />
+        </div>
+        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+          <CardExternalReviewerStats
                   statSubtitle="Approved Requests"
                   statTitle={$requestCounts.approved}
                   statIconName="fas fa-check-circle"
                   statIconColor="bg-orange-500"
                   globalCategory="approved"
-          />
-        </div>
-        <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <CardExternalReviewerStats
-                  statSubtitle="Requests In Progress"
-                  statTitle={$requestCounts.inProgress}
-                  statIconName="fas fa-spinner"
-                  statIconColor="bg-pink-500"
-                  globalCategory="in progress"
           />
         </div>
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
