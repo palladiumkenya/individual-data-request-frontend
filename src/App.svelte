@@ -2,8 +2,6 @@
 <script>
   import { Router, Route } from 'svelte-routing';
 
-  // Auth Layout
-  import Auth from './layouts/Auth.svelte';
 
   // User Layout
   import User from './layouts/UsersLayout.svelte';
@@ -52,8 +50,6 @@
 </script>
 
 <Router {url}>
-  <!-- auth layout -->
-  <Route path="auth/*auth" component={Auth} />
   <!-- no layout pages -->
   <Route path="signin-oidc" component={Callback} />
   <!-- no stats layout -->
