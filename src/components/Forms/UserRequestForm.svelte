@@ -1,6 +1,7 @@
 <script>
     import Swal from 'sweetalert2';
     import {auth} from "../../authentication/AuthStore";
+    import {onMount} from "svelte";
 
     const env = process.env.config;
 
@@ -48,7 +49,6 @@
         studyFiles = [...studyFiles, ...newFiles];
     }
 
-
     async function handleSubmit(event) {
         event.preventDefault();
         showLoadingAlert();
@@ -67,7 +67,10 @@
         let datedue = new Date(deadline).toISOString()
 
         let requestor_id = null;
-        auth.id.subscribe((value) => requestor_id = value)
+        let user = null
+        auth.userRoles.subscribe((value) => user = value)
+        requestor_id = user.find((user) => user.role === 'requester').id
+
         try {
             let response = await fetch(`${env.API_ENDPOINT}/request/create`, {
                 method: 'POST',
@@ -84,11 +87,15 @@
             }else {
                 let resp = await response.json()
 
-            await uploadFiles(otherFiles, resp?.data?.id, 'other')
-            await uploadFiles(institutionFiles, resp?.data?.id, 'institution approval')
-            await uploadFiles(dataFiles, resp?.data?.id, 'specific data elements')
+                await uploadFiles(otherFiles, resp?.data?.id, 'other')
+                await uploadFiles(studyFiles, resp?.data?.id, 'study protocol')
+                await uploadFiles(ethicsFiles, resp?.data?.id, 'ethics protocol')
+                await uploadFiles(nacostiFiles, resp?.data?.id, 'nacosti approval')
+                await uploadFiles(institutionFiles, resp?.data?.id, 'institution approval')
+                await uploadFiles(dataFiles, resp?.data?.id, 'specific data elements')
 
-          showSuccessAlert('Request submitted successfully!')
+                showSuccessAlert('Request submitted successfully!')
+            }
 
         } catch (err) {
             showErrorAlert(err.message)
@@ -179,6 +186,34 @@
         window.location.reload()
     }
 
+    onMount(async () => {
+        let requesterUuid = null;
+        let user = null
+        let roles = null
+        auth.userRoles.subscribe((value) => roles = value)
+        requesterUuid = roles.find((req) => req.role === "requester")?.id
+
+        if (!requesterUuid){
+            auth.user.subscribe((value) => user = value)
+
+            let new_user = JSON.stringify({
+                "email": user?.profile?.email,
+                "Name": user?.profile?.FullName,
+                "Organization": user?.profile?.OrganizationName
+            })
+            const requestOptions = {
+                method: "POST",
+                body: new_user,
+                redirect: "follow"
+            };
+            let requester = await fetch(`${env.API_ENDPOINT}/user/new_requester`, requestOptions)
+            let response = await requester.json()
+            if (requester.ok){
+                roles.push(response.data)
+                auth.setUserRoles(roles)
+            }
+        }
+    });
 </script>
 
 <!-- Data Request Form -->
