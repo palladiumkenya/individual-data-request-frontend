@@ -3,6 +3,7 @@
   import {onMount} from "svelte";
   import UserRequestTable from "./Requester/UserRequestTable.svelte";
   import {auth} from "../../authentication/AuthStore";
+  import {navigate} from "svelte-routing";
 
   const env = process.env.config;
   let openTab = 1;
@@ -15,7 +16,34 @@
 
   onMount(async () => {
     let requesterUuid = null;
-    auth.id.subscribe((value) => requesterUuid = value)
+    let user = null
+    let roles = null
+    auth.userRoles.subscribe((value) => roles = value)
+    requesterUuid = roles.find((req) => req.role === "requester")?.id
+
+    if (!requesterUuid){
+      auth.user.subscribe((value) => user = value)
+
+      let new_user = JSON.stringify({
+        "email": user?.profile?.email,
+        "Name": user?.profile?.FullName,
+        "Organization": user?.profile?.OrganizationName
+      })
+      const requestOptions = {
+        method: "POST",
+        body: new_user,
+        redirect: "follow"
+      };
+      let requester = await fetch(`${env.API_ENDPOINT}/user/new_requester`, requestOptions)
+      let response = await requester.json()
+      if (requester.ok){
+        roles.push(response.data)
+        auth.setUserRoles(roles)
+        requesterUuid = response.data.id
+      }
+    }
+
+
     try {
       const response = await fetch(`${env.API_ENDPOINT}/request/requester/get?requester=${requesterUuid}`);
       const data = await response.json();

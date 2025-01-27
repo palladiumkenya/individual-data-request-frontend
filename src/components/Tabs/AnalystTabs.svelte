@@ -14,7 +14,10 @@
 
     onMount(async () => {
         let assigneeUuid = null;
-        auth.id.subscribe((value) => (assigneeUuid = value) )
+        let user = null
+        auth.userRoles.subscribe((value) => (user = value) )
+        assigneeUuid = user.find((req) => req.role === "analyst")?.id
+
         try {
             const response = await fetch(`${env.API_ENDPOINT}/analysts/jobs?assignee=${assigneeUuid}`);
             const data = await response.json();

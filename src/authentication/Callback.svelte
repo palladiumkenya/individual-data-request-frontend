@@ -14,32 +14,29 @@
 
             let role = await response.json()
 
-            if (role.data?.role === 'approver'){
-                auth.setUserId(role.data.id)
-                auth.setUserType(role.data.type)
-                if (role.data.type === "internalapprover")
+            if (role.data?.roles.find((role) => role.role === 'approver')){
+                let approverType = role.data?.roles.find((role) => role.role === 'approver').type
+                auth.setUserRoles(role.data.roles)
+                if (approverType === "internal")
                     navigate('internalreviewer/dashboard');
-                else if (role.data.type === "externalapprover")
+                else if (approverType === "external")
                     navigate('externalreviewer/dashboard');
                 else
                     navigate('internalreviewer/dashboard');
             }
-            else if (role.data?.role === 'analyst'){
-                auth.setUserId(role.data.id)
-                auth.setUserType(role.data.role)
+            else if (role.data?.roles.find((role) => role.role === 'analyst')){
+                auth.setUserRoles(role.data.roles)
                 navigate('analyst/list');
             }
-            else if (role.data?.role === 'requester') {
-                auth.setUserId(role.data.id)
-                auth.setUserType(role.data.role)
+            else if (role.data?.roles.find((role) => role.role === 'requester')) {
+                auth.setUserRoles(role.data.roles)
                 navigate('requester/dashboard');
             }
-            else if (role.data?.role === "pointperson") {
-                auth.setUserId(role.data.id)
-                auth.setUserType(role.data.role)
+            else if (role.data?.roles.find((role) => role.role === "pointperson")) {
+                auth.setUserRoles(role.data.roles)
                 navigate('pointperson/dashboard');
             }
-            else if (role.data?.role === null) {
+            else if (role.data?.roles === null) {
                 let new_user = JSON.stringify({
                     "email": user?.profile?.email,
                     "Name": user?.profile?.FullName,
@@ -53,8 +50,7 @@
                 let requester = await fetch(`${env.API_ENDPOINT}/user/new_requester`, requestOptions)
                 let response = await requester.json()
                 if (requester.ok){
-                    auth.setUserId(response.data.id)
-                    auth.setUserType(role.data.role)
+                    auth.setUserRoles([response.data])
                     navigate('requester/dashboard');
                 }
             }

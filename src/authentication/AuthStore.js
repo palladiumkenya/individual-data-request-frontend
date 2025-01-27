@@ -20,8 +20,7 @@ const persist = (key, initialValue) => {
 const createAuthStore = () => {
     const user = writable(null);
     const isAuthenticated = writable(false);
-    const id = persist('userId',null)
-    const userType = persist('userType',null)
+    const userRoles = persist('userRoles',null)
 
     return {
         subscribe: user.subscribe,
@@ -43,15 +42,11 @@ const createAuthStore = () => {
         setIsAuthenticated: (authState) => {
             isAuthenticated.set(authState);
         },
-        setUserId: (userId) =>{
-            id.set(userId)
-        },
-        setUserType: (type) =>{
-            userType.set(type)
+        setUserRoles: (userRole) =>{
+            userRoles.set(userRole)
         },
         user, // Expose the isAuthenticated store
-        id,
-        userType,
+        userRoles,
     };
 };
 
