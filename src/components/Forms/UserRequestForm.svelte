@@ -81,13 +81,10 @@
 
             if (!response.ok) {
                 showErrorAlert('error in saving request')
-            }
-            let resp = await response.json()
+            }else {
+                let resp = await response.json()
 
             await uploadFiles(otherFiles, resp?.data?.id, 'other')
-            await uploadFiles(studyFiles, resp?.data?.id, 'study protocol')
-            await uploadFiles(ethicsFiles, resp?.data?.id, 'ethics protocol')
-            await uploadFiles(nacostiFiles, resp?.data?.id, 'nacosti approval')
             await uploadFiles(institutionFiles, resp?.data?.id, 'institution approval')
             await uploadFiles(dataFiles, resp?.data?.id, 'specific data elements')
 

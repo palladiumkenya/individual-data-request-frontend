@@ -1,17 +1,14 @@
 <script>
   import CardSupportingDocs from "./CardSupportingDocs.svelte";
-  import {navigate} from 'svelte-routing';
-
   import {auth} from "../../authentication/AuthStore";
+
+  import { onMount } from 'svelte';
+  import moment from 'moment';
 
   const env = process.env.config;
 
   let user = null;
   auth.subscribe((value) => (user = value));
-
-  import { onMount } from 'svelte';
-  import moment from 'moment';
-  // import {PUBLIC_API_URL} from '$env/static/public';
 
   export let request_id;
   export let approval_type;
