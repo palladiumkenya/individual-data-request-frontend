@@ -74,8 +74,5 @@
     <AuthGuard component={Analyst} />
   </Route>
 
-  <!-- analyst views -->
-  <Route path="serve/request" component={Landing} />
-
   <Route path="/" component={Index} />
 </Router>
