@@ -1,19 +1,18 @@
 <script>
     import { link } from 'svelte-routing';
-  
+
     // core components
-    import NotificationDropdown from 'components/Dropdowns/NotificationDropdown.svelte';
     import InternalReviewerDropdown from '../Dropdowns/InternalReviewerDropdown.svelte';
-  
+
     let collapseShow = 'hidden';
-  
+
     function toggleCollapseShow(classes) {
       collapseShow = classes;
     }
-  
+
     export let location;  // This should be passed in as a prop
   </script>
-  
+
   <nav
     class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
   >
@@ -43,9 +42,6 @@
 
       <!-- User -->
       <ul class="md:hidden items-center flex flex-wrap list-none">
-        <li class="inline-block relative">
-          <NotificationDropdown />
-        </li>
         <li class="inline-block relative">
           <InternalReviewerDropdown />
         </li>
@@ -89,7 +85,7 @@
             />
           </div>
         </form>
-  
+
         <!-- Navigation -->
         <ul class="md:flex-col md:min-w-full flex flex-col list-none">
           <li class="items-center">
@@ -106,7 +102,7 @@
               Total Requests
             </a>
           </li>
-  
+
 <!--          <li class="items-center">-->
 <!--            <a-->
 <!--              use:link-->

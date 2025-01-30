@@ -1,10 +1,6 @@
 <script>
   import { link } from "svelte-routing";
 
-  // core components
-  import NotificationDropdown from "components/Dropdowns/NotificationDropdown.svelte";
-  import UserDropdown from "components/Dropdowns/UserDropdown.svelte";
-
   let collapseShow = "hidden";
 
   function toggleCollapseShow(classes) {
@@ -39,7 +35,6 @@
     <!-- User -->
 <!--    <ul class="md:hidden items-center flex flex-wrap list-none">-->
 <!--      <li class="inline-block relative">-->
-<!--        <NotificationDropdown />-->
 <!--      </li>-->
 <!--      <li class="inline-block relative">-->
 <!--        <UserDropdown />-->
