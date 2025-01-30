@@ -41,6 +41,7 @@
   let approvalloading = true;
   let approval_type;
   let approvalerror = null;
+
   onMount(async () => {
     try {
       const response = await fetch(
@@ -129,7 +130,7 @@
               <p class="text-blueGray-700 text-sm font-bold">
                 Request Outputs
               </p>
-              <CardRequestDocuments requestDocs={files.filter((file)=> !file.Folder !=='supporting-documents')}/>
+              <CardRequestDocuments requestDocs={files.filter((file)=> file.Folder !=='supporting-documents')}/>
             </div>
               {/if}
 

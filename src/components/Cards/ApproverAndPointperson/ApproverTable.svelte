@@ -1,9 +1,9 @@
 <script>
 import moment from "moment";
 import {DataHandler, Th} from '@vincjo/datatables'
-import ThFilter from "../Requester/ThFilter.svelte";
-import Search from "../Requester/Search.svelte";
-import Pagination from "../Requester/Pagination.svelte";
+import ThFilter from "../Shared/ThFilter.svelte";
+import Search from "../Shared/Search.svelte";
+import Pagination from "../Shared/Pagination.svelte";
 
 const env = process.env.config;
 

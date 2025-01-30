@@ -13,7 +13,12 @@
   import InternalreviewerLayout from './layouts/InternalReviewerLayout.svelte'
   // External Reviewer Layout
   import ExternalReviewerLayout from './layouts/ExternalReviewerLayout.svelte';
+
   import PointPersonLayout from './layouts/PointPersonLayout.svelte';
+  import InternalDashboard from './layouts/InternalReviewerDashboardLayout.svelte';
+  import ExternalDashboard from './layouts/ExternalReviewerDashboardLayout.svelte';
+  import AssigningLayout from "./layouts/AssigningLayout.svelte";
+
 
   // Analyst Layout
   import Analyst from './layouts/AnalystLayout.svelte';
@@ -23,13 +28,9 @@
   // No Layout Pages
   import Index from './views/Index.svelte';
   import Callback from './authentication/Callback.svelte';
-  import InternalDashboard from './layouts/InternalReviewerDashboardLayout.svelte';
-  import ExternalDashboard from './layouts/ExternalReviewerDashboardLayout.svelte';
-
   import { onMount } from 'svelte';
   import { userManager } from './authentication/OidcConfig';
   import { auth } from './authentication/AuthStore';
-  import AssigningLayout from "./layouts/AssigningLayout.svelte";
 
 
 

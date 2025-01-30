@@ -1,5 +1,5 @@
 <script>
-    import CardRequesterRequestDetails from '../../components/Cards/CardRequesterRequestDetails.svelte';
+    import CardRequesterRequestDetails from '../../components/Cards/Requester/CardRequesterRequestDetails.svelte';
 
     const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);

@@ -1,8 +1,8 @@
 <script>
   import {DataHandler, Th} from '@vincjo/datatables'
-  import Pagination from "./Pagination.svelte";
-  import Search from "./Search.svelte";
-  import ThFilter from "./ThFilter.svelte"
+  import Pagination from "../Shared/Pagination.svelte";
+  import Search from "../Shared/Search.svelte";
+  import ThFilter from "../Shared/ThFilter.svelte"
 
   export let tasks;
   export let color = "light";
@@ -66,6 +66,8 @@
                     class={`fas fa-circle mr-2 ${task?.Status === 'pending' ? 'text-yellow-500' :
                 task?.Status === 'rejected' ? 'text-red-500' :
                 task?.Status === 'in progress' ? 'text-blue-500' :
+                task?.Status === 'review stage' ? 'text-purple-500' :
+                task?.Status === 'approved' ? 'text-lime-500' :
                 task?.Status === 'complete' ? 'text-emerald-500' :
                 'text-gray-500'}`}
             ></i>
@@ -89,25 +91,3 @@
 <!--  </Datatable>-->
 </div>
 </div>
-
-<style>
-  input {
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    outline: none;
-    padding: 0 8px;
-    line-height: 24px;
-    margin: 0;
-    height: 24px;
-    background: transparent;
-    width: 176px;
-    transition: all, 0.1s;
-  }
-  input:focus {
-    border: 1px solid #bdbdbd;
-  }
-  input::placeholder {
-    color: #9e9e9e;
-    line-height: 24px;
-  }
-</style>

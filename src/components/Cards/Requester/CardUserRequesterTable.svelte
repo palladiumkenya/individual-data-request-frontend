@@ -1,8 +1,8 @@
 <!-- CardApprovalsTable.svelte -->
 <script>
   import {onMount} from "svelte";
-  import UserRequestTable from "./Requester/UserRequestTable.svelte";
-  import {auth} from "../../authentication/AuthStore";
+  import UserRequestTable from "./UserRequestTable.svelte";
+  import {auth} from "../../../authentication/AuthStore";
   import {navigate} from "svelte-routing";
 
   const env = process.env.config;
@@ -94,7 +94,7 @@
             <UserRequestTable tasks={tasks.filter(task => task?.Status === "pending")}/>
           </div>
           <div class="{openTab === 3 ? 'block':'hidden'}">
-            <UserRequestTable tasks={tasks.filter(task => task?.Status === "in progress")}/>
+            <UserRequestTable tasks={tasks.filter(task => ["in progress", "review stage", "approved"].includes(task?.Status))}/>
           </div>
           <div class="{openTab === 4 ? 'block':'hidden'}">
             <UserRequestTable tasks={tasks.filter(task => task?.Status === "rejected")}/>

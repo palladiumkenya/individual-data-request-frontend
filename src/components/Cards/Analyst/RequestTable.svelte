@@ -1,11 +1,14 @@
 <script>
-  let page = 1;
-  let perPage = 10;
-  let totalPages = 1;
+  import {DataHandler, Th} from "@vincjo/datatables";
+  import Search from "../Shared/Search.svelte";
+  import Pagination from "../Shared/Pagination.svelte";
+  import ThFilter from "../Shared/ThFilter.svelte"
+
   export let tasks;
   export let color = "light";
 
-  $: totalPages = Math.ceil(tasks.length / perPage);
+  $: handler = new DataHandler(tasks || [], { rowsPerPage: 10 });
+  $: rows = handler.getRows();
 
 </script>
 
@@ -25,41 +28,51 @@
   </div>
   <div class="block w-full overflow-x-auto">
     <!-- Projects table -->
+    <Search {handler} />
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr>
-          <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
+          <Th {handler} orderBy="Requester.Name"
+              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Requester
-          </th>
-          <th
+          </Th>
+          <Th {handler}
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Organization
-          </th>
-          <th
+          </Th>
+          <Th {handler}
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Priority
-          </th>
-          <th
+          </Th>
+          <Th {handler}
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Due date
-          </th>
-          <th
+          </Th>
+          <Th {handler}
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Status
-          </th>
-          <th
+          </Th>
+          <Th {handler}
             class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"
-          ></th>
+          ></Th>
         </tr>
+      <tr>
+        <ThFilter {handler} filterBy="Requester.Name" class="px-1 align-middle border border-solid text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"/>
+        <ThFilter {handler} filterBy="Requester.Organization" class="px-1 align-middle border border-solid text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"/>
+        <ThFilter {handler} filterBy="Priority_level" class="px-1 align-middle border border-solid text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"/>
+        <ThFilter {handler} filterBy="Date_Due" class="px-1 align-middle border border-solid text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"/>
+        <ThFilter {handler} filterBy="Status" class="px-1 align-middle border border-solid text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"/>
+        <Th {handler} class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100' : 'bg-red-700 text-red-200 border-red-600'}"></Th>
+
+      </tr>
       </thead>
       <tbody>
-      {#each tasks.slice((page - 1) * perPage, page * perPage) as task(task.ID)}
+      {#each $rows as task}
           <tr>
             <td class="whitespace-nowrap p-4 text-left items-center">
               {task?.Requester.Name}
@@ -97,42 +110,7 @@
     </table>
     <hr />
     <div class="py-2">
-      <nav class="block">
-        <ul class="flex pl-0 rounded list-none flex-wrap">
-          <li>
-            <button
-                    class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-red-500 bg-white text-red-500"
-                    type="button"
-                    disabled={page === 1}
-                    on:click={() => page--}
-            >
-              <i class="fas fa-chevron-left -ml-px"></i>
-            </button>
-          </li>
-          {#each Array.from({ length: totalPages }, (_, i) => i + 1) as pageNumber}
-            <li>
-              <button
-                      class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-red-500 bg-white text-red-500"
-                      type="button"
-                      disabled={page === pageNumber}
-                      on:click={() => page = pageNumber}
-              >
-                {pageNumber}
-              </button>
-            </li>
-          {/each}
-          <li>
-            <button
-                    class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-red-500 bg-white text-red-500"
-                    type="button"
-                    disabled={page === totalPages}
-                    on:click={() => page++}
-            >
-              <i class="fas fa-chevron-right -mr-px"></i>
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <Pagination {handler} />
     </div>
   </div>
 </div>
