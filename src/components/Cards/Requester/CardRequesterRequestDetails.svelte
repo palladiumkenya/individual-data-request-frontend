@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import moment from 'moment';
   import CardRequestDocuments from "./CardRequestDocuments.svelte";
-  import CardInternalApproverDetails from "./CardInternalApproverDetails.svelte";
+  import CardInternalApproverDetails from "../CardInternalApproverDetails.svelte";
 
   const env = process.env.config;
   export let request_id;
@@ -41,6 +41,7 @@
   let approvalloading = true;
   let approval_type;
   let approvalerror = null;
+
   onMount(async () => {
     try {
       const response = await fetch(

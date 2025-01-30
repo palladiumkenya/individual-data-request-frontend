@@ -1,7 +1,7 @@
 <!-- UserDashboard.svelte -->
 <script>
   //export let location;
-  import CardUserRequesterTable from '../../components/Cards/CardUserRequesterTable.svelte';
+  import CardUserRequesterTable from '../../components/Cards/Requester/CardUserRequesterTable.svelte';
 </script>
 
 <div>
