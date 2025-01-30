@@ -46,7 +46,7 @@
   });
 
   import Swal from 'sweetalert2';
-  import CardInternalApproverDetails from "./CardInternalApproverDetails.svelte";
+  import CardInternalApproverDetails from "./Requester/CardInternalApproverDetails.svelte";
   let showModal = false;
 
   export function showAlert(type) {

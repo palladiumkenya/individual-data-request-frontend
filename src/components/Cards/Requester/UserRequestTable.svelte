@@ -66,6 +66,8 @@
                     class={`fas fa-circle mr-2 ${task?.Status === 'pending' ? 'text-yellow-500' :
                 task?.Status === 'rejected' ? 'text-red-500' :
                 task?.Status === 'in progress' ? 'text-blue-500' :
+                task?.Status === 'review stage' ? 'text-purple-500' :
+                task?.Status === 'approved' ? 'text-lime-500' :
                 task?.Status === 'complete' ? 'text-emerald-500' :
                 'text-gray-500'}`}
             ></i>

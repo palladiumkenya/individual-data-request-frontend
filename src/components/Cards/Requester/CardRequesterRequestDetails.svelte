@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import moment from 'moment';
   import CardRequestDocuments from "./CardRequestDocuments.svelte";
-  import CardInternalApproverDetails from "../CardInternalApproverDetails.svelte";
+  import CardInternalApproverDetails from "./CardInternalApproverDetails.svelte";
 
   const env = process.env.config;
   export let request_id;
@@ -130,7 +130,7 @@
               <p class="text-blueGray-700 text-sm font-bold">
                 Request Outputs
               </p>
-              <CardRequestDocuments requestDocs={files.filter((file)=> !file.Folder !=='supporting-documents')}/>
+              <CardRequestDocuments requestDocs={files.filter((file)=> file.Folder !=='supporting-documents')}/>
             </div>
               {/if}
 

@@ -1,5 +1,5 @@
 <script>
-    import RequestTable from "components/Cards/RequestTable.svelte";
+    import RequestTable from "../Cards/Analyst/RequestTable.svelte";
     import {onMount} from "svelte";
     import {auth} from '../../authentication/AuthStore';
 

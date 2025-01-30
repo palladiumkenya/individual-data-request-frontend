@@ -94,7 +94,7 @@
             <UserRequestTable tasks={tasks.filter(task => task?.Status === "pending")}/>
           </div>
           <div class="{openTab === 3 ? 'block':'hidden'}">
-            <UserRequestTable tasks={tasks.filter(task => task?.Status === "in progress")}/>
+            <UserRequestTable tasks={tasks.filter(task => ["in progress", "review stage", "approved"].includes(task?.Status))}/>
           </div>
           <div class="{openTab === 4 ? 'block':'hidden'}">
             <UserRequestTable tasks={tasks.filter(task => task?.Status === "rejected")}/>
